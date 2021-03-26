@@ -1,0 +1,188 @@
+<resources>
+    <string name="app_name">Project_Just4Gamers</string>
+    <string name="tv_splash_mottoT">MUST PLAY</string>
+    <string name="header_image">Header_Image</string>
+    <string name="tv_loginT">LOGIN</string>
+    <string name="tiet_login_emailT">Email ID</string>
+    <string name="tv_login_forgot_password">Forgot Password?</string>
+    <string name="btn_loginT">LOGIN</string>
+    <string name="tv_login_registerBtnT">Don`t have an account? Register here</string>
+    <string name="tiet_login_passwordT">Password</string>
+    <string name="tv_createAccT">CREATE AN ACCOUNT</string>
+    <string name="tiet_register_firstNameT">First name</string>
+    <string name="tiet_register_lastNameT">Last name</string>
+    <string name="tiet_register_emailT">Email ID</string>
+    <string name="tiet_register_passwordT">Password</string>
+    <string name="tiet_register_passwordConfirmT">Confirm Password</string>
+    <string name="cb_register_termsT"><![CDATA[I Agree To The Terms & Condition]]></string>
+    <string name="btn_registerT">REGISTER</string>
+    <string name="tv_register_loginBtnT">Already have an account? Login</string>
+    <string name="tiet_emailIdT">Email ID</string>
+    <string name="tv_detailsT">Please enter your e-mail address and we\'ll send you an e-mail to reset your password</string>
+    <string name="tv_forgotPassT">FORGOT PASSWORD?</string>
+    <string name="btn_submitT">SUBMIT</string>
+
+    <string name="mobile_format">0%1$d</string>
+
+    <string name="tv_main_welcome">Welcome aboard, %1$s !</string>
+    <string name="tv_settings_name">%1$s %2$s</string>
+    <string name="tv_hi">HEY THERE</string>
+    <string name="cb_rememberT">Remember me</string>
+
+    <string name="tv_titleT">PROFILE</string>
+    <string name="tv_complete_profile">COMPLETE PROFILE</string>
+    <string name="tv_edit_profile">EDIT PROFILE</string>
+
+    <string name="iv_profileC">photo</string>
+    <string name="tiet_profile_mobileNrT">Mobile Number</string>
+    <string name="rb_lbl_male">MALE</string>
+    <string name="rb_lbl_female">FEMALE</string>
+    <string name="btn_submit">Submit</string>
+
+    <string name="title_orders">Orders</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_products">Products</string>
+
+    <string name="please_click_back_again_to_exit">Please click back again to exit.</string>
+    <string name="action_settings">Settings</string>
+    <string name="content_description">Image portrait</string>
+    <string name="title_settings">Settings</string>
+    <string name="lbl_edit">Edit</string>
+    <string name="user_name">User Name</string>
+    <string name="gender">Gender</string>
+    <string name="tv_emailT">Email</string>
+    <string name="tv_mobileT">Mobile</string>
+    <string name="settings_addressT">Address</string>
+    <string name="btn_logoutT">LOGOUT</string>
+    <string name="action_add_product">Add Product</string>
+
+
+    <string name="title_add_product">ADD PRODUCT</string>
+    <string name="product_titleT">Product Title</string>
+    <string name="product_pricet">Product Price ($)</string>
+    <string name="tv_product_ageT">Please choose your product age</string>
+    <string name="rb_newT">NEW</string>
+    <string name="rb_usedT">USED</string>
+    <string name="tiet_add_product_descriptionT">Product Description</string>
+    <string name="btn_add_product_submit">SUBMIT</string>
+    <string name="tiet_add_product_quantityT">Product Quantity</string>
+    <string name="tv_no_productsT">No products added yet!</string>
+
+    <string name="tv_no_dashboardItemFound">No items found!</string>
+
+    <string-array name="add_product_age_values">
+        <item>~1 year</item>
+        <item> ~5 years</item>
+        <item> ~(5–10) years</item>
+        <item> 10+ years</item>
+        <item> </item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_item_nameT">Name</string>
+    <string name="tv_item_priceT">100$</string>
+
+    <string name="item_price_format">$ %1$s</string>
+    <string name="item_nameT">Item Name</string>
+    <string name="item_priceT">$100</string>
+    <string name="delete_dialog_title">Delete Product</string>
+    <string name="delete_dialog_message">Are you sure to delete this product?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="product_detailsT">Product Details</string>
+    <string name="product_titleTT">Product Title</string>
+    <string name="tv_productDetPriceT">$100</string>
+    <string name="product_descriptionT">Product Description</string>
+    <string name="this_is_product_details_descriptionT">This is product details description.</string>
+    <string name="stock_quantityT">Stock Quantity</string>
+    <string name="tv_stockT">5</string>
+
+    <string name="btn_lbl_add_to_cart">ADD TO CART</string>
+
+    <string name="btn_lbl_go_to_cart">GO TO CART</string>
+
+    <string name="title_my_cart">MY CART</string>
+    <string name="no_cart_item_found">No item found in cart!</string>
+    <string name="lbl_subtotal">Subtotal</string>
+    <string name="lbl_shipping_charge">Shipping charge</string>
+    <string name="lbl_total_amount">Total Amount</string>
+    <string name="btn_lbl_checkout">Checkout</string>
+    <string name="action_cart">My cart</string>
+    <string name="tv_subTotalT">$100</string>
+    <string name="tv_shippingT">$10</string>
+    <string name="tv_totalT">$110</string>
+    <string name="btn_checkoutT">Checkout</string>
+    <string name="cartTitle">Cart</string>
+    <string name="cart_item_titleT">Cart Item Title</string>
+    <string name="tv_carPriceT">$100</string>
+    <string name="tv_cart_quantityT">1</string>
+
+    <string name="lbl_out_of_stock">OUT OF STOCK</string>
+    <string name="msg_item_removed_successfully">Item removed successfully!</string>
+    <string name="msg_for_available_stock">Available stock is %1$s!You can not add more than stock quantity! </string>
+
+    <string name="title_address_list">ADDRESS LIST</string>
+    <string name="no_address_found">No Address Found!</string>
+    <string name="lbl_add_address">Add Address</string>
+
+    <string name="title_add_address">ADD ADDRESS</string>
+    <string name="hint_fullName">Full name</string>
+    <string name="hint_phone_number">Phone number</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_zip_code">ZipCode</string>
+    <string name="hint_additional_note">Additional note</string>
+    <string name="hint_other_details">Other details</string>
+    <string name="lbl_home">HOME</string>
+    <string name="lbl_office">OFFICE</string>
+    <string name="lbl_other">OTHER</string>
+    <string name="tv_address_fullNameT">Name</string>
+    <string name="tv_address_typeT">Home</string>
+    <string name="tv_address_detailsT">Details</string>
+    <string name="tv_address_mobileNrT">Mobile number</string>
+
+    <string name="address_details">%1$s, %2$s</string>
+
+    <string name="title_edit_address">EDIT ADDRESS</string>
+    <string name="btn_update">UPDATE</string>
+    <string name="address_update_success">Your address was updated successfully!</string>
+    <string name="err_update_success">Your address was not updated successfully!</string>
+    <string name="title_select_address">SELECT ADDRESS</string>
+
+    <string name="title_checkout">CHECKOUT</string>
+    <string name="checkout_lbl_product_items">Product Items</string>
+    <string name="checkout_lbl_selected_address">Selected Address</string>
+    <string name="checkout_lbl_items_receipt">Items Receipt</string>
+    <string name="lbl_payment_mode">Payment Mode</string>
+    <string name="lbl_cash_on_delivery">Cash On Delivery</string>
+    <string name="btn_lbl_place_order">PLACE ORDER</string>
+    <string name="tv_addressTypeT">Home</string>
+    <string name="tv_checkout_fullNameT">Full name</string>
+    <string name="tv_checkout_addressT">Address</string>
+    <string name="tv_checkout_additionalNoteT">Additional Note</string>
+    <string name="tv_checkout_otherDetails">Other details</string>
+    <string name="tv_checkout_mobileNrT">Mobile number</string>
+    <string name="tv_checkout_subtotalT">$100</string>
+    <string name="t_checkout_shippingCharge">$10.0</string>
+    <string name="tv_checkout_totalT">$110</string>
+
+    <string name="no_orders_placed_yet">No orders placed yet!</string>
+
+    <string name="title_order_details">MY ORDER DETAILS</string>
+    <string name="order_details_lbl">Order Details</string>
+    <string name="order_details_lbl_order_id">Order ID</string>
+    <string name="order_details_lbl_order_date">Order Date</string>
+    <string name="order_details_lbl_order_status">Order Status</string>
+    <string name="order_status_pending">Pending</string>
+    <string name="order_details_lbl_shipping_address">Shipping Address</string>
+
+    <string name="order_status_inProcess">In Process</string>
+    <string name="order_status_delivered">Delivered</string>
+    <string name="tv_order_detailsIdT">12345</string>
+    <string name="tv_orderDetailsDateT">22 02 2020</string>
+
+    <string name="title_soldProducts">Sold Products</string>
+    <string name="no_products_sold_out_Yet">No products sold yet!</string>
+
+    <string name="title_sold_product_details">SOLD PRODUCT DETAILS</string>
+</resources>
