@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_just4gamers.R;
+import com.example.project_just4gamers.models.Address;
 import com.example.project_just4gamers.models.DiscountCoupon;
 import com.example.project_just4gamers.ui.activities.CheckoutActivity;
 import com.example.project_just4gamers.utils.Constants;
@@ -25,11 +26,13 @@ public class CouponsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Context context;
     private ArrayList<DiscountCoupon> discountCouponsList;
     private Activity activity;
+    private Address address;
 
-    public CouponsListAdapter(Context context, ArrayList<DiscountCoupon> discountCouponsList, Activity activity) {
+    public CouponsListAdapter(Context context, ArrayList<DiscountCoupon> discountCouponsList, Activity activity,Address address) {
         this.context = context;
         this.discountCouponsList = discountCouponsList;
         this.activity = activity;
+        this.address = address;
     }
 
     @NonNull
@@ -57,8 +60,8 @@ public class CouponsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         public void onClick(View v) {
                             Intent intent = new Intent(context, CheckoutActivity.class);
                             intent.putExtra(Constants.getExtraCoupon(),model);
-                            activity.setResult(Activity.RESULT_OK, intent);
-                            activity.finish();
+                            intent.putExtra(Constants.getExtraSelectedAddress(), address);
+                            activity.startActivity(intent);
                         }
                     });
 

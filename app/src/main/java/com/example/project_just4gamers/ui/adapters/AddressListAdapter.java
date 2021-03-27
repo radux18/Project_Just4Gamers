@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Address;
+import com.example.project_just4gamers.ui.activities.ActivateCouponActivity;
 import com.example.project_just4gamers.ui.activities.AddAddressActivity;
 import com.example.project_just4gamers.ui.activities.CheckoutActivity;
 import com.example.project_just4gamers.utils.Constants;
@@ -71,7 +72,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 item.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(context, CheckoutActivity.class);
+                        Intent intent = new Intent(context, ActivateCouponActivity.class);
                         intent.putExtra(Constants.getExtraSelectedAddress(), model);
                         context.startActivity(intent);
 

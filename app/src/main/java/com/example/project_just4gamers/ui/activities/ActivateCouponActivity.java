@@ -6,15 +6,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
+import com.example.project_just4gamers.models.Address;
 import com.example.project_just4gamers.models.DiscountCoupon;
 import com.example.project_just4gamers.ui.adapters.AddressListAdapter;
 import com.example.project_just4gamers.ui.adapters.CouponsListAdapter;
+import com.example.project_just4gamers.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -23,14 +26,21 @@ public class ActivateCouponActivity extends AppCompatActivity {
     private Toolbar tbDiscounts;
     private RecyclerView rvCouponsList;
     private TextView tvNoDiscountsFound;
+    private Intent intent;
+    private Address address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activate_coupon);
-
+        intent = getIntent();
         initComp();
         setupActionBar();
+
+        if (intent.hasExtra(Constants.getExtraSelectedAddress())){
+            address = intent.getParcelableExtra(Constants.getExtraSelectedAddress());
+            System.out.println(address.toString());
+        }
 
         getDiscountCouponListFromFirestore();
     }
@@ -48,7 +58,7 @@ public class ActivateCouponActivity extends AppCompatActivity {
             rvCouponsList.setLayoutManager(new LinearLayoutManager(ActivateCouponActivity.this));
             rvCouponsList.setHasFixedSize(true);
 
-            CouponsListAdapter adapter = new CouponsListAdapter(getApplicationContext(), discountCoupons,ActivateCouponActivity.this);
+            CouponsListAdapter adapter = new CouponsListAdapter(getApplicationContext(), discountCoupons,ActivateCouponActivity.this, address);
             rvCouponsList.setAdapter(adapter);
 
 

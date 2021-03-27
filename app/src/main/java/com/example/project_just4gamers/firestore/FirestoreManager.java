@@ -566,6 +566,18 @@ public class FirestoreManager {
                 });
     }
 
+    public void removeCouponPerUse(DiscountCoupon discountCoupon){
+        fStore.collection(Constants.getDISCOUNTCOUPONS())
+                .document(discountCoupon.getId())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        System.out.println(discountCoupon.toString() + " S-A STERS!");
+                    }
+                });
+    }
+
     public void deleteAddress(Context context, String address_id){
         fStore.collection(Constants.getADDRESSES())
                 .document(address_id)

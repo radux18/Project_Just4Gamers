@@ -247,15 +247,6 @@
                         android:gravity="center" />
                 </LinearLayout>
 
-
-                <Button
-                    android:id="@+id/btn_activateCoupon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/add_discount_couponT"
-                    android:layout_marginTop="10dp"
-                    />
             </LinearLayout>
 
 

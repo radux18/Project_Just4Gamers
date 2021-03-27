@@ -52,9 +52,9 @@ public class CheckoutActivity extends AppCompatActivity {
     private double totalAmount = 0.0;
     private Order orderDetails = null;
 
-    private double discountProcent0 = 0.1;
-    private double discountProcent1 = 0.15;
-    private double discountProcent2 = 0.25;
+    private double discountProcent0 = 0.9;
+    private double discountProcent1 = 0.85;
+    private double discountProcent2 = 0.75;
 
     private ArrayList<Product> products;
     private ArrayList<CartItem> cartItems;
@@ -74,6 +74,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
         if (intent.hasExtra(Constants.getExtraSelectedAddress())){
             addressDetails = intent.getParcelableExtra(Constants.getExtraSelectedAddress());
+        }
+
+        if (intent.hasExtra(Constants.getExtraCoupon())){
+            discountCoupon = intent.getParcelableExtra(Constants.getExtraCoupon());
         }
 
 
@@ -101,25 +105,8 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         });
 
-        btnAddCoupon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ActivateCouponActivity.class);
-                startActivityForResult(intent, 999);
-            }
-        });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 999){
-                discountCoupon = data.getParcelableExtra(Constants.getExtraCoupon());
-                System.out.println(discountCoupon);
-            }
-        }
-    }
 
     public void getUserDetails() {
         new FirestoreManager().getCurrentUserDetails(CheckoutActivity.this);
@@ -147,7 +134,7 @@ public class CheckoutActivity extends AppCompatActivity {
         ll_checkoutPlaceOrder = findViewById(R.id.ll_checkout_place_order);
         btnPlaceOrder = findViewById(R.id.btn_place_order);
         ll_discountActive = findViewById(R.id.ll_discountActive);
-        btnAddCoupon = findViewById(R.id.btn_activateCoupon);
+
     }
 
     private void getProductList(){
@@ -210,30 +197,23 @@ public class CheckoutActivity extends AppCompatActivity {
 
         if (discountCoupon != null) {
             ll_discountActive.setVisibility(View.VISIBLE);
-            double subtotal0 = 0;
-            double total0;
+
             switch (discountCoupon.getType()) {
                 case "0":
-                        subtotal0 = subtotal0 * (1 - discountProcent0 * subtotal0);
-                        subtotal = subtotal0;
-                        total0 = subtotal0 + 10;
-                        totalAmount = total0;
+                        subtotal = subtotal * discountProcent0;
+                        totalAmount = subtotal + 10;
                         tvSubtotal.setText(String.valueOf(subtotal));
                         tvTotal.setText(String.valueOf(totalAmount));
                     break;
                 case "1":
-                    subtotal0 = subtotal0 * (1 - discountProcent1 * subtotal0);
-                    subtotal = subtotal0;
-                    total0 = subtotal0 + 10;
-                    totalAmount = total0;
+                    subtotal = subtotal * discountProcent1;
+                    totalAmount = subtotal + 10;
                     tvSubtotal.setText(String.valueOf(subtotal));
                     tvTotal.setText(String.valueOf(totalAmount));
                     break;
                 case "2":
-                    subtotal0 = subtotal0 * (1 - discountProcent2 * subtotal0);
-                    subtotal = subtotal0;
-                    total0 = subtotal0 + 10;
-                    totalAmount = total0;
+                    subtotal = subtotal * discountProcent2;
+                    totalAmount = subtotal + 10;
                     tvSubtotal.setText(String.valueOf(subtotal));
                     tvTotal.setText(String.valueOf(totalAmount));
                     break;
@@ -242,19 +222,17 @@ public class CheckoutActivity extends AppCompatActivity {
             ll_discountActive.setVisibility(View.GONE);
         }
 
-
-     //   tvSubtotal.setText(String.valueOf(subtotal));
+        tvSubtotal.setText(String.valueOf(subtotal));
         tvShipCharge.setText("$10.0");
 
         if (subtotal > 0){
             ll_checkoutPlaceOrder.setVisibility(View.VISIBLE);
 
-          //  totalAmount = subtotal + 10;
-         //   tvTotal.setText(String.valueOf(totalAmount));
+            totalAmount = subtotal + 10;
+            tvTotal.setText(String.valueOf(totalAmount));
         } else {
             ll_checkoutPlaceOrder.setVisibility(View.GONE);
         }
-
     }
 
     private void setupActionBar(){
@@ -307,6 +285,8 @@ public class CheckoutActivity extends AppCompatActivity {
             userHashMap.put(Constants.getPOINTS(), points);
             new FirestoreManager().setPointForCurrentUser(CheckoutActivity.this, userHashMap);
         }
+
+        new FirestoreManager().removeCouponPerUse(discountCoupon);
 
 
 
