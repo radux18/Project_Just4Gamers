@@ -75,6 +75,14 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_productDetails_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_productDetails_ageT"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
                     android:id="@+id/tv_productDetails_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

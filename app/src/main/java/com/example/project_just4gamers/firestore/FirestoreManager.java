@@ -499,9 +499,35 @@ public class FirestoreManager {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-
                 }
             });
+    }
+
+
+    public void getCurrentUserDetails(Activity activity){
+        fStore.collection(Constants.getUSERS())
+                .document(getCurrentUserID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot document) {
+                        User user = document.toObject(User.class);
+                        if (activity instanceof CheckoutActivity){
+                            ((CheckoutActivity) activity).getUserDetailsSuccess(user);
+                        }
+                    }
+                });
+    }
+
+    public void setPointForCurrentUser(CheckoutActivity activity, HashMap<String, Object> userHashMap){
+        fStore.collection(Constants.getUSERS())
+                .document(getCurrentUserID())
+                .set(userHashMap, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    }
+                });
     }
 
     public void deleteAddress(Context context, String address_id){

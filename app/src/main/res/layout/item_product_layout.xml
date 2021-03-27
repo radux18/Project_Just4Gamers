@@ -52,6 +52,14 @@
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/tv_item_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_item_ageT"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
             android:id="@+id/tv_item_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

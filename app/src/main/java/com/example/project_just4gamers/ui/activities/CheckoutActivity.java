@@ -20,10 +20,12 @@ import com.example.project_just4gamers.models.Address;
 import com.example.project_just4gamers.models.CartItem;
 import com.example.project_just4gamers.models.Order;
 import com.example.project_just4gamers.models.Product;
+import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.ui.adapters.CartItemsAdapter;
 import com.example.project_just4gamers.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CheckoutActivity extends AppCompatActivity {
     private RecyclerView rvCheckout;
@@ -47,6 +49,9 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private ArrayList<Product> products;
     private ArrayList<CartItem> cartItems;
+
+    private User currentUser = null;
+    private int points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         }
         getProductList();
+        getUserDetails();
 
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +89,16 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void getUserDetails() {
+        new FirestoreManager().getCurrentUserDetails(CheckoutActivity.this);
+    }
+
+    public void getUserDetailsSuccess(User user){
+        currentUser = user;
+        points = currentUser.getPoints();
+    }
+
 
     private void initComp() {
         tbCheckout = findViewById(R.id.toolbar_checkout);
@@ -102,7 +118,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void getProductList(){
         //show progress dialog
-
         new FirestoreManager().getAllProductsList(CheckoutActivity.this);
     }
 
@@ -158,6 +173,8 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         }
 
+
+
         tvSubtotal.setText(String.valueOf(subtotal));
         tvShipCharge.setText("$10.0");
 
@@ -199,6 +216,31 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     public void orderPlacedSuccess() {
+        HashMap<String, Object> userHashMap = new HashMap<>();
+        for (CartItem items : cartItems){
+            switch (items.getAge()) {
+                case "~5 years":
+                    points += 10 * Integer.parseInt(items.getCart_quantity());
+
+                    break;
+                case "~1 years":
+                    points += 5 * Integer.parseInt(items.getCart_quantity());
+
+                    break;
+                case "~(5–10) years":
+                    points += 15 * Integer.parseInt(items.getCart_quantity());
+
+                    break;
+                case "10+ years":
+                    points += 20 * Integer.parseInt(items.getCart_quantity());
+
+                    break;
+            }
+            userHashMap.put(Constants.getPOINTS(), points);
+           // currentUser.setPoints(points);
+            new FirestoreManager().setPointForCurrentUser(CheckoutActivity.this, userHashMap);
+        }
+
         new FirestoreManager().updateAllDetails(CheckoutActivity.this, cartItems, orderDetails);
     }
 }

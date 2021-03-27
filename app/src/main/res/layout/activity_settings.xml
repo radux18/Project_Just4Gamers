@@ -86,14 +86,25 @@
             android:focusable="true" />
 
         <TextView
-            android:id="@+id/tv_settings_name"
+            android:id="@+id/tv_settings_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/fl_user_image"
-            android:text="@string/user_name"
+            android:text="@string/tv_settings_pointsT"
             android:layout_centerHorizontal="true"
             android:textSize="20dp"
             android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_settings_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_settings_points"
+            android:text="@string/user_name"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"/>
+
 
         <TextView
             android:id="@+id/tv_settings_gender"

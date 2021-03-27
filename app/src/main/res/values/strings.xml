@@ -72,13 +72,11 @@
 
     <string-array name="add_product_age_values">
         <item>~1 year</item>
-        <item> ~5 years</item>
-        <item> ~(5–10) years</item>
-        <item> 10+ years</item>
-        <item> </item>
+        <item>~5 years</item>
+        <item>~(5–10) years</item>
+        <item>10+ years</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tv_item_nameT">Name</string>
     <string name="tv_item_priceT">100$</string>
@@ -185,4 +183,7 @@
     <string name="no_products_sold_out_Yet">No products sold yet!</string>
 
     <string name="title_sold_product_details">SOLD PRODUCT DETAILS</string>
+    <string name="tv_settings_pointsT">Points</string>
+    <string name="tv_item_ageT">Age</string>
+    <string name="tv_productDetails_ageT">Age</string>
 </resources>

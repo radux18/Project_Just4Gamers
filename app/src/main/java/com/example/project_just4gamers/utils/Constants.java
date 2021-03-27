@@ -66,6 +66,12 @@ public class Constants {
 
     public static final String EXTRA_SOLD_PRODUCT_DETAILS = "extra_sold_product_details";
 
+    public static final String POINTS = "points";
+
+    public static String getPOINTS() {
+        return POINTS;
+    }
+
     public static String getExtraSoldProductDetails() {
         return EXTRA_SOLD_PRODUCT_DETAILS;
     }

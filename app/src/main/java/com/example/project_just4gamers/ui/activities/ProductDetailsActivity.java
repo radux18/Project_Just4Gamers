@@ -29,6 +29,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView tvProductTitle;
     private TextView tvProductPrice;
     private TextView tvProductDescription;
+    private TextView tvProductAge;
     private TextView tvProductQuantity;
     private Button btnAddToCart;
     private Button btnGoToCart;
@@ -86,6 +87,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         iv_productDetailsImg = findViewById(R.id.iv_product_details_image);
         btnAddToCart = findViewById(R.id.btn_add_to_cart);
         btnGoToCart = findViewById(R.id.btn_go_to_cart);
+        tvProductAge = findViewById(R.id.tv_productDetails_age);
     }
 
     private void getProductDetails(){
@@ -108,6 +110,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         tvProductTitle.setText(product.getTitle());
         tvProductPrice.setText(product.getPrice());
+        tvProductAge.setText(product.getAge());
         tvProductDescription.setText(product.getDescription());
         tvProductQuantity.setText(product.getStock_quantity());
 

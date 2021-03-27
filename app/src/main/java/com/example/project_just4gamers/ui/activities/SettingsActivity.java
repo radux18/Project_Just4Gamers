@@ -27,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView tv_name;
     private TextView tv_gender;
     private TextView tv_mobile;
+    private TextView tv_points;
     private TextView tv_email;
     private FirestoreManager fStoreM = new FirestoreManager();
     private GlideLoader loader = new GlideLoader(SettingsActivity.this);
@@ -88,6 +89,8 @@ public class SettingsActivity extends AppCompatActivity {
         btnLogOut = findViewById(R.id.btn_settings_logout);
         tv_edit = findViewById(R.id.tv_edit);
         ll_address = findViewById(R.id.ll_address);
+        tv_points = findViewById(R.id.tv_settings_points);
+
     }
 
     private void setupActionBar(){
@@ -114,7 +117,7 @@ public class SettingsActivity extends AppCompatActivity {
     public void userDetailsSuccess(User user){
         userDetails = user;
         loader.loadUserPicture(user.getImage(),iv_userPhoto);
-
+        tv_points.setText(String.valueOf(user.getPoints()));
         tv_name.setText(getString(R.string.tv_settings_name, user.getFirstName(),user.getLastName()));
         tv_mobile.setText(getString(R.string.mobile_format, user.getMobile()));
         tv_gender.setText(user.getGender());
