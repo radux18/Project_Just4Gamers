@@ -14,6 +14,7 @@ public class Constants {
     public static final String ADDRESSES = "addresses";
     public static final String CART_ITEMS = "cart_items";
     public static final String SOLD_PRODUCTS = "sold_products";
+    public static final String DISCOUNTCOUPONS = "discount_coupons";
 
     private static final String PREFS = "prefs";
     private static final String USERNAME = "username";
@@ -66,7 +67,23 @@ public class Constants {
 
     public static final String EXTRA_SOLD_PRODUCT_DETAILS = "extra_sold_product_details";
 
+    public static final String EXTRA_COUPON = "extra_coupon";
+
+    public static final int GETCOUPON = 198;
+
     public static final String POINTS = "points";
+
+    public static int getGETCOUPON() {
+        return GETCOUPON;
+    }
+
+    public static String getExtraCoupon() {
+        return EXTRA_COUPON;
+    }
+
+    public static String getDISCOUNTCOUPONS() {
+        return DISCOUNTCOUPONS;
+    }
 
     public static String getPOINTS() {
         return POINTS;

@@ -36,7 +36,7 @@ public class AddressListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address_list_activity);
+        setContentView(R.layout.activity_address_list);
         intent = getIntent();
         initComp();
         setupActionBar();

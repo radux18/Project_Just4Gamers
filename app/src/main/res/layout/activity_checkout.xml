@@ -221,7 +221,45 @@
                         android:text="@string/tv_checkout_totalT"
                         android:gravity="center" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_discountActive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/discount_statusT"
+                        android:textSize="@dimen/checkout_label_value_textSize" />
+
+                    <TextView
+                        android:id="@+id/tv_checkout_discountStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/orderStatusDelivered"
+                        android:textSize="@dimen/checkout_label_value_textSize"
+                        android:text="@string/tv_discountActiveT"
+                        android:gravity="center" />
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btn_activateCoupon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/add_discount_couponT"
+                    android:layout_marginTop="10dp"
+                    />
             </LinearLayout>
+
+
+
         </RelativeLayout>
     </ScrollView>
 

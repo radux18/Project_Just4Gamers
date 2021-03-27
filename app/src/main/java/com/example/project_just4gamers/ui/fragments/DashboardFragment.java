@@ -20,6 +20,7 @@ import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Product;
 import com.example.project_just4gamers.ui.activities.CartListActivity;
+import com.example.project_just4gamers.ui.activities.DiscountCouponsActivity;
 import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
 import com.example.project_just4gamers.ui.adapters.DashboardListAdapter;
@@ -64,6 +65,9 @@ public class DashboardFragment extends Fragment {
                     return true;
                 } else if (item.getItemId() == R.id.action_cart){
                     startActivity(new Intent(getActivity().getApplicationContext(), CartListActivity.class));
+                    return true;
+                } else if (item.getItemId() == R.id.action_coupons){
+                    startActivity(new Intent(getActivity().getApplicationContext(), DiscountCouponsActivity.class));
                     return true;
                 }
               return false;

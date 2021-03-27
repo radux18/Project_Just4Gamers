@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/action_coupons"
+        android:icon="@drawable/ic_vector_coupon"
+        android:title="@string/couponsT"
+        app:showAsAction="always"/>
+
     <item android:id="@+id/action_cart"
         android:icon="@drawable/ic_vector_cart"
         android:title="@string/cartTitle"

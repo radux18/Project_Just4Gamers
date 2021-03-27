@@ -12,15 +12,18 @@ import androidx.fragment.app.Fragment;
 
 import com.example.project_just4gamers.models.Address;
 import com.example.project_just4gamers.models.CartItem;
+import com.example.project_just4gamers.models.DiscountCoupon;
 import com.example.project_just4gamers.models.Order;
 import com.example.project_just4gamers.models.Product;
 import com.example.project_just4gamers.models.SoldProduct;
+import com.example.project_just4gamers.ui.activities.ActivateCouponActivity;
 import com.example.project_just4gamers.ui.activities.AddAddressActivity;
 import com.example.project_just4gamers.ui.activities.AddProductActivity;
 import com.example.project_just4gamers.ui.activities.AddressListActivity;
 import com.example.project_just4gamers.ui.activities.CartListActivity;
 import com.example.project_just4gamers.ui.activities.CheckoutActivity;
 import com.example.project_just4gamers.ui.activities.DashboardActivity;
+import com.example.project_just4gamers.ui.activities.DiscountCouponsActivity;
 import com.example.project_just4gamers.ui.activities.LoginActivity;
 import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
 import com.example.project_just4gamers.ui.activities.RegisterActivity;
@@ -514,18 +517,51 @@ public class FirestoreManager {
                         User user = document.toObject(User.class);
                         if (activity instanceof CheckoutActivity){
                             ((CheckoutActivity) activity).getUserDetailsSuccess(user);
+                        } else if (activity instanceof DiscountCouponsActivity){
+                            ((DiscountCouponsActivity) activity).successDetailsFromFirestore(user);
                         }
                     }
                 });
     }
 
-    public void setPointForCurrentUser(CheckoutActivity activity, HashMap<String, Object> userHashMap){
+    public void setDiscountCouponForCurrentUser(DiscountCoupon discountCoupon, Context context){
+        fStore.collection(Constants.getDISCOUNTCOUPONS())
+                .document()
+                .set(discountCoupon)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "You successfully got 1 discont coupon!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    public void setPointForCurrentUser(Activity activity, HashMap<String, Object> userHashMap){
         fStore.collection(Constants.getUSERS())
                 .document(getCurrentUserID())
                 .set(userHashMap, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                    }
+                });
+    }
+
+    public void getAllDiscountCoupons(ActivateCouponActivity activity){
+        fStore.collection(Constants.getDISCOUNTCOUPONS())
+                .whereEqualTo(Constants.getUserId(), getCurrentUserID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<DiscountCoupon> discountCoupons = new ArrayList<>();
+                        for (DocumentSnapshot i : documents){
+                            DiscountCoupon discountCoupon = i.toObject(DiscountCoupon.class);
+
+                            discountCoupons.add(discountCoupon);
+                            discountCoupon.setId(i.getId());
+                        }
+                        activity.successGetDiscountsFromFirestore(discountCoupons);
                     }
                 });
     }

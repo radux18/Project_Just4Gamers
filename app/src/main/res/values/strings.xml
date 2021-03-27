@@ -186,4 +186,21 @@
     <string name="tv_settings_pointsT">Points</string>
     <string name="tv_item_ageT">Age</string>
     <string name="tv_productDetails_ageT">Age</string>
+    <string name="couponsT">Coupons</string>
+    <string name="tv_dashboard_item_ageT">Age</string>
+    <string name="my_discount_couponsT">MY DISCOUNT COUPONS</string>
+    <string name="discount_coupon_10T">DISCOUNT COUPON (10%)</string>
+    <string name="btn_type0T">BUY 1 COUPON FOR 500 GAME-POINTS</string>
+    <string name="discount_coupon_15T">DISCOUNT COUPON (15%)</string>
+    <string name="btn_type1T">BUY 1 COUPON FOR 1000 GAME-POINTS</string>
+    <string name="discount_coupon_25T">DISCOUNT COUPON (25%)</string>
+    <string name="btn_type2T">BUY 1 COUPON FOR 2000 GAME-POINTS</string>
+    <string name="your_pointsT">Your Points</string>
+    <string name="pointsTT">0</string>
+    <string name="tv_item_typeT">10% coupon</string>
+    <string name="my_discount_couponsTT">MY DISCOUNT COUPONS</string>
+    <string name="no_discount_coupon_foundT">No discount coupon found!</string>
+    <string name="discount_statusT">Discount status</string>
+    <string name="tv_discountActiveT">ACTIVE</string>
+    <string name="add_discount_couponT">ADD DISCOUNT COUPON</string>
 </resources>

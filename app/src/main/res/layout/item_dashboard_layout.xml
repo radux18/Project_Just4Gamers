@@ -50,6 +50,14 @@
             android:text="@string/item_nameT"/>
 
         <TextView
+            android:id="@+id/tv_dashboard_item_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="@string/tv_dashboard_item_ageT"/>
+
+        <TextView
             android:id="@+id/tv_dashboard_item_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
