@@ -19,11 +19,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends ProgressDialogActivity {
 
     private TextInputEditText tiet_emailId;
     private Button btn_submit;
-    private ProgressBar pb_loading;
     private FirebaseAuth fAuth;
 
     @Override
@@ -50,18 +49,19 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = tiet_emailId.getText().toString().trim();
                 if (email.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Error. Please write the correct email", Toast.LENGTH_SHORT).show();
+                    showErrorSnackBar("Error. Please write the correct email", true);
+                   // Toast.makeText(getApplicationContext(), "Error. Please write the correct email", Toast.LENGTH_SHORT).show();
                 } else {
-                    pb_loading.setVisibility(View.VISIBLE);
+                    showProgressDialog(getResources().getString(R.string.tv_progress_textT));
                     fAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            pb_loading.setVisibility(View.INVISIBLE);
+                            hideProgressDialog();
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "You succesfully sent the email address", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
-                                Toast.makeText(getApplicationContext(), "An error has appeared. Try again", Toast.LENGTH_SHORT).show();
+                                showErrorSnackBar("An error has appeared. Try again", true);
                             }
                         }
                     });
@@ -73,7 +73,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private void initComp() {
         tiet_emailId = findViewById(R.id.tiet_emailId);
         btn_submit = findViewById(R.id.btn_submit);
-        pb_loading = findViewById(R.id.pb_loadingBar);
         fAuth = FirebaseAuth.getInstance();
     }
 

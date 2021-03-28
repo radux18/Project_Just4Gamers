@@ -29,7 +29,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends ProgressDialogActivity {
 
     private boolean doubleBackToExitPressedOnce = false;
     private TextView tv_registerBtn;
@@ -37,10 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText tiet_password;
     private TextView tiet_passwordForgot;
     private  Button btnLogin;
-    private ProgressBar progressBar;
     private FirebaseAuth fAuth;
     private CheckBox cb_remember;
-
     private String email;
     private String password;
     public static final String EMAIL = "email";
@@ -67,56 +65,43 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
 
-        //to the register activity
-        tv_registerBtn.setOnClickListener(new View.OnClickListener() {
+        tv_registerBtn.setOnClickListener(registerEventListener());
+
+        btnLogin.setOnClickListener(loginEventListener());
+        loadData();
+        updateViews();
+
+        tiet_passwordForgot.setOnClickListener(forgotPassEvListener());
+    }
+
+    private View.OnClickListener loginEventListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = tiet_email.getText().toString().trim();
-                String password = tiet_password.getText().toString().trim();
-
-                //validari
-                if (TextUtils.isEmpty(email)) {
-                    tiet_email.setError("Email is required.");
-                    return;
-                }
-                if (TextUtils.isEmpty(password)) {
-                    tiet_password.setError("Password is required.");
-                    return;
-                }
-                if (password.length() < 6) {
-                    tiet_password.setError("Password must have at least 6 Characters.");
-                    return;
-                }
-                progressBar.setVisibility(View.VISIBLE);
-
-                if (cb_remember.isChecked()){
-                    saveData();
-                }
-
-                //autentificare user
-                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirestoreManager fStore = new FirestoreManager();
-                            fStore.getUserDetails(LoginActivity.this);
-
-
-                        } else {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(getApplicationContext(), "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                if (validateLoginEntries()){
+                    showProgressDialog(getString(R.string.tv_progress_textT));
+                    if (cb_remember.isChecked()){
+                        saveData();
                     }
-                });
+                    String email = tiet_email.getText().toString().trim();
+                    String password = tiet_password.getText().toString().trim();
+                    fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirestoreManager fStore = new FirestoreManager();
+                                fStore.getUserDetails(LoginActivity.this);
+
+                            } else {
+                                hideProgressDialog();
+                                showErrorSnackBar(task.getException().getMessage(),true);
+                            }
+                        }
+                    });
+                }
             }
+
+
 
             private void saveData() {
                 SharedPreferences sharedPreferences = getSharedPreferences(Constants.getPREFS(),MODE_PRIVATE);
@@ -125,20 +110,46 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString(PASSWORD,tiet_password.getText().toString());
                 editor.apply();
             }
-        });
+        };
+    }
 
-        loadData();
-        updateViews();
+    private boolean validateLoginEntries() {
+        String email = tiet_email.getText().toString().trim();
+        String password = tiet_password.getText().toString().trim();
 
-        tiet_passwordForgot.setOnClickListener(new View.OnClickListener() {
+        if (TextUtils.isEmpty(email)) {
+            tiet_email.setError("Email is required.");
+            return false;
+        }
+        if (TextUtils.isEmpty(password)) {
+            tiet_password.setError("Password is required.");
+            return false;
+        }
+        if (password.length() < 6) {
+            tiet_password.setError("Password must have at least 6 Characters.");
+            return false;
+        }
+        return true;
+    }
+
+    private View.OnClickListener forgotPassEvListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ForgotPasswordActivity.class);
                 startActivity(intent);
             }
-        });
+        };
+    }
 
-
+    private View.OnClickListener registerEventListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        };
     }
 
     public void doubleBackToExit() {
@@ -182,7 +193,6 @@ public class LoginActivity extends AppCompatActivity {
         tiet_password = findViewById(R.id.tiet_login_password);
         tiet_passwordForgot = findViewById(R.id.tv_login_forgotPassword);
         btnLogin = findViewById(R.id.btn_login);
-        progressBar = findViewById(R.id.pb_loading);
         cb_remember = findViewById(R.id.cb_login_remember);
         fAuth = FirebaseAuth.getInstance();
     }

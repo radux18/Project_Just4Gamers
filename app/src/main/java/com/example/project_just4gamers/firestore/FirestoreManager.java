@@ -62,17 +62,13 @@ public class FirestoreManager {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        activity.setProgressBarVisibility(false);
-                        Toast.makeText(activity.getApplicationContext(), "You are registered succesfully."
-                                , Toast.LENGTH_SHORT).show();
+                        activity.hideProgressDialog();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        activity.setProgressBarVisibility(false);
-                        Toast.makeText(activity.getApplicationContext(), "Error while registering the user."
-                                , Toast.LENGTH_SHORT).show();
+                        activity.hideProgressDialog();
                     }
                 });
     }
@@ -105,20 +101,15 @@ public class FirestoreManager {
                         editor.putString(Constants.getUSERNAME(), user.getFirstName() + " " + user.getLastName());
                         editor.apply();
 
-                        //START
                         if (activity instanceof LoginActivity){
-                            activity.setProgressBarVisibility(false);
-                            Toast.makeText(activity.getApplicationContext(), "Login success.", Toast.LENGTH_SHORT).show();
+                            ((LoginActivity) activity).hideProgressDialog();
 
                             if (user.getProfileCompleted() == 0){
-                                //Redirect the user to Profile screen after log in.
                                 Intent intent = new Intent(activity.getApplicationContext(), UserProfileActivity.class);
                                 intent.putExtra(Constants.getExtraUserDetails(),user);
                                 activity.startActivity(intent);
                             } else {
-                                //Redirect the user to Main Screen after log in.
                                 Intent intent = new Intent(activity.getApplicationContext(), DashboardActivity.class);
-                                intent.putExtra("user", user);
                                 activity.startActivity(intent);
                             }
                             activity.finish();
@@ -131,9 +122,9 @@ public class FirestoreManager {
             @Override
             public void onFailure(@NonNull Exception e) {
                 if (activity instanceof LoginActivity){
-                    activity.setProgressBarVisibility(false);
+                    ((LoginActivity) activity).hideProgressDialog();
                 } else if (activity instanceof SettingsActivity){
-                    activity.setProgressBarVisibility(false);
+                   ((SettingsActivity) activity).hideProgressDialog();
                 }
             }
         });

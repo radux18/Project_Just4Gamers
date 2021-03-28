@@ -17,7 +17,7 @@ import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends ProgressDialogActivity {
 
     private User userDetails;
     private TextView tv_edit;

@@ -28,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends ProgressDialogActivity {
 
     private TextInputEditText tiet_firstName;
     private TextInputEditText tiet_lastName;
@@ -61,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         initComponents();
 
-        //to the login activity
         tv_loginBtn.setOnClickListener(loginListener());
         btn_register.setOnClickListener(registerListener());
 
@@ -86,8 +85,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String password1 = tiet_password.getText().toString().trim();
                 String firstName = tiet_firstName.getText().toString();
                 String lastName = tiet_lastName.getText().toString();
-                //validari
+
                 if (validateInputs()) {
+                    showProgressDialog(getString(R.string.tv_progress_textT));
                     fAuth.createUserWithEmailAndPassword(email, password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -101,20 +101,17 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 FirestoreManager fStore = new FirestoreManager();
                                 fStore.registerUser(RegisterActivity.this, user);
-
-                                Toast.makeText(getApplicationContext(), "You are registered succesfully. Your user id is " + fUser.getUid()
-                                        , Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"You are registered succesfully. Your user id is " + fUser.getUid(), Toast.LENGTH_SHORT).show();
                                 fAuth.signOut();
                                 finish();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
+                                hideProgressDialog();
+                                showErrorSnackBar(task.getException().getMessage(),true);
                             }
                         }
                     });
                 }
-                progressBar.setVisibility(View.VISIBLE);
             }
         };
     }
@@ -132,7 +129,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
     }
-
 
     private boolean validateInputs() {
         String email = tiet_email.getText().toString().trim();
