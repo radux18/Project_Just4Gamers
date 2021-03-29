@@ -151,15 +151,6 @@ public class FirestoreManager {
 
     }
 
-    //TODO
-    public void increasePointsPerSubmit(User user, Product product){
-        int p = 0;
-       if (product.getAge().equals("~1 year")){
-                p += 20;
-                user.setPoints(p);
-       }
-    }
-
     public void uploadImageToCloudStorage(Activity activity, Uri imageFileUri, String imageType){
         StorageReference reference = FirebaseStorage.getInstance().getReference().child(
                 imageType + System.currentTimeMillis() + "."
@@ -564,10 +555,11 @@ public class FirestoreManager {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        System.out.println(discountCoupon.toString() + " S-A STERS!");
                     }
                 });
     }
+
+
 
     public void deleteAddress(Context context, String address_id){
         fStore.collection(Constants.getADDRESSES())
