@@ -559,6 +559,36 @@ public class FirestoreManager {
                 });
     }
 
+    public void getAllUsers(Activity activity){
+        fStore.collection(Constants.getUSERS())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<User> users = new ArrayList<>();
+                        if (activity instanceof  CheckoutActivity) {
+                            for (DocumentSnapshot item : documents){
+                                User user = item.toObject(User.class);
+
+                                users.add(user);
+                            }
+                            ((CheckoutActivity) activity).successGetUsersFromFirestore(users);
+                        }
+                    }
+                });
+    }
+
+    public void setPointsForDifferentUsers(HashMap<String, Object> userHasMap, User user){
+        fStore.collection(Constants.getUSERS())
+                .document(user.getId())
+                .set(userHasMap, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        System.out.println( "Userul " + user.getFirstName() + "a primit " + userHasMap.toString());
+                    }
+                });
+    }
 
 
     public void deleteAddress(Context context, String address_id){

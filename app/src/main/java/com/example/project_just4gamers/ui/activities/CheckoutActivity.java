@@ -46,7 +46,6 @@ public class CheckoutActivity extends AppCompatActivity {
     private TextView tvShipCharge;
     private LinearLayout ll_checkoutPlaceOrder;
     private LinearLayout ll_discountActive;
-    private Button btnAddCoupon;
 
     private double subtotal = 0.0;
     private double totalAmount = 0.0;
@@ -58,9 +57,11 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private ArrayList<Product> products;
     private ArrayList<CartItem> cartItems;
+    private ArrayList<User> allUsers;
 
     private User currentUser = null;
     private int points;
+    private int differentPoints;
 
     private DiscountCoupon discountCoupon = null;
 
@@ -97,6 +98,7 @@ public class CheckoutActivity extends AppCompatActivity {
         }
         getProductList();
         getUserDetails();
+        getAllUsers();
 
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +107,10 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getAllUsers() {
+        new FirestoreManager().getAllUsers(CheckoutActivity.this);
     }
 
 
@@ -151,6 +157,10 @@ public class CheckoutActivity extends AppCompatActivity {
         new FirestoreManager().getCartList(CheckoutActivity.this);
     }
 
+    public void successGetUsersFromFirestore(ArrayList<User> users) {
+            allUsers = users;
+    }
+
     private void placeAnOrder(){
         //show progress dialog
         if (addressDetails != null){
@@ -177,6 +187,9 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         }
         cartItems = cartList;
+        successGetUsersFromFirestore(allUsers);
+
+
 
         rvCheckout.setLayoutManager(new LinearLayoutManager(CheckoutActivity.this));
         rvCheckout.setHasFixedSize(true);
@@ -235,6 +248,8 @@ public class CheckoutActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void setupActionBar(){
         setSupportActionBar(tbCheckout);
         ActionBar actionBar = getSupportActionBar();
@@ -287,6 +302,39 @@ public class CheckoutActivity extends AppCompatActivity {
         }
 
         new FirestoreManager().removeCouponPerUse(discountCoupon);
+
+
+        HashMap<String, Object> productOwnerUserHashMap = new HashMap<>();
+        for (CartItem item : cartItems){
+            for (User user : allUsers){
+                if (item.getProduct_ownerId().equals(user.getId())){
+                    int diffPoints = 0;
+                    diffPoints = user.getPoints();
+                    //atunci seteaza-i userului acela punctele
+                    switch (item.getAge()) {
+                        case "~5 years":
+                            diffPoints += 10 * Integer.parseInt(item.getCart_quantity());
+
+                            break;
+                        case "~1 years":
+                            diffPoints += 5 * Integer.parseInt(item.getCart_quantity());
+
+                            break;
+                        case "~(5–10) years":
+                            diffPoints += 15 * Integer.parseInt(item.getCart_quantity());
+
+                            break;
+                        case "10+ years":
+                            diffPoints += 20 * Integer.parseInt(item.getCart_quantity());
+
+                            break;
+                    }
+
+                    productOwnerUserHashMap.put(Constants.getPOINTS(), diffPoints);
+                    new FirestoreManager().setPointsForDifferentUsers(productOwnerUserHashMap, user);
+                }
+            }
+        }
 
 
 
