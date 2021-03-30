@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,10 +24,48 @@ import java.util.ArrayList;
 public class DashboardListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context context;
     private ArrayList<Product> products;
+    private ArrayList<Product> filteredProducts;
+
+    private Filter filter;
 
     public DashboardListAdapter(Context context, ArrayList<Product> products) {
         this.context = context;
         this.products = products;
+    }
+
+    public Filter getFilter(){
+        if (filter == null){
+            filter = new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence constraint) {
+                    FilterResults results = new FilterResults();
+
+                    if (constraint == null || constraint.length() ==0){
+                        results.values = products;
+                        results.count = products.size();
+                    } else {
+                        ArrayList<Product> beanList = new ArrayList<Product>();
+
+                        for (Product product : products) {
+                            if (product.getTitle().toUpperCase().contains(constraint.toString().toUpperCase())) {
+                                beanList.add(product);
+                            }
+                        }
+                        results.values = beanList;
+                        results.count = beanList.size();
+                    }
+                    return results;
+                }
+
+                @Override
+                protected void publishResults(CharSequence constraint, FilterResults results) {
+                    filteredProducts = (ArrayList<Product>) results.values;
+                    products = filteredProducts;
+                    notifyDataSetChanged();
+                }
+            };
+        }
+        return filter;
     }
 
     @NonNull

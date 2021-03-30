@@ -754,4 +754,30 @@ public class FirestoreManager {
         });
     }
 
+    public void getDashboardItemsListSorted(DashboardFragment fragment){
+        fStore.collection(Constants.getPRODUCTS())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<Product> productList = new ArrayList<>();
+                        for (DocumentSnapshot i : documents.getDocuments()) {
+                            Product product = i.toObject(Product.class);
+
+                            product.setProduct_id(i.getId());
+                            productList.add(product);
+                        }
+
+                        fragment.successDashboardItemsList(productList);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //hide progress dialog
+                System.out.println("Error while getting dashboard items list.");
+            }
+        });
+    }
+
 }

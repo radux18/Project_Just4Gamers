@@ -6,9 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.project_just4gamers.R;
@@ -26,6 +29,7 @@ public class ActivateCouponActivity extends AppCompatActivity {
     private Toolbar tbDiscounts;
     private RecyclerView rvCouponsList;
     private TextView tvNoDiscountsFound;
+    private ImageView ivForward;
     private Intent intent;
     private Address address;
 
@@ -39,10 +43,22 @@ public class ActivateCouponActivity extends AppCompatActivity {
 
         if (intent.hasExtra(Constants.getExtraSelectedAddress())){
             address = intent.getParcelableExtra(Constants.getExtraSelectedAddress());
-            System.out.println(address.toString());
         }
 
         getDiscountCouponListFromFirestore();
+
+        ivForward.setOnClickListener(skipActivityEventListener());
+    }
+
+    private View.OnClickListener skipActivityEventListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(ActivateCouponActivity.this, CheckoutActivity.class);
+                    intent.putExtra(Constants.getExtraSelectedAddress(), address);
+                    startActivity(intent);
+            }
+        };
     }
 
     private void getDiscountCouponListFromFirestore() {
@@ -54,13 +70,11 @@ public class ActivateCouponActivity extends AppCompatActivity {
             rvCouponsList.setVisibility(View.VISIBLE);
             tvNoDiscountsFound.setVisibility(View.GONE);
 
-
             rvCouponsList.setLayoutManager(new LinearLayoutManager(ActivateCouponActivity.this));
             rvCouponsList.setHasFixedSize(true);
 
             CouponsListAdapter adapter = new CouponsListAdapter(getApplicationContext(), discountCoupons,ActivateCouponActivity.this, address);
             rvCouponsList.setAdapter(adapter);
-
 
 
         } else {
@@ -74,6 +88,7 @@ public class ActivateCouponActivity extends AppCompatActivity {
         tbDiscounts = findViewById(R.id.toolbar_discounts);
         rvCouponsList = findViewById(R.id.rv_coupons_list);
         tvNoDiscountsFound = findViewById(R.id.tv_no_coupon_found);
+        ivForward = findViewById(R.id.iv_forward);
     }
 
     private void setupActionBar(){
@@ -90,5 +105,8 @@ public class ActivateCouponActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
+
     }
 }

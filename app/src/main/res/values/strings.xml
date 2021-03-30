@@ -204,4 +204,6 @@
     <string name="tv_discountActiveT">ACTIVE</string>
     <string name="add_discount_couponT">ADD DISCOUNT COUPON</string>
     <string name="tv_progress_textT">Please wait</string>
+    <string name="tiet_dashboard_searchT">Search...</string>
+    <string name="search_productT">Search product...</string>
 </resources>

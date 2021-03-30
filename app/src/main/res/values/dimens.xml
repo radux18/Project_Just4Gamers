@@ -43,7 +43,7 @@
     <dimen name="cart_quantity_textSize">14sp</dimen>
     <dimen name="ib_add_cart_item_marginStart">5dp</dimen>
     <dimen name="ib_add_cart_item_marginEnd">16dp</dimen>
-    <dimen name="toolbar_title_paddingStart">-25dp</dimen>
+    <dimen name="toolbar_title_paddingStart">-20dp</dimen>
     <dimen name="toolbar_title_text_size">18sp</dimen>
 
     <dimen name="btn_add_address_margin">16dp</dimen>

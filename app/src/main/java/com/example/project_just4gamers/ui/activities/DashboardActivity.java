@@ -18,18 +18,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class DashboardActivity extends AppCompatActivity {
-    private Intent intent;
     private boolean doubleBackToExitPressedOnce = false;
-    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        intent = getIntent();
-        if (intent.hasExtra("user")){
-            user = intent.getParcelableExtra("user");
-        }
 
         getSupportActionBar().setBackgroundDrawable(
                 ContextCompat.getDrawable(
