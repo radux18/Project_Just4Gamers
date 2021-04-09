@@ -204,6 +204,29 @@
     <string name="tv_discountActiveT">ACTIVE</string>
     <string name="add_discount_couponT">ADD DISCOUNT COUPON</string>
     <string name="tv_progress_textT">Please wait</string>
-    <string name="tiet_dashboard_searchT">Search...</string>
-    <string name="search_productT">Search product...</string>
+    <string name="tiet_dashboard_searchT">Search…</string>
+    <string name="search_productT">Search product…</string>
+    <string name="btn_dasboard_filterT">Filter</string>
+    <string name="action_boxT">Inbox messages</string>
+    <string name="tv_title_inboxT">Inbox</string>
+
+    <string-array name="filter_items">
+        <item>Highest price</item>
+        <item>Lowest price</item>
+        <item>A -> Z</item>
+        <item>Z -> A</item>
+    </string-array>
+    <string name="title_activity_inbox">InboxActivity</string>
+    <string name="tab_section_1">Received messages</string>
+    <string name="tab_section_2">Sent messages</string>
+    <string name="tv_user_detail_nameT">Name</string>
+    <string name="tv_title_msgT">Trimite Mesaj</string>
+    <string name="tv_receiverT">Destinatar:</string>
+    <string name="btn_sendMessageT">Trimite</string>
+    <string name="tiet_addMessage_descriptionT">Scrie ceva</string>
+    <string name="tiet_addMessage_titleT">Titlu</string>
+    <string name="tv_message_title">title</string>
+    <string name="tv_message_dateT">Date</string>
+    <string name="tv_message_description">Description</string>
+
 </resources>

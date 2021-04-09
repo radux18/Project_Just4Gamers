@@ -10,15 +10,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_just4gamers.R;
@@ -26,13 +27,10 @@ import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Product;
 import com.example.project_just4gamers.ui.activities.CartListActivity;
 import com.example.project_just4gamers.ui.activities.DiscountCouponsActivity;
-import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
+import com.example.project_just4gamers.ui.activities.InboxActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
 import com.example.project_just4gamers.ui.adapters.DashboardListAdapter;
-import com.example.project_just4gamers.ui.adapters.ProductListAdapter;
-import com.example.project_just4gamers.utils.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
@@ -41,6 +39,7 @@ public class DashboardFragment extends Fragment {
     private TextView tvNoProductFound;
     private LinearLayout llSearch;
     private EditText etSearch;
+    private Spinner spnFilter;
     private FloatingActionButton fabSearch;
     private DashboardListAdapter adapter;
     private ImageView ivResetBtn;
@@ -60,6 +59,8 @@ public class DashboardFragment extends Fragment {
         etSearch = view.findViewById(R.id.etSearch);
         fabSearch = view.findViewById(R.id.fab_search);
         ivResetBtn = view.findViewById(R.id.iv_resetBtn);
+        spnFilter = view.findViewById(R.id.spn_filter);
+        addSpinnerAdapter();
         return view;
     }
 
@@ -83,6 +84,8 @@ public class DashboardFragment extends Fragment {
                 } else if (item.getItemId() == R.id.action_coupons){
                     startActivity(new Intent(getActivity().getApplicationContext(), DiscountCouponsActivity.class));
                     return true;
+                } else if (item.getItemId() == R.id.action_inbox){
+                    startActivity(new Intent(getActivity().getApplicationContext(), InboxActivity.class));
                 }
               return false;
             }
@@ -138,6 +141,18 @@ public class DashboardFragment extends Fragment {
             fabSearch.setVisibility(View.GONE);
             llSearch.setVisibility(View.GONE);
         }
+
+
+//        spnFilter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Object item = parent.getItemAtPosition(position);
+//                if (position == 0){
+//
+//                }
+//            }
+//        });
+
     }
 
     private void getDashboardItemsList(){
@@ -150,4 +165,13 @@ public class DashboardFragment extends Fragment {
         super.onResume();
         getDashboardItemsList();
     }
+
+    private void addSpinnerAdapter() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.filter_items,
+                android.R.layout.simple_spinner_dropdown_item);
+        spnFilter.setAdapter(adapter);
+    }
+
+
 }

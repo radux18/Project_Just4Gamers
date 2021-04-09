@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +18,10 @@ import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.CartItem;
 import com.example.project_just4gamers.models.Product;
+import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     private Toolbar tb_productDetails;
@@ -33,8 +36,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView tvProductQuantity;
     private Button btnAddToCart;
     private Button btnGoToCart;
+    private FloatingActionButton fabAddMessage;
+    private TextView tvUserName;
+    private ImageView ivUserProfileImage;
 
     private Product productDetails;
+
+    private User productOwner = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +57,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         if (intent.hasExtra(Constants.getExtraProductOwnerId())){
             productOwnerId = intent.getStringExtra(Constants.getExtraProductOwnerId());
+            new FirestoreManager().getProductOwnerDetails(ProductDetailsActivity.this, productOwnerId);
         }
 
         if (new FirestoreManager().getCurrentUserID().equals(productOwnerId)){
             btnAddToCart.setVisibility(View.GONE);
             btnGoToCart.setVisibility(View.GONE);
+            fabAddMessage.setVisibility(View.GONE);
+
         } else {
             btnAddToCart.setVisibility(View.VISIBLE);
-
+            fabAddMessage.setVisibility(View.VISIBLE);
             btnAddToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -66,7 +77,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 }
             });
         }
-
         getProductDetails();
         setupActionBar();
 
@@ -74,6 +84,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProductDetailsActivity.this, CartListActivity.class));
+            }
+        });
+
+        fabAddMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddMessageActivity.class);
+                intent.putExtra(Constants.getExtraDetailsMessage(), productOwner);
+                startActivity(intent);
             }
         });
     }
@@ -88,11 +107,27 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btnAddToCart = findViewById(R.id.btn_add_to_cart);
         btnGoToCart = findViewById(R.id.btn_go_to_cart);
         tvProductAge = findViewById(R.id.tv_productDetails_age);
+        fabAddMessage = findViewById(R.id.fab_add_message);
+        tvUserName = findViewById(R.id.tv_user_detail_name);
+        ivUserProfileImage = findViewById(R.id.iv_product_user_image);
+
+
     }
 
     private void getProductDetails(){
         //show progress dialog
         new FirestoreManager().getProductDetails(ProductDetailsActivity.this, productId);
+    }
+
+    public void getUserDetails(User user){
+        productOwner = user;
+
+        new GlideLoader(ProductDetailsActivity.this).loadProductPicture(
+                productOwner.getImage(),
+                ivUserProfileImage
+        );
+        tvUserName.setText(getString(R.string.tv_settings_name, productOwner.getFirstName(), productOwner.getLastName()));
+        System.out.println(productOwner.toString());
     }
 
     public void productExistsInCart(){

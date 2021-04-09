@@ -12,7 +12,6 @@ public class User implements Parcelable {
     private String email = "";
     private String image = "";
     private int points = 0;
-    private int discountCoupons = 0;
     private String gender = "";
     private long mobile = 0;
     private int profileCompleted = 0;
@@ -26,21 +25,19 @@ public class User implements Parcelable {
         this.lastName = lastName;
         this.email = email;
         this.points = 0;
-        this.discountCoupons = 0;
         this.image = "";
         this.gender = "";
         this.mobile = 0;
         this.profileCompleted = 0;
     }
 
-    public User(String id, String firstName, String lastName, String email, String image, int points, int discountCoupons, String gender, long mobile, int profileCompleted) {
+    public User(String id, String firstName, String lastName, String email, String image, int points, String gender, long mobile, int profileCompleted) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.image = image;
         this.points = points;
-        this.discountCoupons = discountCoupons;
         this.gender = gender;
         this.mobile = mobile;
         this.profileCompleted = profileCompleted;
@@ -53,7 +50,6 @@ public class User implements Parcelable {
         email = in.readString();
         image = in.readString();
         points = in.readInt();
-        discountCoupons = in.readInt();
         gender = in.readString();
         mobile = in.readLong();
         profileCompleted = in.readInt();
@@ -108,13 +104,6 @@ public class User implements Parcelable {
         this.points = points;
     }
 
-    public int getDiscountCoupons() {
-        return discountCoupons;
-    }
-
-    public void setDiscountCoupons(int discountCoupons) {
-        this.discountCoupons = discountCoupons;
-    }
 
     public String getGender() {
         return gender;
@@ -149,7 +138,6 @@ public class User implements Parcelable {
                 ", email='" + email + '\'' +
                 ", image='" + image + '\'' +
                 ", points=" + points +
-                ", discountCoupons=" + discountCoupons +
                 ", gender='" + gender + '\'' +
                 ", mobile=" + mobile +
                 ", profileCompleted=" + profileCompleted +
@@ -181,7 +169,6 @@ public class User implements Parcelable {
         dest.writeString(email);
         dest.writeString(image);
         dest.writeInt(points);
-        dest.writeInt(discountCoupons);
         dest.writeString(gender);
         dest.writeLong(mobile);
         dest.writeInt(profileCompleted);

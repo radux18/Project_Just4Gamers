@@ -53,7 +53,7 @@
 
     <dimen name="add_address_edit_radioButton_height">40dp</dimen>
     <dimen name="add_address_edit_radioButton_marginStartEnd">5dp</dimen>
-    
+
     <dimen name="item_address_rb_marginTop">40dp</dimen>
     <dimen name="item_address_paddingStartEnd">16dp</dimen>
     <dimen name="item_address_paddingTopBottom">10dp</dimen>
@@ -96,5 +96,8 @@
     <dimen name="sold_details_content_paddingTopBottom">10dp</dimen>
     <dimen name="sold_details_items_receipt">16dp</dimen>
     <dimen name="sold_details_label_value_textSize">18sp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
 
 </resources>

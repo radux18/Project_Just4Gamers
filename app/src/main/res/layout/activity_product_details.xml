@@ -160,9 +160,11 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:visibility="gone"
+                app:layout_goneMarginBottom="30dp"
+                app:layout_constraintBottom_toTopOf="@id/fab_add_message"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_product_details_quantity"
+                app:layout_constraintTop_toBottomOf="@id/ll_user_details"
                 />
 
             <Button
@@ -178,10 +180,62 @@
                 android:paddingBottom="5dp"
                 android:text="@string/btn_lbl_go_to_cart"
                 android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/fab_add_message"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_add_to_cart"
+                app:layout_goneMarginBottom="30dp"
                 />
+
+            <LinearLayout
+                android:id="@+id/ll_user_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/ll_product_details_quantity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/rv_item_image_background"
+                    android:padding="2dp"
+                    android:layout_marginLeft="16dp">
+
+                    <ImageView
+                        android:id="@+id/iv_product_user_image"
+                        android:layout_width="80dp"
+                        android:layout_height="70dp"
+                        android:contentDescription="@string/content_description"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_user_detail_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/tv_user_detail_nameT"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    />
+
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_add_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_vector_inbox"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:contentDescription="@string/content_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

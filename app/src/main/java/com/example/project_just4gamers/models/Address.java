@@ -5,15 +5,12 @@ import android.os.Parcelable;
 
 public class Address implements Parcelable {
     private String id = "";
-
     private String user_id = "";
     private String name = "";
     private String mobileNumber = "";
-
     private String address = "";
     private String zipCode = "";
     private String additionalNote = "";
-
     private String type = "";
     private String otherDetails = "";
 

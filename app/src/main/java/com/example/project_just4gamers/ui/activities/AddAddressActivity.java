@@ -87,7 +87,6 @@ public class AddAddressActivity extends AppCompatActivity {
             RadioButton rb = (RadioButton) group.findViewById(checkedId);
                 if (null != rb && checkedId > -1){
                    if (checkedId == R.id.rb_other){
-                       Toast.makeText(getApplicationContext(), "CLICK", Toast.LENGTH_SHORT).show();
                        tilOtherDetails.setVisibility(View.VISIBLE);
                    } else {
                        tilOtherDetails.setVisibility(View.GONE);
@@ -96,8 +95,6 @@ public class AddAddressActivity extends AppCompatActivity {
 
             }
         });
-
-
         btnSubmit.setOnClickListener(createAddressListener());
     }
 

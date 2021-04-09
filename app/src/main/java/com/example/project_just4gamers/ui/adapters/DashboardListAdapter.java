@@ -14,12 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.project_just4gamers.R;
+import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Product;
 import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class DashboardListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context context;
@@ -67,6 +70,7 @@ public class DashboardListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         return filter;
     }
+
 
     @NonNull
     @Override

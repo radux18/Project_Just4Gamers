@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -34,7 +35,19 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/reset1"/>
+
+
     </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spn_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/ll_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/rv_dashboard_items"
@@ -43,7 +56,7 @@
        android:visibility="gone"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/ll_search"
+       app:layout_constraintTop_toBottomOf="@id/spn_filter"
        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView

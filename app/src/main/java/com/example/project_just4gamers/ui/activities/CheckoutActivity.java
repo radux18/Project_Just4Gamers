@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_just4gamers.R;
+import com.example.project_just4gamers.firestore.Callback;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Address;
 import com.example.project_just4gamers.models.CartItem;
@@ -61,7 +62,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private User currentUser = null;
     private int points;
-    private int differentPoints;
 
     private DiscountCoupon discountCoupon = null;
 
@@ -96,6 +96,7 @@ public class CheckoutActivity extends AppCompatActivity {
             }
 
         }
+
         getProductList();
         getUserDetails();
         getAllUsers();
@@ -110,7 +111,12 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void getAllUsers() {
-        new FirestoreManager().getAllUsers(CheckoutActivity.this);
+        new FirestoreManager().getAllUsers(new Callback<ArrayList<User>>() {
+            @Override
+            public void runResultOnUiThread(ArrayList<User> result) {
+                allUsers = result;
+            }
+        });
     }
 
 
@@ -301,7 +307,10 @@ public class CheckoutActivity extends AppCompatActivity {
             new FirestoreManager().setPointForCurrentUser(CheckoutActivity.this, userHashMap);
         }
 
-        new FirestoreManager().removeCouponPerUse(discountCoupon);
+        if (discountCoupon != null){
+            new FirestoreManager().removeCouponPerUse(discountCoupon);
+        }
+
 
 
         HashMap<String, Object> productOwnerUserHashMap = new HashMap<>();
