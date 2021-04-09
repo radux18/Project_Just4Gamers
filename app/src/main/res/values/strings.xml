@@ -228,5 +228,7 @@
     <string name="tv_message_title">title</string>
     <string name="tv_message_dateT">Date</string>
     <string name="tv_message_description">Description</string>
+    <string name="tv_no_messages_foundT">No messages found!</string>
+    <string name="tv_title_messageT">INBOX</string>
 
 </resources>

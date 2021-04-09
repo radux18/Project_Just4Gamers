@@ -73,6 +73,11 @@ public class Constants {
     public static final String EXTRA_COUPON = "extra_coupon";
 
     public static final String RECEIVER_ID = "receiver_id";
+    public static final String SENDER_ID = "sender_id";
+
+    public static String getSenderId() {
+        return SENDER_ID;
+    }
 
     public static String getReceiverId() {
         return RECEIVER_ID;

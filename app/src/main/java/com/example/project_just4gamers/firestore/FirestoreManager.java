@@ -36,6 +36,7 @@ import com.example.project_just4gamers.ui.fragments.DashboardFragment;
 import com.example.project_just4gamers.ui.fragments.OrdersFragment;
 import com.example.project_just4gamers.ui.fragments.ProductsFragment;
 import com.example.project_just4gamers.ui.fragments.ReceivedMessagesFragment;
+import com.example.project_just4gamers.ui.fragments.SentMessagesFragment;
 import com.example.project_just4gamers.ui.fragments.SoldProductsFragment;
 import com.example.project_just4gamers.utils.Constants;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -825,8 +826,24 @@ public class FirestoreManager {
                         for (DocumentSnapshot items : documents){
                           Message message =  items.toObject(Message.class);
                             messages.add(message);
-
                             fragment.sucessGetReceivedMessages(messages);
+                        }
+                    }
+                });
+    }
+
+    public void getSentMessageList(SentMessagesFragment fragment){
+        fStore.collection(Constants.getMESSAGES())
+                .whereEqualTo(Constants.getSenderId(), getCurrentUserID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<Message> messages = new ArrayList<>();
+                        for (DocumentSnapshot items: documents){
+                            Message message = items.toObject(Message.class);
+                            messages.add(message);
+                            fragment.successGetSentMessageFromFirestore(messages);
                         }
                     }
                 });

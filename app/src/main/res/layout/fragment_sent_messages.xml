@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.ReceivedMessagesFragment">
-
+    tools:context=".ui.fragments.SentMessagesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_receivedMessages"
+        android:id="@+id/rv_sentMessages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -29,7 +28,6 @@
         android:textAlignment="center"
         android:textSize="25sp"
         android:visibility="visible"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
