@@ -104,6 +104,7 @@
                     android:padding="5dp"
                     android:hint="@string/hint_address"
                     android:minLines="3"
+                    android:gravity="top|left"
                     android:background="@drawable/textview_format"
                     />
             </com.google.android.material.textfield.TextInputLayout>

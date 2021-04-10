@@ -32,6 +32,7 @@ import com.example.project_just4gamers.ui.activities.RegisterActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
 import com.example.project_just4gamers.ui.activities.UserProfileActivity;
 import com.example.project_just4gamers.models.User;
+import com.example.project_just4gamers.ui.adapters.MessageListAdapter;
 import com.example.project_just4gamers.ui.fragments.DashboardFragment;
 import com.example.project_just4gamers.ui.fragments.OrdersFragment;
 import com.example.project_just4gamers.ui.fragments.ProductsFragment;
@@ -505,11 +506,23 @@ public class FirestoreManager {
                             ((CheckoutActivity) activity).getUserDetailsSuccess(user);
                         } else if (activity instanceof DiscountCouponsActivity){
                             ((DiscountCouponsActivity) activity).successDetailsFromFirestore(user);
-                        } else if (activity instanceof AddMessageActivity){
-                            ((AddMessageActivity) activity).getCurrentUserDetails(user);
                         }
                     }
                 });
+    }
+
+    public void getCurrentDetails(AddMessageActivity activity){
+        fStore.collection(Constants.getUSERS())
+                .document(getCurrentUserID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                  @Override
+                  public void onSuccess(DocumentSnapshot documentSnapshot) {
+                      User user = documentSnapshot.toObject(User.class);
+                        activity.getCurrentUserDetails(user);
+                  }
+              }
+              );
     }
 
     public void getProductOwnerDetails(Activity activity, String productOwnerId){
@@ -520,8 +533,11 @@ public class FirestoreManager {
                     @Override
                     public void onSuccess(DocumentSnapshot document) {
                         User user = document.toObject(User.class);
-
-                           ((ProductDetailsActivity) activity).getUserDetails(user);
+                        if (activity instanceof ProductDetailsActivity){
+                            ((ProductDetailsActivity) activity).getUserDetails(user);
+                        } else if (activity instanceof AddMessageActivity){
+                            ((AddMessageActivity) activity).getUserDetails(user);
+                        }
 
                     }
                 });

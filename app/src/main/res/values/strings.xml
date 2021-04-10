@@ -230,5 +230,13 @@
     <string name="tv_message_description">Description</string>
     <string name="tv_no_messages_foundT">No messages found!</string>
     <string name="tv_title_messageT">INBOX</string>
+    <string name="tv_message_fromTextT">From:</string>
+    <string name="tv_message_fromT">From</string>
+    <string name="tv_message_toTextT">To:</string>
+    <string name="tv_message_toT">To</string>
+    <string name="tvTitleText">Title:</string>
+    <string name="tv_Expeditor">Expeditor</string>
+    <string name="btn_replyT">Raspunde</string>
+    <string name="tv_title_msgTT">Vizualizare Mesaj</string>
 
 </resources>

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="15dp"
-    android:padding="10dp"
+    android:padding="15dp"
     android:background="@drawable/message_background"
     >
 
@@ -25,14 +25,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title:"
+            android:text="@string/tvTitleText"
             android:textStyle="bold"
             android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/tv_message_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/tv_message_title"
             android:textStyle="bold"
             android:textSize="15sp"/>
@@ -44,7 +45,7 @@
             android:layout_marginStart="20dp"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:maxWidth="3dp"
+            android:maxLength="10"
             android:textSize="15sp"
             android:text="@string/tv_message_description"
             android:layout_marginLeft="20dp" />
@@ -55,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:gravity="end"
+            android:gravity="center"
             android:textStyle="bold"
             android:textSize="15sp"
             android:text="@string/tv_message_dateT"

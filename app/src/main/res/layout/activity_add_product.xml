@@ -191,6 +191,7 @@
                     android:hint="@string/tiet_add_product_descriptionT"
                     android:inputType="textMultiLine"
                     android:minLines="3"
+                    android:gravity="top|left"
                      />
             </com.google.android.material.textfield.TextInputLayout>
 

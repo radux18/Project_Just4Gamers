@@ -75,6 +75,18 @@ public class Constants {
     public static final String RECEIVER_ID = "receiver_id";
     public static final String SENDER_ID = "sender_id";
 
+    public static final String EXTRA_SELECT_MESSAGE = "extra_select_message";
+
+    public static final String EXTRA_BOOLEAN = "extra_boolean";
+
+    public static String getExtraBoolean() {
+        return EXTRA_BOOLEAN;
+    }
+
+    public static String getExtraSelectMessage() {
+        return EXTRA_SELECT_MESSAGE;
+    }
+
     public static String getSenderId() {
         return SENDER_ID;
     }

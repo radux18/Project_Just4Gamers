@@ -29,6 +29,7 @@ public class AddMessageActivity extends AppCompatActivity {
     private User productOwner = null;
     private User currentUser = null;
     private TextView tvOwnerName;
+    private TextView tvSenderName;
     private TextInputEditText tietDescription;
     private TextInputEditText tietTitle;
     private Toolbar toolbarAddMessage;
@@ -38,27 +39,29 @@ public class AddMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_message);
-        intent = getIntent();
         initComp();
+        intent = getIntent();
         setupActionBar();
 
         if (intent.hasExtra(Constants.getExtraDetailsMessage())){
             productOwner = intent.getParcelableExtra(Constants.getExtraDetailsMessage());
         }
 
-        new FirestoreManager().getCurrentUserDetails(AddMessageActivity.this);
-
-        getCurrentUserDetails(currentUser);
+        getCurrentUser();
         setupUi(productOwner);
+    }
+
+    public void getCurrentUser(){
+        new FirestoreManager().getCurrentDetails(AddMessageActivity.this);
     }
 
     public void getCurrentUserDetails(User user) {
         currentUser = user;
+        tvSenderName.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
     }
 
     private void setupUi(User productOwner) {
         tvOwnerName.setText(getString(R.string.tv_settings_name, productOwner.getFirstName(), productOwner.getLastName()));
-
         btnSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +80,6 @@ public class AddMessageActivity extends AppCompatActivity {
         String date = formatter.format(calendar.getTime());
 
         Message message = new Message(currentUser.getId(), productOwner.getId(), description, title, date);
-        System.out.println(message.toString());
 
         new FirestoreManager().addMessageToFirestore(AddMessageActivity.this, message);
 
@@ -89,6 +91,7 @@ public class AddMessageActivity extends AppCompatActivity {
         tietDescription = findViewById(R.id.tiet_addMessage_description);
         tietTitle = findViewById(R.id.tiet_addMessage_title);
         btnSendMessage = findViewById(R.id.btn_sendMessage);
+        tvSenderName = findViewById(R.id.tv_message_senderName);
     }
 
     private void setupActionBar(){
@@ -110,5 +113,9 @@ public class AddMessageActivity extends AppCompatActivity {
     public void successMessageSent() {
         Toast.makeText(getApplicationContext() ,"The message was sent successfully!", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    public void getUserDetails(User user) {
+        currentUser = user;
     }
 }

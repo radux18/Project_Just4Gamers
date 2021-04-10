@@ -5,11 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.AddMessageActivity">
-
+    tools:context=".ui.activities.MessageViewActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_addMessage"
+        android:id="@+id/toolbar_message"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/redError"
@@ -24,7 +23,7 @@
             android:gravity="center"
             android:paddingStart="@dimen/toolbar_title_paddingStart"
             android:paddingEnd="0dp"
-            android:text="@string/tv_title_msgT"
+            android:text="@string/tv_title_msgTT"
             android:textColor="@color/white"
             android:textSize="@dimen/toolbar_title_text_size"
             android:textStyle="bold"
@@ -33,88 +32,78 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-   <LinearLayout
-       android:id="@+id/ll_user_detailsMsg"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintTop_toBottomOf="@id/toolbar_addMessage"
-       android:layout_marginTop="50dp"
-       android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/ll_user_destinatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_message"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
 
-       <TextView
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:text="@string/tv_receiverT"
-           android:textSize="20sp"
-           android:layout_marginStart="10dp"
-           android:textStyle="bold"
-           android:layout_marginLeft="10dp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tv_receiverT"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp" />
 
-       <TextView
-           android:id="@+id/tv_message_receiverName"
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-           android:layout_weight="1"
-           android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/tv_message_destinatar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
 
-   </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
-       android:id="@+id/ll_user_detailsMsg1"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintTop_toBottomOf="@id/ll_user_detailsMsg"
-       android:layout_marginTop="30dp"
-       android:orientation="horizontal">
-
-       <TextView
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:text="@string/tv_Expeditor"
-           android:textSize="20sp"
-           android:layout_marginStart="10dp"
-           android:textStyle="bold"
-           android:layout_marginLeft="10dp" />
-
-       <TextView
-           android:id="@+id/tv_message_senderName"
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-           android:layout_weight="1"
-           android:textSize="20sp"/>
-
-   </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_sendMessage"
-        android:layout_width="200dp"
+        android:id="@+id/ll_user_expeditor"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_sendMessageT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_addMessage_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="50dp"/>
+        app:layout_constraintTop_toBottomOf="@id/ll_user_destinatar"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tv_Expeditor"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/tv_message_expeditor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
 
     <Button
-        android:id="@+id/btn_reply"
+        android:id="@+id/btn_raspunde"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_replyT"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_sendMessage"
+        app:layout_constraintTop_toBottomOf="@id/til_message_descriere"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="30dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_addMessage_description"
+        android:id="@+id/til_message_descriere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/til_addMessage_Title"
+        app:layout_constraintTop_toBottomOf="@id/til_addMessage_titlu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="30dp"
@@ -123,7 +112,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_addMessage_description"
+            android:id="@+id/tiet_message_descriere"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textMultiLine"
@@ -134,7 +123,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_addMessage_Title"
+        android:id="@+id/til_addMessage_titlu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -142,10 +131,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/ll_user_detailsMsg1">
+        app:layout_constraintTop_toBottomOf="@id/ll_user_expeditor">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_addMessage_title"
+            android:id="@+id/tiet_message_titlu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/textview_format"
