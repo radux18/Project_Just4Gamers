@@ -29,6 +29,8 @@ public class MessageViewActivity extends AppCompatActivity {
 
     private Message message = null;
     private boolean selectedMessage = false;
+    private User currentUser = null;
+    private User senderUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +42,43 @@ public class MessageViewActivity extends AppCompatActivity {
 
         if (intent.hasExtra(Constants.getExtraSelectMessage() )){
             message = intent.getParcelableExtra(Constants.getExtraSelectMessage());
-
         }
 
         if (intent.hasExtra(Constants.getExtraBoolean())){
             selectedMessage = intent.getBooleanExtra(Constants.getExtraSelectMessage(), true);
         }
-        //TODO : DE REZOLVAT MESAJELE REPLY/ SAU NU REPLY
-        //mesaj primit
+
+        //TODO : Sa incerci sa faci cele 2 selecturi pt ambele 2 cazuri
+        //mesaje primite
         if (selectedMessage){
             btnRaspunde.setVisibility(View.VISIBLE);
+            getCurrentUser();
+            getSenderUser();
+          //  tvExpeditor.setText(getString(R.string.tv_settings_name, senderUser.getFirstName(), senderUser.getLastName()));
+           // tvDestinatar.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
         } else {
+            //mesaje trimise
             btnRaspunde.setVisibility(View.GONE);
+            getCurrentUser();
+
         }
-
+        //setupUi(message);
         setupUI(message);
-
     }
+
+    private void getSenderUser() {
+        new FirestoreManager().getSenderUser(MessageViewActivity.this, message.getSender_id());
+    }
+
+    private void getCurrentUser() {
+        new FirestoreManager().getCurrentDetails(MessageViewActivity.this);
+    }
+
+    public void successGetUser(User user){
+        currentUser = user;
+        tvDestinatar.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
+    }
+
 
     private void initComp() {
         toolbarMesaj = findViewById(R.id.toolbar_message);
@@ -68,9 +90,25 @@ public class MessageViewActivity extends AppCompatActivity {
 
     }
 
+//    private void setupUiV1(Message message) {
+//        tvDestinatar.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
+//        tvExpeditor.setText(getString(R.string.tv_settings_name, senderUser.getFirstName(), senderUser.getLastName()));
+//
+//        tietTitlu.setText(message.getDescription());
+//        tietDescriere.setText(message.getDescription());
+//
+//        tvDestinatar.setEnabled(false);
+//        tvExpeditor.setEnabled(false);
+//        tietTitlu.setEnabled(false);
+//        tietDescriere.setEnabled(false);
+//    }
+
+    public void successGetSenderUser(User user) {
+        senderUser = user;
+        tvExpeditor.setText(getString(R.string.tv_settings_name, senderUser.getFirstName(), senderUser.getLastName()));
+    }
+
     private void setupUI(Message message) {
-        tvDestinatar.setText(message.getReceiver_id());
-        tvExpeditor.setText(message.getSender_id());
         tietTitlu.setText(message.getDescription());
         tietDescriere.setText(message.getDescription());
 
@@ -79,9 +117,6 @@ public class MessageViewActivity extends AppCompatActivity {
         tietTitlu.setEnabled(false);
         tietDescriere.setEnabled(false);
     }
-
-
-
 
 
     private void setupActionBar() {
@@ -99,4 +134,7 @@ public class MessageViewActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

@@ -27,6 +27,7 @@ import com.example.project_just4gamers.ui.activities.CheckoutActivity;
 import com.example.project_just4gamers.ui.activities.DashboardActivity;
 import com.example.project_just4gamers.ui.activities.DiscountCouponsActivity;
 import com.example.project_just4gamers.ui.activities.LoginActivity;
+import com.example.project_just4gamers.ui.activities.MessageViewActivity;
 import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
 import com.example.project_just4gamers.ui.activities.RegisterActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
@@ -507,11 +508,12 @@ public class FirestoreManager {
                         } else if (activity instanceof DiscountCouponsActivity){
                             ((DiscountCouponsActivity) activity).successDetailsFromFirestore(user);
                         }
+
                     }
                 });
     }
 
-    public void getCurrentDetails(AddMessageActivity activity){
+    public void getCurrentDetails(Activity activity){
         fStore.collection(Constants.getUSERS())
                 .document(getCurrentUserID())
                 .get()
@@ -519,11 +521,29 @@ public class FirestoreManager {
                   @Override
                   public void onSuccess(DocumentSnapshot documentSnapshot) {
                       User user = documentSnapshot.toObject(User.class);
-                        activity.getCurrentUserDetails(user);
+                      if (activity instanceof AddMessageActivity){
+                          ((AddMessageActivity) activity).getCurrentUserDetails(user);
+                      } else if (activity instanceof MessageViewActivity) {
+                          ((MessageViewActivity) activity).successGetUser(user);
+                      }
                   }
               }
               );
     }
+
+    public void getSenderUser(MessageViewActivity activity, String senderId){
+        fStore.collection(Constants.getUSERS())
+                .document(senderId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        User user = documentSnapshot.toObject(User.class);
+                        activity.successGetSenderUser(user);
+                    }
+                });
+    }
+
 
     public void getProductOwnerDetails(Activity activity, String productOwnerId){
         fStore.collection(Constants.getUSERS())
