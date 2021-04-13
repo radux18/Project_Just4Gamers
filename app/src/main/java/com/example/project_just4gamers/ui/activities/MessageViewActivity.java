@@ -31,6 +31,7 @@ public class MessageViewActivity extends AppCompatActivity {
     private boolean selectedMessage = false;
     private User currentUser = null;
     private User senderUser = null;
+    private User receiverUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,36 +49,67 @@ public class MessageViewActivity extends AppCompatActivity {
             selectedMessage = intent.getBooleanExtra(Constants.getExtraSelectMessage(), true);
         }
 
-        //TODO : Sa incerci sa faci cele 2 selecturi pt ambele 2 cazuri
         //mesaje primite
         if (selectedMessage){
             btnRaspunde.setVisibility(View.VISIBLE);
-            getCurrentUser();
+            getCurrentUserV0();
             getSenderUser();
-          //  tvExpeditor.setText(getString(R.string.tv_settings_name, senderUser.getFirstName(), senderUser.getLastName()));
-           // tvDestinatar.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
+
+            //reply
+            btnRaspunde.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    
+                }
+            });
         } else {
             //mesaje trimise
             btnRaspunde.setVisibility(View.GONE);
-            getCurrentUser();
-
+            getCurrentUserV1();
+            getReceiverUser();
         }
-        //setupUi(message);
+
         setupUI(message);
+
     }
 
     private void getSenderUser() {
         new FirestoreManager().getSenderUser(MessageViewActivity.this, message.getSender_id());
     }
 
-    private void getCurrentUser() {
-        new FirestoreManager().getCurrentDetails(MessageViewActivity.this);
+    private void getCurrentUserV0() {
+        new FirestoreManager().getCurrentDetailsV0(MessageViewActivity.this);
     }
 
-    public void successGetUser(User user){
+    public void successGetUserV0(User user){
         currentUser = user;
         tvDestinatar.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
     }
+
+    public void successGetSenderUser(User user) {
+        senderUser = user;
+        tvExpeditor.setText(getString(R.string.tv_settings_name, senderUser.getFirstName(), senderUser.getLastName()));
+    }
+
+    private void getCurrentUserV1() {
+        new FirestoreManager().getCurrentDetailsV1(MessageViewActivity.this);
+    }
+
+    public void successGetUserV1(User user){
+        currentUser = user;
+        tvExpeditor.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
+    }
+
+
+    private void getReceiverUser() {
+        new FirestoreManager().getReceiverUser(MessageViewActivity.this, message.getReceiver_id());
+    }
+
+    public void successGetReceiverUser(User user) {
+        receiverUser = user;
+        tvDestinatar.setText(getString(R.string.tv_settings_name, receiverUser.getFirstName(), receiverUser.getLastName()));
+    }
+
 
 
     private void initComp() {
@@ -87,26 +119,9 @@ public class MessageViewActivity extends AppCompatActivity {
         tietTitlu = findViewById(R.id.tiet_message_titlu);
         tietDescriere = findViewById(R.id.tiet_message_descriere);
         btnRaspunde = findViewById(R.id.btn_raspunde);
-
     }
 
-//    private void setupUiV1(Message message) {
-//        tvDestinatar.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
-//        tvExpeditor.setText(getString(R.string.tv_settings_name, senderUser.getFirstName(), senderUser.getLastName()));
-//
-//        tietTitlu.setText(message.getDescription());
-//        tietDescriere.setText(message.getDescription());
-//
-//        tvDestinatar.setEnabled(false);
-//        tvExpeditor.setEnabled(false);
-//        tietTitlu.setEnabled(false);
-//        tietDescriere.setEnabled(false);
-//    }
 
-    public void successGetSenderUser(User user) {
-        senderUser = user;
-        tvExpeditor.setText(getString(R.string.tv_settings_name, senderUser.getFirstName(), senderUser.getLastName()));
-    }
 
     private void setupUI(Message message) {
         tietTitlu.setText(message.getDescription());

@@ -20,7 +20,6 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class AddMessageActivity extends AppCompatActivity {
@@ -52,7 +51,7 @@ public class AddMessageActivity extends AppCompatActivity {
     }
 
     public void getCurrentUser(){
-        new FirestoreManager().getCurrentDetails(AddMessageActivity.this);
+        new FirestoreManager().getCurrentDetailsV0(AddMessageActivity.this);
     }
 
     public void getCurrentUserDetails(User user) {

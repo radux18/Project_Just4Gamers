@@ -100,17 +100,15 @@ public class LoginActivity extends ProgressDialogActivity {
                     });
                 }
             }
-
-
-
-            private void saveData() {
-                SharedPreferences sharedPreferences = getSharedPreferences(Constants.getPREFS(),MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(EMAIL,tiet_email.getText().toString());
-                editor.putString(PASSWORD,tiet_password.getText().toString());
-                editor.apply();
-            }
         };
+    }
+
+    private void saveData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.getPREFS(),MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EMAIL,tiet_email.getText().toString());
+        editor.putString(PASSWORD,tiet_password.getText().toString());
+        editor.apply();
     }
 
     private boolean validateLoginEntries() {
@@ -162,7 +160,6 @@ public class LoginActivity extends ProgressDialogActivity {
 
         Toast.makeText(getApplicationContext(),R.string.please_click_back_again_to_exit,Toast.LENGTH_SHORT).show();
 
-        //the case if the user press the button later than 2 seconds, the trigger resets.
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -33,7 +33,6 @@ import com.example.project_just4gamers.ui.activities.RegisterActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
 import com.example.project_just4gamers.ui.activities.UserProfileActivity;
 import com.example.project_just4gamers.models.User;
-import com.example.project_just4gamers.ui.adapters.MessageListAdapter;
 import com.example.project_just4gamers.ui.fragments.DashboardFragment;
 import com.example.project_just4gamers.ui.fragments.OrdersFragment;
 import com.example.project_just4gamers.ui.fragments.ProductsFragment;
@@ -513,7 +512,7 @@ public class FirestoreManager {
                 });
     }
 
-    public void getCurrentDetails(Activity activity){
+    public void getCurrentDetailsV0(Activity activity){
         fStore.collection(Constants.getUSERS())
                 .document(getCurrentUserID())
                 .get()
@@ -524,7 +523,23 @@ public class FirestoreManager {
                       if (activity instanceof AddMessageActivity){
                           ((AddMessageActivity) activity).getCurrentUserDetails(user);
                       } else if (activity instanceof MessageViewActivity) {
-                          ((MessageViewActivity) activity).successGetUser(user);
+                          ((MessageViewActivity) activity).successGetUserV0(user);
+                      }
+                  }
+              }
+              );
+    }
+
+    public void getCurrentDetailsV1(Activity activity){
+        fStore.collection(Constants.getUSERS())
+                .document(getCurrentUserID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                  @Override
+                  public void onSuccess(DocumentSnapshot documentSnapshot) {
+                      User user = documentSnapshot.toObject(User.class);
+                      if (activity instanceof MessageViewActivity) {
+                          ((MessageViewActivity) activity).successGetUserV1(user);
                       }
                   }
               }
@@ -544,6 +559,18 @@ public class FirestoreManager {
                 });
     }
 
+    public void getReceiverUser(MessageViewActivity activity, String receiverId){
+        fStore.collection(Constants.getUSERS())
+                .document(receiverId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        User user = documentSnapshot.toObject(User.class);
+                        activity.successGetReceiverUser(user);
+                    }
+                });
+    }
 
     public void getProductOwnerDetails(Activity activity, String productOwnerId){
         fStore.collection(Constants.getUSERS())
