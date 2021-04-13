@@ -207,7 +207,7 @@ public class CheckoutActivity extends AppCompatActivity {
         for (CartItem item : cartItems) {
             int availableQuantity =Integer.parseInt(item.getStock_quantity());
             if (availableQuantity > 0){
-                double price = Double.parseDouble( item.getPrice());
+                int price = item.getPrice();
                 int quantity =Integer.parseInt(item.getCart_quantity());
 
                 subtotal += (price * quantity);

@@ -9,7 +9,7 @@ public class Product implements Parcelable {
     private String user_id;
     private String user_name;
     private String title;
-    private String price;
+    private int price;
     private String description;
     private String stock_quantity;
     private String type;
@@ -21,7 +21,7 @@ public class Product implements Parcelable {
         this.user_id = "";
         this.user_name = "";
         this.title = "";
-        this.price = "";
+        this.price = 0;
         this.description = "";
         this.stock_quantity = "";
         this.type = "";
@@ -29,7 +29,7 @@ public class Product implements Parcelable {
         this.image = "";
     }
 
-    public Product(String user_id, String user_name, String title, String price, String description, String quantity, String type, String age, String image) {
+    public Product(String user_id, String user_name, String title, int price, String description, String quantity, String type, String age, String image) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.title = title;
@@ -42,25 +42,13 @@ public class Product implements Parcelable {
         this.product_id = "";
     }
 
-    public Product(String id, String user_id, String user_name, String title, String price, String description, String quantity, String type, String age, String image) {
-        this.product_id = id;
-        this.user_id = user_id;
-        this.user_name = user_name;
-        this.title = title;
-        this.price = price;
-        this.description = description;
-        this.stock_quantity = quantity;
-        this.type = type;
-        this.age = age;
-        this.image = image;
-    }
 
     protected Product(Parcel in) {
         product_id = in.readString();
         user_id = in.readString();
         user_name = in.readString();
         title = in.readString();
-        price = in.readString();
+        price = in.readInt();
         description = in.readString();
         stock_quantity = in.readString();
         type = in.readString();
@@ -74,7 +62,7 @@ public class Product implements Parcelable {
         dest.writeString(user_id);
         dest.writeString(user_name);
         dest.writeString(title);
-        dest.writeString(price);
+        dest.writeInt(price);
         dest.writeString(description);
         dest.writeString(stock_quantity);
         dest.writeString(type);
@@ -98,6 +86,18 @@ public class Product implements Parcelable {
             return new Product[size];
         }
     };
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public static Creator<Product> getCREATOR() {
+        return CREATOR;
+    }
 
     public String getProduct_id() {
         return product_id;
@@ -139,13 +139,6 @@ public class Product implements Parcelable {
         this.title = title;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
 
     public String getDescription() {
         return description;

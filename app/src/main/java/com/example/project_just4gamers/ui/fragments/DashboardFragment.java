@@ -153,7 +153,7 @@ public class DashboardFragment extends Fragment {
                         Collections.sort(dashboardItemsList, new Comparator<Product>() {
                             @Override
                             public int compare(Product o1, Product o2) {
-                                return o2.getPrice().compareToIgnoreCase(o1.getPrice());
+                                return o2.getPrice() - o1.getPrice();
                             }
                         });
                         adapter.notifyDataSetChanged();
@@ -162,7 +162,7 @@ public class DashboardFragment extends Fragment {
                         Collections.sort(dashboardItemsList, new Comparator<Product>() {
                             @Override
                             public int compare(Product o1, Product o2) {
-                                return o1.getPrice().compareToIgnoreCase(o2.getPrice());
+                                return o1.getPrice() - o2.getPrice();
                             }
                         });
                         adapter.notifyDataSetChanged();

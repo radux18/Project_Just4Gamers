@@ -185,7 +185,7 @@ public class AddProductActivity extends AppCompatActivity {
 
     private void uploadProductDetails(){
         String title = tiet_title.getText().toString().trim();
-        String price = tiet_price.getText().toString().trim();
+        int price = Integer.parseInt(tiet_price.getText().toString().trim());
         String description = tiet_description.getText().toString().trim();
         String quantity = tiet_quantity.getText().toString().trim();
         String age = spnProductAge.getSelectedItem().toString();

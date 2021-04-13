@@ -137,7 +137,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     public void productDetailsSuccess(Product product){
-        //assign to the null obj with the product.
         productDetails = product;
 
         new GlideLoader(ProductDetailsActivity.this)
@@ -149,7 +148,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvProductDescription.setText(product.getDescription());
         tvProductQuantity.setText(product.getStock_quantity());
 
-        //check method if stock quantity is 0
         if (Integer.parseInt(product.getStock_quantity()) == 0){
             //hide progress dialog
             btnAddToCart.setVisibility(View.GONE);

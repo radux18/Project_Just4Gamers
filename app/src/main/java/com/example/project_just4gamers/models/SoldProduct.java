@@ -8,7 +8,7 @@ public class SoldProduct implements Parcelable {
     private String id = "";
     private String user_id = "";
     private String title = "";
-    private String price = "";
+    private int price = 0;
     private String sold_quantity = "";
     private String image = "";
     private String order_id = "";
@@ -21,7 +21,7 @@ public class SoldProduct implements Parcelable {
     public SoldProduct() {
     }
 
-    public SoldProduct(String user_id, String title, String price, String sold_quantity, String image, String order_id, long order_date, String subtotal, String shippingCharge, String totalAmount, Address address) {
+    public SoldProduct(String user_id, String title, int price, String sold_quantity, String image, String order_id, long order_date, String subtotal, String shippingCharge, String totalAmount, Address address) {
         this.user_id = user_id;
         this.title = title;
         this.price = price;
@@ -35,11 +35,12 @@ public class SoldProduct implements Parcelable {
         this.address = address;
     }
 
+
     protected SoldProduct(Parcel in) {
         id = in.readString();
         user_id = in.readString();
         title = in.readString();
-        price = in.readString();
+        price = in.readInt();
         sold_quantity = in.readString();
         image = in.readString();
         order_id = in.readString();
@@ -55,7 +56,7 @@ public class SoldProduct implements Parcelable {
         dest.writeString(id);
         dest.writeString(user_id);
         dest.writeString(title);
-        dest.writeString(price);
+        dest.writeInt(price);
         dest.writeString(sold_quantity);
         dest.writeString(image);
         dest.writeString(order_id);
@@ -83,6 +84,14 @@ public class SoldProduct implements Parcelable {
         }
     };
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public String getId() {
         return id;
     }
@@ -105,14 +114,6 @@ public class SoldProduct implements Parcelable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getSold_quantity() {

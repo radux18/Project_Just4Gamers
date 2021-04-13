@@ -9,7 +9,7 @@ public class CartItem implements Parcelable {
     private String product_ownerId = "";
     private String product_id = "";
     private String title = "";
-    private String price = "";
+    private int price = 0;
     private String image = "";
     private String type = "";
     private String age = "";
@@ -19,7 +19,7 @@ public class CartItem implements Parcelable {
     public CartItem() {
     }
 
-    public CartItem(String user_id, String product_ownerId, String product_id, String title, String price, String image, String type, String age, String cart_quantity) {
+    public CartItem(String user_id, String product_ownerId, String product_id, String title, int price, String image, String type, String age, String cart_quantity) {
         this.user_id = user_id;
         this.product_ownerId = product_ownerId;
         this.product_id = product_id;
@@ -32,13 +32,14 @@ public class CartItem implements Parcelable {
 
     }
 
+
     protected CartItem(Parcel in) {
         id = in.readString();
         user_id = in.readString();
         product_ownerId = in.readString();
         product_id = in.readString();
         title = in.readString();
-        price = in.readString();
+        price = in.readInt();
         image = in.readString();
         type = in.readString();
         age = in.readString();
@@ -53,7 +54,7 @@ public class CartItem implements Parcelable {
         dest.writeString(product_ownerId);
         dest.writeString(product_id);
         dest.writeString(title);
-        dest.writeString(price);
+        dest.writeInt(price);
         dest.writeString(image);
         dest.writeString(type);
         dest.writeString(age);
@@ -78,16 +79,24 @@ public class CartItem implements Parcelable {
         }
     };
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public static Creator<CartItem> getCREATOR() {
+        return CREATOR;
+    }
+
     public String getProduct_ownerId() {
         return product_ownerId;
     }
 
     public void setProduct_ownerId(String product_ownerId) {
         this.product_ownerId = product_ownerId;
-    }
-
-    public static Creator<CartItem> getCREATOR() {
-        return CREATOR;
     }
 
     public String getId() {
@@ -120,14 +129,6 @@ public class CartItem implements Parcelable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getImage() {

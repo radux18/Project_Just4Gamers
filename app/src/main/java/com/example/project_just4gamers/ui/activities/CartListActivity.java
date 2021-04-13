@@ -100,7 +100,7 @@ public class CartListActivity extends AppCompatActivity {
             for (CartItem item : cartListItems){
                 int availableQuantity = Integer.parseInt(item.getStock_quantity());
                 if (availableQuantity > 0){
-                    double price = Double.parseDouble(item.getPrice());
+                    int price = item.getPrice();
                     int quantity = Integer.parseInt(item.getCart_quantity());
 
                     subTotal += (price * quantity);
