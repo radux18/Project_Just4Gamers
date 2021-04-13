@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 
 public class Constants {
-    //Collections in Cloud Firestore
     private static final String  USERS = "users";
     private static final String PRODUCTS = "products";
     public static final String ORDERS = "orders";
@@ -16,6 +15,7 @@ public class Constants {
     public static final String SOLD_PRODUCTS = "sold_products";
     public static final String DISCOUNTCOUPONS = "discount_coupons";
     public static final String MESSAGES = "messages";
+    public static final String POINTS = "points";
 
     private static final String PREFS = "prefs";
     private static final String USERNAME = "username";
@@ -25,11 +25,11 @@ public class Constants {
     private static final int READ_STORAGE_PERMISSION_CODE = 213;
     private static final int PICK_IMAGE_REQUEST_CODE = 214;
 
-    private static final String MALE = "Male";
-    private static final String FEMALE = "Female";
+    private static final String MALE = "Barbat";
+    private static final String FEMALE = "Femeie";
 
-    private static final String NEW = "New";
-    private static final String USED = "Used";
+    private static final String NEW = "Nou";
+    private static final String USED = "Uzat";
 
     private static final String HOME = "Home";
     private static final String OFFICE = "Office";
@@ -108,7 +108,6 @@ public class Constants {
         return EXTRA_DETAILS_MESSAGE;
     }
 
-    public static final String POINTS = "points";
 
     public static String getMESSAGES() {
         return MESSAGES;

@@ -62,6 +62,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private User currentUser = null;
     private int points;
+    private int diffPoints;
 
     private DiscountCoupon discountCoupon = null;
 
@@ -286,21 +287,25 @@ public class CheckoutActivity extends AppCompatActivity {
         HashMap<String, Object> userHashMap = new HashMap<>();
         for (CartItem items : cartItems){
             switch (items.getAge()) {
-                case "~5 years":
-                    points += 10 * Integer.parseInt(items.getCart_quantity());
-
-                    break;
-                case "~1 years":
+                case "1 an":
+                case "2 ani":
+                case "3 ani":
+                case "4 ani":
+                case "5 ani":
+                case "6 ani":
+                case "7 ani":
+                case "8 ani":
+                case "9 ani":
                     points += 5 * Integer.parseInt(items.getCart_quantity());
-
                     break;
-                case "~(5–10) years":
+                case "10+ ani":
+                    points += 10 * Integer.parseInt(items.getCart_quantity());
+                    break;
+                case "15+ ani":
                     points += 15 * Integer.parseInt(items.getCart_quantity());
-
                     break;
-                case "10+ years":
-                    points += 20 * Integer.parseInt(items.getCart_quantity());
-
+                case "20+ ani":
+                    points += 30 * Integer.parseInt(items.getCart_quantity());
                     break;
             }
             userHashMap.put(Constants.getPOINTS(), points);
@@ -311,41 +316,40 @@ public class CheckoutActivity extends AppCompatActivity {
             new FirestoreManager().removeCouponPerUse(discountCoupon);
         }
 
-
-
         HashMap<String, Object> productOwnerUserHashMap = new HashMap<>();
         for (CartItem item : cartItems){
             for (User user : allUsers){
                 if (item.getProduct_ownerId().equals(user.getId())){
-                    int diffPoints = 0;
                     diffPoints = user.getPoints();
-                    //atunci seteaza-i userului acela punctele
                     switch (item.getAge()) {
-                        case "~5 years":
-                            diffPoints += 10 * Integer.parseInt(item.getCart_quantity());
-
-                            break;
-                        case "~1 years":
+                        case "1 an":
+                        case "2 ani":
+                        case "3 ani":
+                        case "4 ani":
+                        case "5 ani":
+                        case "6 ani":
+                        case "7 ani":
+                        case "8 ani":
+                        case "9 ani":
                             diffPoints += 5 * Integer.parseInt(item.getCart_quantity());
-
                             break;
-                        case "~(5–10) years":
+                        case "10+ ani":
+                            diffPoints += 10 * Integer.parseInt(item.getCart_quantity());
+                            break;
+                        case "15+ ani":
                             diffPoints += 15 * Integer.parseInt(item.getCart_quantity());
-
                             break;
-                        case "10+ years":
-                            diffPoints += 20 * Integer.parseInt(item.getCart_quantity());
-
+                        case "20+ ani":
+                            diffPoints += 30 * Integer.parseInt(item.getCart_quantity());
                             break;
                     }
 
                     productOwnerUserHashMap.put(Constants.getPOINTS(), diffPoints);
                     new FirestoreManager().setPointsForDifferentUsers(productOwnerUserHashMap, user);
                 }
+
             }
         }
-
-
 
         new FirestoreManager().updateAllDetails(CheckoutActivity.this, cartItems, orderDetails);
     }

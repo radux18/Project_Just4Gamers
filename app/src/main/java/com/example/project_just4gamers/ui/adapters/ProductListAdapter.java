@@ -48,16 +48,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder itemList, int position) {
-        //catch the product obj from each position of the list
         Product model = products.get(position);
 
-        //set into the adapterView the contents.
         if (itemList instanceof ProductListAdapter.ViewHolder){
             new GlideLoader(context).loadProductPicture(model.getImage(), ((ViewHolder) itemList).image);
             ((ViewHolder) itemList).tvName.setText(model.getTitle());
             ((ViewHolder) itemList).tvPrice.setText(context.getResources().getString(R.string.item_price_format,model.getPrice()));
+            ((ViewHolder) itemList).tvAge.setText(model.getAge());
 
-            //delete product
             ((ViewHolder) itemList).ibDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -90,6 +88,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private ImageView image;
         private TextView tvName;
         private TextView tvPrice;
+        private TextView tvAge;
         private ImageButton ibDelete;
 
 
@@ -99,6 +98,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvName = itemView.findViewById(R.id.tv_item_name);
             tvPrice = itemView.findViewById(R.id.tv_item_price);
             ibDelete = itemView.findViewById(R.id.ib_delete_product);
+            tvAge = itemView.findViewById(R.id.tv_item_age);
         }
     }
 

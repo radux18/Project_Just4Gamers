@@ -71,26 +71,34 @@
     <string name="tv_no_dashboardItemFound">No items found!</string>
 
     <string-array name="add_product_age_values">
-        <item>~1 year</item>
-        <item>~5 years</item>
-        <item>~(5–10) years</item>
-        <item>10+ years</item>
+        <item>1 an</item>
+        <item>2 ani</item>
+        <item>3 ani</item>
+        <item>4 ani</item>
+        <item>5 ani</item>
+        <item>6 ani</item>
+        <item>7 ani</item>
+        <item>8 ani</item>
+        <item>9 ani</item>
+        <item>10+ ani</item>
+        <item>15+ ani</item>
+        <item>20+ ani</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tv_item_nameT">Name</string>
-    <string name="tv_item_priceT">100$</string>
+    <string name="tv_item_priceT">100 LEI</string>
 
-    <string name="item_price_format">$ %1$s</string>
+    <string name="item_price_format">%1$s LEI</string>
     <string name="item_nameT">Item Name</string>
-    <string name="item_priceT">$100</string>
+    <string name="item_priceT">100 LEI</string>
     <string name="delete_dialog_title">Delete Product</string>
     <string name="delete_dialog_message">Are you sure to delete this product?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="product_detailsT">Product Details</string>
     <string name="product_titleTT">Product Title</string>
-    <string name="tv_productDetPriceT">$100</string>
+    <string name="tv_productDetPriceT">100 LEI</string>
     <string name="product_descriptionT">Product Description</string>
     <string name="this_is_product_details_descriptionT">This is product details description.</string>
     <string name="stock_quantityT">Stock Quantity</string>
@@ -107,13 +115,13 @@
     <string name="lbl_total_amount">Total Amount</string>
     <string name="btn_lbl_checkout">Checkout</string>
     <string name="action_cart">My cart</string>
-    <string name="tv_subTotalT">$100</string>
-    <string name="tv_shippingT">$10</string>
-    <string name="tv_totalT">$110</string>
+    <string name="tv_subTotalT">100 LEI</string>
+    <string name="tv_shippingT">10 LEI</string>
+    <string name="tv_totalT">110 LEI</string>
     <string name="btn_checkoutT">Checkout</string>
     <string name="cartTitle">Cart</string>
     <string name="cart_item_titleT">Cart Item Title</string>
-    <string name="tv_carPriceT">$100</string>
+    <string name="tv_carPriceT">100 LEI</string>
     <string name="tv_cart_quantityT">1</string>
 
     <string name="lbl_out_of_stock">OUT OF STOCK</string>
@@ -160,9 +168,9 @@
     <string name="tv_checkout_additionalNoteT">Additional Note</string>
     <string name="tv_checkout_otherDetails">Other details</string>
     <string name="tv_checkout_mobileNrT">Mobile number</string>
-    <string name="tv_checkout_subtotalT">$100</string>
-    <string name="t_checkout_shippingCharge">$10.0</string>
-    <string name="tv_checkout_totalT">$110</string>
+    <string name="tv_checkout_subtotalT">100 LEI</string>
+    <string name="t_checkout_shippingCharge">10.0 LEI</string>
+    <string name="tv_checkout_totalT">110 LEI</string>
 
     <string name="no_orders_placed_yet">No orders placed yet!</string>
 
@@ -211,12 +219,12 @@
     <string name="tv_title_inboxT">Inbox</string>
 
     <string-array name="filter_items">
-        <item>Highest price</item>
-        <item>Lowest price</item>
+        <item>Pretul cel mai mare</item>
+        <item>Pretul cel mai mic</item>
         <item>A -> Z</item>
         <item>Z -> A</item>
-        <item>Oldest</item>
-        <item>Newest</item>
+        <item>Cel mai vechi</item>
+        <item>Cel mai nou</item>
     </string-array>
     <string name="title_activity_inbox">InboxActivity</string>
     <string name="tab_section_1">Received messages</string>

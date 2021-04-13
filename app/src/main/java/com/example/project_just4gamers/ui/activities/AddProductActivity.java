@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,7 +20,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -46,8 +49,10 @@ public class AddProductActivity extends AppCompatActivity {
     private ImageView iv_imageProduct;
     private RadioButton rbNew;
     private RadioButton rbUsed;
+    private RadioGroup rgType;
     private Spinner spnProductAge;
     private String type;
+    private LinearLayout llProductAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,21 @@ public class AddProductActivity extends AppCompatActivity {
 
         iv_updateProduct.setOnClickListener(updatePhotoListener());
         btnSubmit.setOnClickListener(setProductListener());
+
+        rgType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = (RadioButton) group.findViewById(checkedId);
+                if (null != rb && checkedId > -1){
+                    if (checkedId == R.id.rb_used){
+                        llProductAge.setVisibility(View.VISIBLE);
+                    } else if (checkedId == R.id.rb_new){
+                        llProductAge.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
     }
 
     private View.OnClickListener setProductListener() {
@@ -125,7 +145,8 @@ public class AddProductActivity extends AppCompatActivity {
         spnProductAge = findViewById(R.id.spn_add_product_age);
         rbNew = findViewById(R.id.rb_new);
         rbUsed = findViewById(R.id.rb_used);
-
+        llProductAge = findViewById(R.id.ll_product_age);
+        rgType = findViewById(R.id.rg_add_product);
         addSpinnerAdapter();
     }
 
@@ -158,29 +179,38 @@ public class AddProductActivity extends AppCompatActivity {
 
     public void imageUploadSuccess(String imageURL){
         //hide the progress dialog
-       //Toast.makeText(getApplicationContext(), "Product image is uploaded successfully. Img URL: " + imageURL,Toast.LENGTH_SHORT).show();
         productImageURL = imageURL;
         uploadProductDetails();
     }
 
     private void uploadProductDetails(){
-        //retrieving username for product details
         String title = tiet_title.getText().toString().trim();
         String price = tiet_price.getText().toString().trim();
         String description = tiet_description.getText().toString().trim();
         String quantity = tiet_quantity.getText().toString().trim();
         String age = spnProductAge.getSelectedItem().toString();
+
         if (rbUsed.isChecked()){
             type = Constants.getUSED();
+
         } else {
             type = Constants.getNEW();
         }
 
         String userName = this.getSharedPreferences(Constants.getPREFS(), Context.MODE_PRIVATE).getString(Constants.getUSERNAME(),"");
-        Product product = new Product(new FirestoreManager().getCurrentUserID(),userName,
-                                title,price,description,quantity,type,age,productImageURL);
-        //upload the object to DB
-        new FirestoreManager().uploadProductDetails(AddProductActivity.this, product);
+
+        if (type.equals(Constants.getNEW())){
+            Product product = new Product(new FirestoreManager().getCurrentUserID(),userName,
+                    title,price,description,quantity, type, "N/A", productImageURL);
+
+            new FirestoreManager().uploadProductDetails(AddProductActivity.this, product);
+        } else {
+            Product product = new Product(new FirestoreManager().getCurrentUserID(),userName,
+                    title,price,description,quantity, type, age, productImageURL);
+
+            new FirestoreManager().uploadProductDetails(AddProductActivity.this, product);
+        }
+
 
     }
 
@@ -188,14 +218,12 @@ public class AddProductActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == Constants.getReadStoragePermissionCode()){
-            //If permission is granted
             if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 new Constants().showImageChooser(this);
             }
         } else {
-            //Displaying another toast if permission is not granted
             Toast.makeText(getApplicationContext(),
-                    "Oops, you just denied the permission for storage. You can also allow it from settings.",Toast.LENGTH_LONG).show();
+                    "Oops, ai refuzat sa incarci poza.",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -214,8 +242,6 @@ public class AddProductActivity extends AppCompatActivity {
                         e.printStackTrace();
                         Toast.makeText(getApplicationContext(),"Image selection failed",Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
             }
         }
