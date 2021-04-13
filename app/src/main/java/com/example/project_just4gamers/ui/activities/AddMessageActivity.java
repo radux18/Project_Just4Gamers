@@ -27,6 +27,7 @@ public class AddMessageActivity extends AppCompatActivity {
     private Intent intent;
     private User productOwner = null;
     private User currentUser = null;
+    private User senderUser = null;
     private TextView tvOwnerName;
     private TextView tvSenderName;
     private TextInputEditText tietDescription;
@@ -44,10 +45,16 @@ public class AddMessageActivity extends AppCompatActivity {
 
         if (intent.hasExtra(Constants.getExtraDetailsMessage())){
             productOwner = intent.getParcelableExtra(Constants.getExtraDetailsMessage());
+            getCurrentUser();
+            setupUiV0(productOwner);
         }
 
-        getCurrentUser();
-        setupUi(productOwner);
+        if (intent.hasExtra(Constants.getExtraSenderUser())){
+                senderUser = intent.getParcelableExtra(Constants.getExtraSenderUser());
+                getCurrentUser();
+                setupUiV1(senderUser);
+        }
+
     }
 
     public void getCurrentUser(){
@@ -59,7 +66,7 @@ public class AddMessageActivity extends AppCompatActivity {
         tvSenderName.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
     }
 
-    private void setupUi(User productOwner) {
+    private void setupUiV0(User productOwner) {
         tvOwnerName.setText(getString(R.string.tv_settings_name, productOwner.getFirstName(), productOwner.getLastName()));
         btnSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +86,31 @@ public class AddMessageActivity extends AppCompatActivity {
         String date = formatter.format(calendar.getTime());
 
         Message message = new Message(currentUser.getId(), productOwner.getId(), description, title, date);
+
+        new FirestoreManager().addMessageToFirestore(AddMessageActivity.this, message);
+
+    }
+
+    private void setupUiV1(User senderUser) {
+        tvOwnerName.setText(getString(R.string.tv_settings_name, senderUser.getFirstName(), senderUser.getLastName()));
+        btnSendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               saveMessageToFirestoreV1();
+            }
+        });
+    }
+
+    private void saveMessageToFirestoreV1() {
+        String title = tietTitle.getText().toString();
+        String description = tietDescription.getText().toString();
+
+        String dateFormat = "dd/MM/yyyy HH:mm";
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat, Locale.getDefault());
+        Calendar calendar = Calendar.getInstance();
+        String date = formatter.format(calendar.getTime());
+
+        Message message = new Message(currentUser.getId(), senderUser.getId(), description, title, date);
 
         new FirestoreManager().addMessageToFirestore(AddMessageActivity.this, message);
 

@@ -57,7 +57,7 @@ public class ReceivedMessagesFragment extends Fragment {
             rv_receivedMessages.setLayoutManager(new LinearLayoutManager(getActivity()));
             rv_receivedMessages.setHasFixedSize(true);
 
-            MessageListAdapter adapter = new MessageListAdapter(requireActivity(),messages);
+            MessageListAdapter adapter = new MessageListAdapter(requireActivity(), messages);
             rv_receivedMessages.setAdapter(adapter);
         } else {
             rv_receivedMessages.setVisibility(View.GONE);

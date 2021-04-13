@@ -57,7 +57,7 @@ public class SentMessagesFragment extends Fragment {
             rv_sentMessages.setLayoutManager(new LinearLayoutManager(getActivity()));
             rv_sentMessages.setHasFixedSize(true);
 
-            MessageListAdapter adapter = new MessageListAdapter(requireActivity(),messages);
+            MessageListAdapter adapter = new MessageListAdapter(requireActivity(), messages);
             rv_sentMessages.setAdapter(adapter);
         } else {
             rv_sentMessages.setVisibility(View.GONE);

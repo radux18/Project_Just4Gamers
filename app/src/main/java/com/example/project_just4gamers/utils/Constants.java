@@ -52,7 +52,6 @@ public class Constants {
 
     public static final String DEFAULT_CART_QUANTITY = "1";
 
-
     public static final String PRODUCT_ID = "product_id";
 
     public static final String CART_QUANTITY = "cart_quantity";
@@ -76,8 +75,18 @@ public class Constants {
     public static final String SENDER_ID = "sender_id";
 
     public static final String EXTRA_SELECT_MESSAGE = "extra_select_message";
-
     public static final String EXTRA_BOOLEAN = "extra_boolean";
+
+    public static final String EXTRA_CURRENT_USER = "extra_current_user";
+    public static final String EXTRA_SENDER_USER = "extra_sender_user";
+
+    public static String getExtraCurrentUser() {
+        return EXTRA_CURRENT_USER;
+    }
+
+    public static String getExtraSenderUser() {
+        return EXTRA_SENDER_USER;
+    }
 
     public static String getExtraBoolean() {
         return EXTRA_BOOLEAN;

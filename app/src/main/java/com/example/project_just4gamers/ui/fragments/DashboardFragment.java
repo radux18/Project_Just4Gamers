@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,6 +34,8 @@ import com.example.project_just4gamers.ui.adapters.DashboardListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class DashboardFragment extends Fragment {
     private RecyclerView rv_dashboardListItems;
@@ -47,7 +50,6 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //If he want to use the option menu in fragment we need to add it.
         setHasOptionsMenu(true);
     }
 
@@ -110,6 +112,7 @@ public class DashboardFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     llSearch.setVisibility(View.VISIBLE);
+                    spnFilter.setVisibility(View.VISIBLE);
                 }
             });
             ivResetBtn.setOnClickListener(new View.OnClickListener() {
@@ -142,16 +145,73 @@ public class DashboardFragment extends Fragment {
             llSearch.setVisibility(View.GONE);
         }
 
+        spnFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0 :
+                        Collections.sort(dashboardItemsList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product o1, Product o2) {
+                                return o2.getPrice().compareToIgnoreCase(o1.getPrice());
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case 1:
+                        Collections.sort(dashboardItemsList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product o1, Product o2) {
+                                return o1.getPrice().compareToIgnoreCase(o2.getPrice());
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case 2:
+                        Collections.sort(dashboardItemsList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product o1, Product o2) {
+                                return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case 3:
+                        Collections.sort(dashboardItemsList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product o1, Product o2) {
+                                return o2.getTitle().compareToIgnoreCase(o1.getTitle());
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case 4:
+                        Collections.sort(dashboardItemsList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product o1, Product o2) {
+                                return o1.getAge().compareToIgnoreCase(o2.getAge());
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case 5:
+                    Collections.sort(dashboardItemsList, new Comparator<Product>() {
+                        @Override
+                        public int compare(Product o1, Product o2) {
+                            return o2.getAge().compareToIgnoreCase(o1.getAge());
+                        }
+                    });
+                    adapter.notifyDataSetChanged();
+                    break;
+                }
 
-//        spnFilter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Object item = parent.getItemAtPosition(position);
-//                if (position == 0){
-//
-//                }
-//            }
-//        });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 

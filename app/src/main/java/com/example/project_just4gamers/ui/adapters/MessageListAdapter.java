@@ -2,6 +2,7 @@ package com.example.project_just4gamers.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Message;
-import com.example.project_just4gamers.models.User;
-import com.example.project_just4gamers.ui.activities.ActivateCouponActivity;
-import com.example.project_just4gamers.ui.activities.AddMessageActivity;
 import com.example.project_just4gamers.ui.activities.MessageViewActivity;
-import com.example.project_just4gamers.ui.fragments.ReceivedMessagesFragment;
 import com.example.project_just4gamers.utils.Constants;
 
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -52,6 +51,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     ((ViewHolder) holder).tvDescription.setText(model.getDescription());
             }
 
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -66,11 +66,11 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     ((ViewHolder) holder).tvTitle.setTypeface(((ViewHolder) holder).tvTitle.getTypeface(), Typeface.NORMAL);
                     ((ViewHolder) holder).tvDate.setTypeface(((ViewHolder) holder).tvDate.getTypeface(),Typeface.NORMAL);
                     ((ViewHolder) holder).tvDescription.setTypeface(((ViewHolder) holder).tvDescription.getTypeface(),Typeface.NORMAL);
+
                 }
             });
-
-
     }
+
 
     @Override
     public int getItemCount() {

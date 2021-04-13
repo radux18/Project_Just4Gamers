@@ -36,7 +36,7 @@ public class LoginActivity extends ProgressDialogActivity {
     private TextInputEditText tiet_email;
     private TextInputEditText tiet_password;
     private TextView tiet_passwordForgot;
-    private  Button btnLogin;
+    private Button btnLogin;
     private FirebaseAuth fAuth;
     private CheckBox cb_remember;
     private String email;
@@ -63,7 +63,6 @@ public class LoginActivity extends ProgressDialogActivity {
 
         initComponents();
         FirebaseApp.initializeApp(this);
-
 
         tv_registerBtn.setOnClickListener(registerEventListener());
 
@@ -174,7 +173,7 @@ public class LoginActivity extends ProgressDialogActivity {
     }
 
     private void loadData() {
-        SharedPreferences sharedPreferences= getSharedPreferences(Constants.getPREFS(),MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.getPREFS(),MODE_PRIVATE);
         email= sharedPreferences.getString(EMAIL,"");
         password= sharedPreferences.getString(PASSWORD,"");
     }

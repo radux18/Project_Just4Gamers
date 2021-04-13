@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project_just4gamers.R;
@@ -49,28 +51,26 @@ public class MessageViewActivity extends AppCompatActivity {
             selectedMessage = intent.getBooleanExtra(Constants.getExtraSelectMessage(), true);
         }
 
-        //mesaje primite
         if (selectedMessage){
             btnRaspunde.setVisibility(View.VISIBLE);
             getCurrentUserV0();
             getSenderUser();
 
-            //reply
             btnRaspunde.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    
+                        Intent intent = new Intent(getApplicationContext(), AddMessageActivity.class);
+                        intent.putExtra(Constants.getExtraSenderUser(), senderUser);
+                        startActivity(intent);
                 }
             });
         } else {
-            //mesaje trimise
             btnRaspunde.setVisibility(View.GONE);
             getCurrentUserV1();
             getReceiverUser();
         }
 
         setupUI(message);
-
     }
 
     private void getSenderUser() {
@@ -100,7 +100,6 @@ public class MessageViewActivity extends AppCompatActivity {
         tvExpeditor.setText(getString(R.string.tv_settings_name, currentUser.getFirstName(), currentUser.getLastName()));
     }
 
-
     private void getReceiverUser() {
         new FirestoreManager().getReceiverUser(MessageViewActivity.this, message.getReceiver_id());
     }
@@ -109,8 +108,6 @@ public class MessageViewActivity extends AppCompatActivity {
         receiverUser = user;
         tvDestinatar.setText(getString(R.string.tv_settings_name, receiverUser.getFirstName(), receiverUser.getLastName()));
     }
-
-
 
     private void initComp() {
         toolbarMesaj = findViewById(R.id.toolbar_message);
@@ -121,11 +118,10 @@ public class MessageViewActivity extends AppCompatActivity {
         btnRaspunde = findViewById(R.id.btn_raspunde);
     }
 
-
-
     private void setupUI(Message message) {
         tietTitlu.setText(message.getDescription());
         tietDescriere.setText(message.getDescription());
+
 
         tvDestinatar.setEnabled(false);
         tvExpeditor.setEnabled(false);

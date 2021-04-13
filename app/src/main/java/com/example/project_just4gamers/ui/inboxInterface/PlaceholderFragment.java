@@ -14,9 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.project_just4gamers.R;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class PlaceholderFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";

@@ -542,8 +542,7 @@ public class FirestoreManager {
                           ((MessageViewActivity) activity).successGetUserV1(user);
                       }
                   }
-              }
-              );
+              });
     }
 
     public void getSenderUser(MessageViewActivity activity, String senderId){

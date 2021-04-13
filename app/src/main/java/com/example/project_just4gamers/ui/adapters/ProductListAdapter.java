@@ -46,7 +46,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         );
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder itemList, int position) {
         //catch the product obj from each position of the list
