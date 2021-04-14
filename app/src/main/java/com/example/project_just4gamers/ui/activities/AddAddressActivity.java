@@ -143,7 +143,6 @@ public class AddAddressActivity extends AppCompatActivity {
 
                if (rb_Other.isChecked()){
                    addressType = Constants.getOTHER();
-
                }
 
             Address addressModel = new Address(new FirestoreManager().getCurrentUserID(),

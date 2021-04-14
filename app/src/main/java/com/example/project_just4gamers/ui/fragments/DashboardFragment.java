@@ -189,7 +189,8 @@ public class DashboardFragment extends Fragment {
                         Collections.sort(dashboardItemsList, new Comparator<Product>() {
                             @Override
                             public int compare(Product o1, Product o2) {
-                                return o1.getAge().compareToIgnoreCase(o2.getAge());
+                                return Integer.parseInt(o1.getAge()) - Integer.parseInt(o2.getAge());
+                               // return o1.getAge().compareToIgnoreCase(o2.getAge());
                             }
                         });
                         adapter.notifyDataSetChanged();
