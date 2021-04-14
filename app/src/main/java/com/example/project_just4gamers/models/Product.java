@@ -3,6 +3,8 @@ package com.example.project_just4gamers.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class Product implements Parcelable {
 
     private String product_id;
@@ -29,13 +31,13 @@ public class Product implements Parcelable {
         this.image = "";
     }
 
-    public Product(String user_id, String user_name, String title, int price, String description, String quantity, String type, String age, String image) {
+    public Product(String user_id, String user_name, String title, int price, String description, String stock_quantity, String type, String age, String image) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.title = title;
         this.price = price;
         this.description = description;
-        this.stock_quantity = quantity;
+        this.stock_quantity = stock_quantity;
         this.type = type;
         this.age = age;
         this.image = image;
@@ -95,9 +97,6 @@ public class Product implements Parcelable {
         this.price = price;
     }
 
-    public static Creator<Product> getCREATOR() {
-        return CREATOR;
-    }
 
     public String getProduct_id() {
         return product_id;
@@ -179,9 +178,9 @@ public class Product implements Parcelable {
                 ", user_id='" + user_id + '\'' +
                 ", user_name='" + user_name + '\'' +
                 ", title='" + title + '\'' +
-                ", price='" + price + '\'' +
+                ", price=" + price +
                 ", description='" + description + '\'' +
-                ", stock_quantity ='" + stock_quantity + '\'' +
+                ", stock_quantity='" + stock_quantity + '\'' +
                 ", type='" + type + '\'' +
                 ", age='" + age + '\'' +
                 ", image='" + image + '\'' +

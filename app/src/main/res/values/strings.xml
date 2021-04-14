@@ -248,5 +248,11 @@
     <string name="tv_Expeditor">Expeditor:</string>
     <string name="btn_replyT">Raspunde</string>
     <string name="tv_title_msgTT">Vizualizare Mesaj</string>
+    <string name="tv_productDetails_reviewTriggerT">Vezi review-uri la acest produs</string>
+    <string name="btn_productDetails_addReviewT">Adauga recenzie</string>
+    <string name="tv_title_reviewT">Adauga review</string>
+    <string name="tv_review_titleT">Review Title</string>
+    <string name="tv_review_dateT">Date</string>
+    <string name="btn_addReviewT">Adauga o recenzie</string>
 
 </resources>

@@ -15,6 +15,8 @@ public class Constants {
     public static final String SOLD_PRODUCTS = "sold_products";
     public static final String DISCOUNTCOUPONS = "discount_coupons";
     public static final String MESSAGES = "messages";
+    public static final String REVIEWS = "reviews";
+
     public static final String POINTS = "points";
 
     private static final String PREFS = "prefs";
@@ -79,6 +81,46 @@ public class Constants {
 
     public static final String EXTRA_CURRENT_USER = "extra_current_user";
     public static final String EXTRA_SENDER_USER = "extra_sender_user";
+
+    public static final String EXTRA_PRODUCT_REVIEW = "extra_product_review";
+
+    public static final String PRODUCT_OWNER_ID = "productOwner_id";
+
+    public static final String EXTRA_PROFILE_DETAILS = "extra_profile_details";
+
+    public static final String EXTRA_PROFILE_DETAILSV2 = "extra_profile_detailsV2";
+
+    public static final String EXTRA_PROFILE_DETAILS_VISITOR = "extra_profile_details_visitor";
+
+    public static final String EXTRA_RECEIVER_ID = "userProfile_id";
+
+    public static String getExtraProfileDetailsv2() {
+        return EXTRA_PROFILE_DETAILSV2;
+    }
+
+    public static String getExtraReceiverId() {
+        return EXTRA_RECEIVER_ID;
+    }
+
+    public static String getExtraProfileDetailsVisitor() {
+        return EXTRA_PROFILE_DETAILS_VISITOR;
+    }
+
+    public static String getExtraProfileDetails() {
+        return EXTRA_PROFILE_DETAILS;
+    }
+
+    public static String getProductOwnerId() {
+        return PRODUCT_OWNER_ID;
+    }
+
+    public static String getExtraProductReview() {
+        return EXTRA_PRODUCT_REVIEW;
+    }
+
+    public static String getREVIEWS() {
+        return REVIEWS;
+    }
 
     public static String getExtraCurrentUser() {
         return EXTRA_CURRENT_USER;

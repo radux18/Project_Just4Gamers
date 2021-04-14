@@ -7,32 +7,44 @@ public class Review implements Parcelable {
 
     private String id = "";
     private String user_id = "";
+    private String userProfile_id = "";
     private String description = "";
     private String title = "";
     private int score = 0;
+    private String date = "";
 
-    public Review(String user_id, String description, String title, int score) {
+    public Review() {
+    }
+
+    public Review(String user_id, String userProfile_id, String description, String title, int score, String date) {
         this.user_id = user_id;
+        this.userProfile_id = userProfile_id;
         this.description = description;
         this.title = title;
         this.score = score;
+        this.date = date;
     }
+
 
     protected Review(Parcel in) {
         id = in.readString();
         user_id = in.readString();
+        userProfile_id = in.readString();
         description = in.readString();
         title = in.readString();
         score = in.readInt();
+        date = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(user_id);
+        dest.writeString(userProfile_id);
         dest.writeString(description);
         dest.writeString(title);
         dest.writeInt(score);
+        dest.writeString(date);
     }
 
     @Override
@@ -51,6 +63,15 @@ public class Review implements Parcelable {
             return new Review[size];
         }
     };
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 
     public String getId() {
         return id;
@@ -92,14 +113,24 @@ public class Review implements Parcelable {
         this.score = score;
     }
 
+    public String getUserProfile_id() {
+        return userProfile_id;
+    }
+
+    public void setUserProfile_id(String userProfile_id) {
+        this.userProfile_id = userProfile_id;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
                 "id='" + id + '\'' +
                 ", user_id='" + user_id + '\'' +
+                ", userProfile_id='" + userProfile_id + '\'' +
                 ", description='" + description + '\'' +
                 ", title='" + title + '\'' +
                 ", score=" + score +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

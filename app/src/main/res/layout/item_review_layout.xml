@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/rv_cart_items_marginTop"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/cart_item_paddingStartEnd"
+    android:paddingTop="@dimen/cart_item_paddingTopBottom"
+    android:paddingEnd="@dimen/cart_item_paddingStartEnd"
+    android:background="@drawable/review_background"
+    android:paddingBottom="@dimen/cart_item_paddingTopBottom">
+
+
+    <LinearLayout
+        android:id="@+id/ll_user_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/item_dashboard_background"
+        android:padding="@dimen/cart_item_image_padding">
+
+        <ImageView
+            android:id="@+id/iv_user_image"
+            android:layout_width="@dimen/cart_item_image_width"
+            android:layout_height="@dimen/cart_item_image_height"
+            android:contentDescription="@string/content_description"
+            android:scaleType="fitXY"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_review_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/cart_item_details_marginStart"
+        android:layout_marginEnd="@dimen/cart_item_details_marginEnd"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/cart_item_details_marginStart"
+        android:layout_marginRight="@dimen/cart_item_details_marginEnd">
+
+        <TextView
+            android:id="@+id/tv_review_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="@string/tv_review_titleT"
+            android:textSize="@dimen/cart_item_title_textSize" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_review_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/update_cart_quantity_marginStart"
+                android:layout_marginEnd="@dimen/update_cart_quantity_marginEnd"
+                android:layout_marginRight="@dimen/update_cart_quantity_marginStart"
+                android:layout_marginLeft="@dimen/update_cart_quantity_marginEnd"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_review_description"
+                    android:layout_width="match_parent"
+                    android:minLines="5"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_background"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RatingBar
+            android:id="@+id/rb_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:layout_gravity="center_horizontal|center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_review_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/tv_review_dateT"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,6 +3,9 @@ package com.example.project_just4gamers.ui.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
+import com.example.project_just4gamers.models.Review;
 import com.example.project_just4gamers.models.User;
+import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 public class SettingsActivity extends ProgressDialogActivity {
 
@@ -33,6 +40,8 @@ public class SettingsActivity extends ProgressDialogActivity {
     private GlideLoader loader = new GlideLoader(SettingsActivity.this);
     private LinearLayout ll_address;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +53,7 @@ public class SettingsActivity extends ProgressDialogActivity {
         tv_edit.setOnClickListener(editProfileListener());
         ll_address.setOnClickListener(editAddressListener());
     }
+
 
     private View.OnClickListener editAddressListener() {
         return new View.OnClickListener() {
@@ -70,14 +80,15 @@ public class SettingsActivity extends ProgressDialogActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               FirebaseAuth.getInstance().signOut();
-               Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-               intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-               startActivity(intent);
-               finish();
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
             }
         };
     }
+
 
     private void initComp() {
         tb_settings = findViewById(R.id.toolbar_settings_activity);
@@ -90,7 +101,6 @@ public class SettingsActivity extends ProgressDialogActivity {
         tv_edit = findViewById(R.id.tv_edit);
         ll_address = findViewById(R.id.ll_address);
         tv_points = findViewById(R.id.tv_settings_points);
-
     }
 
     private void setupActionBar(){
@@ -112,7 +122,6 @@ public class SettingsActivity extends ProgressDialogActivity {
     private void getUserDetails(){
         fStoreM.getUserDetails(SettingsActivity.this);
     }
-
 
     public void userDetailsSuccess(User user){
         userDetails = user;

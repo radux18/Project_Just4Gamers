@@ -16,11 +16,13 @@ import com.example.project_just4gamers.models.DiscountCoupon;
 import com.example.project_just4gamers.models.Message;
 import com.example.project_just4gamers.models.Order;
 import com.example.project_just4gamers.models.Product;
+import com.example.project_just4gamers.models.Review;
 import com.example.project_just4gamers.models.SoldProduct;
 import com.example.project_just4gamers.ui.activities.ActivateCouponActivity;
 import com.example.project_just4gamers.ui.activities.AddAddressActivity;
 import com.example.project_just4gamers.ui.activities.AddMessageActivity;
 import com.example.project_just4gamers.ui.activities.AddProductActivity;
+import com.example.project_just4gamers.ui.activities.AddReviewActivity;
 import com.example.project_just4gamers.ui.activities.AddressListActivity;
 import com.example.project_just4gamers.ui.activities.CartListActivity;
 import com.example.project_just4gamers.ui.activities.CheckoutActivity;
@@ -29,10 +31,12 @@ import com.example.project_just4gamers.ui.activities.DiscountCouponsActivity;
 import com.example.project_just4gamers.ui.activities.LoginActivity;
 import com.example.project_just4gamers.ui.activities.MessageViewActivity;
 import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
+import com.example.project_just4gamers.ui.activities.ProductOwnerProfileActivity;
 import com.example.project_just4gamers.ui.activities.RegisterActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
 import com.example.project_just4gamers.ui.activities.UserProfileActivity;
 import com.example.project_just4gamers.models.User;
+import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
 import com.example.project_just4gamers.ui.fragments.DashboardFragment;
 import com.example.project_just4gamers.ui.fragments.OrdersFragment;
 import com.example.project_just4gamers.ui.fragments.ProductsFragment;
@@ -911,6 +915,79 @@ public class FirestoreManager {
                 });
     }
 
+    public void addReviewToFirestore(AddReviewActivity activity, Review review){
+        fStore.collection(Constants.getREVIEWS())
+                .document()
+                .set(review)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        activity.successAddReview();
+                    }
+                });
+    }
 
+//    public void getReviewsForCurrentProduct(ProductDetailsActivity activity, String product_id){
+//        fStore.collection(Constants.getREVIEWS())
+//                .whereEqualTo(Constants.getProductId(), product_id)
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot documents) {
+//                        ArrayList<Review> reviews = new ArrayList<>();
+//                        for (DocumentSnapshot items : documents){
+//                            Review review = items.toObject(Review.class);
+//                            reviews.add(review);
+//                        }
+//                        activity.successGetReviewsForCurrentProduct(reviews);
+//                    }
+//                });
+//    }
 
+//    public void getCurrentUserDetails(ReviewListAdapter adapter){
+//        fStore.collection(Constants.getUSERS())
+//                .document(getCurrentUserID())
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot document) {
+//                      User user = document.toObject(User.class);
+//
+//                        adapter.successGetUser(user);
+//                    }
+//                });
+//    }
+
+    public void getUserFromId(ProductOwnerProfileActivity activity, String user_id){
+        fStore.collection(Constants.getUSERS())
+                .document(user_id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        User user = documentSnapshot.toObject(User.class);
+
+                        activity.successGetUser(user);
+                    }
+                });
+    }
+
+    public void getUserVisitorDetails(ProductOwnerProfileActivity activity, String userId) {
+            fStore.collection(Constants.getREVIEWS())
+                    .whereEqualTo(Constants.getExtraReceiverId(), userId)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot documents) {
+                            ArrayList<Review> reviews = new ArrayList<>();
+
+                            for (DocumentSnapshot documentSnapshot : documents){
+                                Review review = documentSnapshot.toObject(Review.class);
+                                reviews.add(review);
+                            }
+
+                            activity.successGetReviews(reviews);
+                        }
+                    });
+    }
 }

@@ -3,6 +3,8 @@ package com.example.project_just4gamers.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class SoldProduct implements Parcelable {
 
     private String id = "";
@@ -64,7 +66,6 @@ public class SoldProduct implements Parcelable {
         dest.writeString(subtotal);
         dest.writeString(shippingCharge);
         dest.writeString(totalAmount);
-        dest.writeParcelable(address, flags);
     }
 
     @Override
@@ -83,6 +84,7 @@ public class SoldProduct implements Parcelable {
             return new SoldProduct[size];
         }
     };
+
 
     public int getPrice() {
         return price;
@@ -190,7 +192,7 @@ public class SoldProduct implements Parcelable {
                 "id='" + id + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", title='" + title + '\'' +
-                ", price='" + price + '\'' +
+                ", price=" + price +
                 ", sold_quantity='" + sold_quantity + '\'' +
                 ", image='" + image + '\'' +
                 ", order_id='" + order_id + '\'' +

@@ -49,6 +49,7 @@ public class ReceivedMessagesFragment extends Fragment {
         new FirestoreManager().getReceivedMessageList(ReceivedMessagesFragment.this);
     }
 
+
     public void sucessGetReceivedMessages(ArrayList<Message> messages){
         if (messages.size() > 0){
             rv_receivedMessages.setVisibility(View.VISIBLE);

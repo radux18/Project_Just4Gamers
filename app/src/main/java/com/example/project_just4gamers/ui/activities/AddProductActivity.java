@@ -29,9 +29,14 @@ import android.widget.Toast;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Product;
+import com.example.project_just4gamers.models.Review;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.UUID;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -200,7 +205,7 @@ public class AddProductActivity extends AppCompatActivity {
         String userName = this.getSharedPreferences(Constants.getPREFS(), Context.MODE_PRIVATE).getString(Constants.getUSERNAME(),"");
 
         if (type.equals(Constants.getNEW())){
-            Product product = new Product(new FirestoreManager().getCurrentUserID(),userName,
+            Product product = new Product(new FirestoreManager().getCurrentUserID(), userName,
                     title,price,description,quantity, type, "N/A", productImageURL);
 
             new FirestoreManager().uploadProductDetails(AddProductActivity.this, product);
@@ -210,8 +215,6 @@ public class AddProductActivity extends AppCompatActivity {
 
             new FirestoreManager().uploadProductDetails(AddProductActivity.this, product);
         }
-
-
     }
 
     @Override

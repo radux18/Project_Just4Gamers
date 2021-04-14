@@ -3,7 +3,10 @@ package com.example.project_just4gamers.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class CartItem implements Parcelable {
+
     private String id = "";
     private String user_id = "";
     private String product_ownerId = "";
@@ -29,7 +32,6 @@ public class CartItem implements Parcelable {
         this.type = type;
         this.age = age;
         this.cart_quantity = cart_quantity;
-
     }
 
 
@@ -79,6 +81,10 @@ public class CartItem implements Parcelable {
         }
     };
 
+    public static Creator<CartItem> getCREATOR() {
+        return CREATOR;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -87,9 +93,6 @@ public class CartItem implements Parcelable {
         this.price = price;
     }
 
-    public static Creator<CartItem> getCREATOR() {
-        return CREATOR;
-    }
 
     public String getProduct_ownerId() {
         return product_ownerId;
@@ -179,7 +182,7 @@ public class CartItem implements Parcelable {
                 ", product_ownerId='" + product_ownerId + '\'' +
                 ", product_id='" + product_id + '\'' +
                 ", title='" + title + '\'' +
-                ", price='" + price + '\'' +
+                ", price=" + price +
                 ", image='" + image + '\'' +
                 ", type='" + type + '\'' +
                 ", age='" + age + '\'' +

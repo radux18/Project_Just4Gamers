@@ -4,6 +4,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +21,15 @@ import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.CartItem;
 import com.example.project_just4gamers.models.Product;
+import com.example.project_just4gamers.models.Review;
 import com.example.project_just4gamers.models.User;
+import com.example.project_just4gamers.ui.adapters.MessageListAdapter;
+import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     private Toolbar tb_productDetails;
@@ -39,6 +47,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private FloatingActionButton fabAddMessage;
     private TextView tvUserName;
     private ImageView ivUserProfileImage;
+    private LinearLayout llTriggerToProfile;
 
     private Product productDetails;
 
@@ -95,7 +104,22 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        llTriggerToProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (productDetails.getUser_id().equals(new FirestoreManager().getCurrentUserID())){
+                    Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), ProductOwnerProfileActivity.class);
+                    intent.putExtra(Constants.getExtraProfileDetailsv2(), productDetails.getUser_id());
+                    startActivity(intent);
+                }
+            }
+        });
     }
+
 
     private void initComponents() {
         tb_productDetails = findViewById(R.id.tb_productDetails);
@@ -110,8 +134,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         fabAddMessage = findViewById(R.id.fab_add_message);
         tvUserName = findViewById(R.id.tv_user_detail_name);
         ivUserProfileImage = findViewById(R.id.iv_product_user_image);
-
-
+        llTriggerToProfile = findViewById(R.id.ll_userGoToProfile);
     }
 
     private void getProductDetails(){
@@ -127,7 +150,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 ivUserProfileImage
         );
         tvUserName.setText(getString(R.string.tv_settings_name, productOwner.getFirstName(), productOwner.getLastName()));
-        System.out.println(productOwner.toString());
     }
 
     public void productExistsInCart(){
@@ -143,7 +165,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 .loadUserPicture(product.getImage(), iv_productDetailsImg);
 
         tvProductTitle.setText(product.getTitle());
-        tvProductPrice.setText(product.getPrice());
+        tvProductPrice.setText(String.valueOf(product.getPrice()));
         tvProductAge.setText(product.getAge());
         tvProductDescription.setText(product.getDescription());
         tvProductQuantity.setText(product.getStock_quantity());
@@ -163,6 +185,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 new FirestoreManager().checkIfItemExistInCart(ProductDetailsActivity.this, productId);
             }
         }
+
+
     }
 
     private void addToCart(){
@@ -197,4 +221,5 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
 }
