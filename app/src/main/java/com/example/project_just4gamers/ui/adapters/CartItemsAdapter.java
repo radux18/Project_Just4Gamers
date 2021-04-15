@@ -53,7 +53,7 @@ public class CartItemsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (itemList instanceof  CartItemsAdapter.ViewHolder){
             new GlideLoader(context).loadProductPicture(model.getImage(), ((CartItemsAdapter.ViewHolder) itemList).image);
             ((ViewHolder) itemList).tvTitle.setText(model.getTitle());
-            ((ViewHolder) itemList).tvPrice.setText(context.getString(R.string.item_price_format, model.getPrice()));
+            ((ViewHolder) itemList).tvPrice.setText(context.getString(R.string.item_price_format, String.valueOf(model.getPrice())));
             ((ViewHolder) itemList).tvQuantity.setText(model.getCart_quantity());
 
             if (model.getCart_quantity().equals("0")){
@@ -113,9 +113,7 @@ public class CartItemsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHol
                     } else {
                         Toast.makeText(context, context.getResources()
                                 .getString(R.string.msg_for_available_stock, model.getStock_quantity()),Toast.LENGTH_SHORT).show();
-
                     }
-
                 }
             });
 

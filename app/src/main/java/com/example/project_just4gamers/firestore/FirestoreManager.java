@@ -549,6 +549,20 @@ public class FirestoreManager {
               });
     }
 
+    public void getUser(ReviewListAdapter adapter, String userId){
+        fStore.collection(Constants.getUSERS())
+                .document(userId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        User user = documentSnapshot.toObject(User.class);
+                        System.out.println(user + "AOLO");
+                        adapter.successGetUser(user);
+                    }
+                });
+    }
+
     public void getSenderUser(MessageViewActivity activity, String senderId){
         fStore.collection(Constants.getUSERS())
                 .document(senderId)
@@ -647,22 +661,19 @@ public class FirestoreManager {
                 });
     }
 
-    public void getAllUsers(final Callback<ArrayList<User>> callback){
+    public void getAllUsers(CheckoutActivity activity){
         fStore.collection(Constants.getUSERS())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documents) {
                         ArrayList<User> users = new ArrayList<>();
-                      //  if (activity instanceof  CheckoutActivity) {
                             for (DocumentSnapshot item : documents){
                                 User user = item.toObject(User.class);
                                 if (user != null)
                                 users.add(user);
                             }
-                            callback.runResultOnUiThread(users);
-                           // activity.successGetUsersFromFirestore(users);
-                     //   }
+                            activity.successGetUsersFromFirestore(users);
                     }
                 });
     }
@@ -927,36 +938,6 @@ public class FirestoreManager {
                 });
     }
 
-//    public void getReviewsForCurrentProduct(ProductDetailsActivity activity, String product_id){
-//        fStore.collection(Constants.getREVIEWS())
-//                .whereEqualTo(Constants.getProductId(), product_id)
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot documents) {
-//                        ArrayList<Review> reviews = new ArrayList<>();
-//                        for (DocumentSnapshot items : documents){
-//                            Review review = items.toObject(Review.class);
-//                            reviews.add(review);
-//                        }
-//                        activity.successGetReviewsForCurrentProduct(reviews);
-//                    }
-//                });
-//    }
-
-//    public void getCurrentUserDetails(ReviewListAdapter adapter){
-//        fStore.collection(Constants.getUSERS())
-//                .document(getCurrentUserID())
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot document) {
-//                      User user = document.toObject(User.class);
-//
-//                        adapter.successGetUser(user);
-//                    }
-//                });
-//    }
 
     public void getUserFromId(ProductOwnerProfileActivity activity, String user_id){
         fStore.collection(Constants.getUSERS())

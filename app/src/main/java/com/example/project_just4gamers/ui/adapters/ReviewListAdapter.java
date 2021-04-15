@@ -16,6 +16,7 @@ import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Review;
 import com.example.project_just4gamers.models.User;
+import com.example.project_just4gamers.utils.GlideLoader;
 
 import java.util.ArrayList;
 
@@ -42,22 +43,31 @@ public class ReviewListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Review model = reviewArrayList.get(position);
+        String userId = model.getUser_id();
 
-      //  new FirestoreManager().getCurrentUserDetails(ReviewListAdapter.this);
+        new FirestoreManager().getUser(ReviewListAdapter.this,userId);
 
+        successGetUser(currentUser);
+        System.out.println("AICIV2 + " + currentUser.toString());
         if (holder instanceof ViewHolder){
             ((ViewHolder) holder).tvDescription.setText(model.getDescription());
             ((ViewHolder) holder).tvDate.setText(model.getDate());
             ((ViewHolder) holder).tvTitle.setText(model.getTitle());
             ((ViewHolder) holder).rbScore.setRating(model.getScore());
 
-          //  new GlideLoader(context).loadUserPicture(currentUser.getImage(), ((ViewHolder) holder).ivProfileImg);
+            new GlideLoader(context).loadUserPicture(currentUser.getImage(), ((ViewHolder) holder).ivProfileImg);
            //de pus si poza de profil al utiliz
 
         }
     }
 
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
     public void successGetUser(User user){
+        System.out.println("AICI + " + user.toString());
         currentUser = user;
     }
 

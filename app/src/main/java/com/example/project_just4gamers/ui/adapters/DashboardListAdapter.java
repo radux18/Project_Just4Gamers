@@ -83,15 +83,13 @@ public class DashboardListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder itemList, int position) {
-        //catch the product obj from each position of the list
         Product model = products.get(position);
 
-        //set into the adapterView the contents.
         if (itemList instanceof DashboardListAdapter.ViewHolder) {
             new GlideLoader(context).loadProductPicture(model.getImage(), ((ViewHolder) itemList).image);
             ((ViewHolder) itemList).tvTitle.setText(model.getTitle());
             ((ViewHolder) itemList).tvAge.setText(model.getAge());
-            ((ViewHolder) itemList).tvPrice.setText(context.getString(R.string.item_price_format, model.getPrice()));
+            ((ViewHolder) itemList).tvPrice.setText(context.getString(R.string.item_price_format,String.valueOf(model.getPrice())));
         }
 
         itemList.itemView.setOnClickListener(new View.OnClickListener() {

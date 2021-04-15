@@ -2,7 +2,6 @@ package com.example.project_just4gamers.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (itemList instanceof ProductListAdapter.ViewHolder){
             new GlideLoader(context).loadProductPicture(model.getImage(), ((ViewHolder) itemList).image);
             ((ViewHolder) itemList).tvName.setText(model.getTitle());
-            ((ViewHolder) itemList).tvPrice.setText(context.getResources().getString(R.string.item_price_format,model.getPrice()));
+            ((ViewHolder) itemList).tvPrice.setText(context.getResources().getString(R.string.item_price_format,String.valueOf(model.getPrice())));
             ((ViewHolder) itemList).tvAge.setText(model.getAge());
 
             ((ViewHolder) itemList).ibDelete.setOnClickListener(new View.OnClickListener() {

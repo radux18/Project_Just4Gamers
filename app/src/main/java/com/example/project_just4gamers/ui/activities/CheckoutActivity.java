@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_just4gamers.R;
-import com.example.project_just4gamers.firestore.Callback;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Address;
 import com.example.project_just4gamers.models.CartItem;
@@ -112,12 +111,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void getAllUsers() {
-        new FirestoreManager().getAllUsers(new Callback<ArrayList<User>>() {
-            @Override
-            public void runResultOnUiThread(ArrayList<User> result) {
-                allUsers = result;
-            }
-        });
+        new FirestoreManager().getAllUsers(CheckoutActivity.this);
     }
 
 

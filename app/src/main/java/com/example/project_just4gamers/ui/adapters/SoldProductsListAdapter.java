@@ -48,7 +48,7 @@ public class SoldProductsListAdapter extends RecyclerView.Adapter<RecyclerView.V
         if (itemList instanceof SoldProductsListAdapter.ViewHolder){
             new GlideLoader(context).loadProductPicture(model.getImage(), ((ViewHolder) itemList).image);
             ((ViewHolder) itemList).tvName.setText(model.getTitle());
-            ((ViewHolder) itemList).tvPrice.setText(context.getResources().getString(R.string.item_price_format,model.getPrice()));
+            ((ViewHolder) itemList).tvPrice.setText(context.getResources().getString(R.string.item_price_format,String.valueOf(model.getPrice())));
 
             ((ViewHolder) itemList).ibDelete.setVisibility(View.GONE);
 
