@@ -33,11 +33,17 @@
                 android:layout_height="?attr/actionBarSize">
 
                 <TextView
-                    android:id="@+id/tv_title_profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/title_settings" />
+                    android:paddingStart="@dimen/toolbar_title_paddingStart"
+                    android:paddingEnd="0dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/toolbar_title_text_size"
+                    android:textStyle="bold"
+                    android:paddingLeft="@dimen/toolbar_title_paddingStart"
+                    android:paddingRight="0dp"
+                    android:text="User Profile" />
             </androidx.appcompat.widget.Toolbar>
         </FrameLayout>
 
@@ -67,55 +73,171 @@
         </FrameLayout>
 
 
-        <TextView
-            android:id="@+id/tv_profile_points"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_user_det"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fl_user_image"
-            android:text="@string/tv_settings_pointsT"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_marginTop="20dp"/>
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/fl_user_image">
 
-        <TextView
-            android:id="@+id/tv_profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_profile_points"
-            android:text="@string/user_name"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Name:"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="40dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp" />
+
+                <TextView
+                    android:id="@+id/tv_profile_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_name"
+                    android:layout_gravity="end"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"/>
 
 
-        <TextView
-            android:id="@+id/tv_profile_gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_profile_name"
-            android:text="@string/gender"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:id="@+id/tv_profile_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_profile_gender"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="@string/tv_emailT" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_profile_mobile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_profile_email"
-            android:layout_centerHorizontal="true"
-            android:inputType="phone"
-            android:layout_marginTop="10dp"
-            android:text="@string/tv_mobileT"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Points:"
+                    android:layout_marginStart="40dp"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="40dp" />
+
+                <TextView
+                    android:id="@+id/tv_profile_points"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_settings_pointsT"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Gender:"
+                    android:layout_gravity="end"
+                    android:textSize="20sp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp" />
+
+                <TextView
+                    android:id="@+id/tv_profile_gender"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender"
+                    android:textSize="20sp"
+                    android:layout_gravity="end"
+                    android:textStyle="bold|italic"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginStart="40dp"
+                    android:text="Email:"
+                    android:layout_marginLeft="40dp" />
+
+                <TextView
+                    android:id="@+id/tv_profile_email"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:text="@string/tv_emailT" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textSize="20sp"
+                    android:layout_marginStart="40dp"
+                    android:text="Mobile number:"
+                    android:layout_marginLeft="40dp" />
+
+                <TextView
+                    android:id="@+id/tv_profile_mobile"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:text="@string/tv_mobileT"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Rating"
+                android:textStyle="italic"
+                android:layout_gravity="center_horizontal"
+                android:textSize="30sp"/>
+
+            <RatingBar
+                android:id="@+id/rb_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -124,7 +246,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="visible"
-            android:layout_below="@id/tv_profile_mobile">
+            android:layout_below="@id/ll_user_det">
 
 
             <LinearLayout

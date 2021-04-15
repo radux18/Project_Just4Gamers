@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
@@ -36,10 +37,13 @@ public class SettingsActivity extends ProgressDialogActivity {
     private TextView tv_mobile;
     private TextView tv_points;
     private TextView tv_email;
+    private RatingBar rbRating;
     private FirestoreManager fStoreM = new FirestoreManager();
     private GlideLoader loader = new GlideLoader(SettingsActivity.this);
     private LinearLayout ll_address;
-
+    private float ratingUser;
+    private int nrRatings;
+    private RecyclerView rvReviews;
 
 
     @Override
@@ -48,6 +52,9 @@ public class SettingsActivity extends ProgressDialogActivity {
         setContentView(R.layout.activity_settings);
         initComp();
         setupActionBar();
+
+        getUserDetails();
+       // new FirestoreManager().getReviewsForUser(SettingsActivity.this);
 
         btnLogOut.setOnClickListener(logoutListener());
         tv_edit.setOnClickListener(editProfileListener());
@@ -101,6 +108,8 @@ public class SettingsActivity extends ProgressDialogActivity {
         tv_edit = findViewById(R.id.tv_edit);
         ll_address = findViewById(R.id.ll_address);
         tv_points = findViewById(R.id.tv_settings_points);
+        rbRating = findViewById(R.id.rb_settings);
+        rvReviews = findViewById(R.id.rv_ratings);
     }
 
     private void setupActionBar(){
@@ -131,11 +140,36 @@ public class SettingsActivity extends ProgressDialogActivity {
         tv_mobile.setText(getString(R.string.mobile_format, user.getMobile()));
         tv_gender.setText(user.getGender());
         tv_email.setText(user.getEmail());
+      //  rbRating.setRating(user.getRating());
+
+        new FirestoreManager().getReviewsForUser(SettingsActivity.this, userDetails.getId());
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getUserDetails();
+
+    public void successGetReviews(ArrayList<Review> reviews){
+        float rating;
+        for (Review review : reviews){
+         //   if (review.getUserProfile_id().equals(userDetails.getId())){
+                ratingUser += review.getScore();
+                nrRatings ++ ;
+           // }
+        }
+
+        rating = ratingUser / nrRatings;
+        rbRating.setRating(rating);
+
+        if (reviews.size() > 0){
+            rvReviews.setVisibility(View.VISIBLE);
+
+            rvReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            rvReviews.setHasFixedSize(true);
+
+            ReviewListAdapter adapter = new ReviewListAdapter(getApplicationContext(), reviews);
+            rvReviews.setAdapter(adapter);
+        } else {
+            rvReviews.setVisibility(View.GONE);
+        }
+
+
     }
 }

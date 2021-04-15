@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 
+import com.example.project_just4gamers.models.User;
+
 public class Constants {
     private static final String  USERS = "users";
     private static final String PRODUCTS = "products";
@@ -93,6 +95,7 @@ public class Constants {
     public static final String EXTRA_PROFILE_DETAILS_VISITOR = "extra_profile_details_visitor";
 
     public static final String EXTRA_RECEIVER_ID = "userProfile_id";
+
 
     public static String getExtraProfileDetailsv2() {
         return EXTRA_PROFILE_DETAILSV2;

@@ -12,6 +12,7 @@ public class User implements Parcelable {
     private String email = "";
     private String image = "";
     private int points = 0;
+    private float rating = 0;
     private String gender = "";
     private long mobile = 0;
     private int profileCompleted = 0;
@@ -26,22 +27,12 @@ public class User implements Parcelable {
         this.email = email;
         this.points = 0;
         this.image = "";
+        this.rating = 0;
         this.gender = "";
         this.mobile = 0;
         this.profileCompleted = 0;
     }
 
-    public User(String id, String firstName, String lastName, String email, String image, int points, String gender, long mobile, int profileCompleted) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.image = image;
-        this.points = points;
-        this.gender = gender;
-        this.mobile = mobile;
-        this.profileCompleted = profileCompleted;
-    }
 
     protected User(Parcel in) {
         id = in.readString();
@@ -50,11 +41,54 @@ public class User implements Parcelable {
         email = in.readString();
         image = in.readString();
         points = in.readInt();
+        rating = in.readFloat();
         gender = in.readString();
         mobile = in.readLong();
         profileCompleted = in.readInt();
     }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeString(email);
+        dest.writeString(image);
+        dest.writeInt(points);
+        dest.writeFloat(rating);
+        dest.writeString(gender);
+        dest.writeLong(mobile);
+        dest.writeInt(profileCompleted);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public static Creator<User> getCREATOR() {
+        return CREATOR;
+    }
 
     public String getId() {
         return id;
@@ -138,39 +172,10 @@ public class User implements Parcelable {
                 ", email='" + email + '\'' +
                 ", image='" + image + '\'' +
                 ", points=" + points +
+                ", rating=" + rating +
                 ", gender='" + gender + '\'' +
                 ", mobile=" + mobile +
                 ", profileCompleted=" + profileCompleted +
                 '}';
-    }
-
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(firstName);
-        dest.writeString(lastName);
-        dest.writeString(email);
-        dest.writeString(image);
-        dest.writeInt(points);
-        dest.writeString(gender);
-        dest.writeLong(mobile);
-        dest.writeInt(profileCompleted);
     }
 }

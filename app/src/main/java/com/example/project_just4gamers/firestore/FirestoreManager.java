@@ -937,7 +937,6 @@ public class FirestoreManager {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         User user = documentSnapshot.toObject(User.class);
-
                         activity.successGetUser(user);
                     }
                 });
@@ -960,5 +959,25 @@ public class FirestoreManager {
                             activity.successGetReviews(reviews);
                         }
                     });
+    }
+
+    public void getReviewsForUser(SettingsActivity activity, String userId){
+        fStore.collection(Constants.getREVIEWS())
+                .whereEqualTo(Constants.getExtraReceiverId(), userId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<Review> reviews = new ArrayList<>();
+
+                        for (DocumentSnapshot documentSnapshot : documents){
+                            Review review = documentSnapshot.toObject(Review.class);
+                            reviews.add(review);
+                        }
+                        activity.successGetReviews(reviews);
+                    }
+                });
+
+
     }
 }

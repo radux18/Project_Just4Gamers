@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.project_just4gamers.R;
@@ -38,9 +39,13 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
     private User visitatorUser;
     private String userId;
 
+    private RatingBar rbReviews;
     private Button addReview;
     private LinearLayout llReviews;
     private RecyclerView rvReviewList;
+
+    private float ratingUser;
+    private int nrRatings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,6 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
             userId = intent.getStringExtra(Constants.getExtraProfileDetailsv2());
             new FirestoreManager().getUserFromId(ProductOwnerProfileActivity.this, userId);
             new FirestoreManager().getUserVisitorDetails(ProductOwnerProfileActivity.this, userId);
-
         }
 
         addReview.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +70,6 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void initComp() {
@@ -77,7 +80,7 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
         tv_mobile = findViewById(R.id.tv_profile_mobile);
         tv_points = findViewById(R.id.tv_profile_points);
         tb_profile = findViewById(R.id.toolbar_profile);
-
+        rbReviews = findViewById(R.id.rb_profile);
         addReview = findViewById(R.id.btn_addReview);
         llReviews = findViewById(R.id.ll_reviews);
         rvReviewList = findViewById(R.id.rv_reviews);
@@ -97,7 +100,6 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
 
 
     public void successGetReviews(ArrayList<Review> reviews) {
-        System.out.println(reviews.size() + "AICI");
         if (reviews.size() > 0){
             rvReviewList.setVisibility(View.VISIBLE);
 
@@ -109,6 +111,18 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
         } else {
             rvReviewList.setVisibility(View.GONE);
         }
+
+        float rating;
+        for (Review review : reviews){
+            if (review.getUserProfile_id().equals(visitatorUser.getId())){
+                ratingUser += review.getScore();
+                nrRatings ++ ;
+            }
+        }
+
+        rating = ratingUser / nrRatings;
+        System.out.println(rating + "BOALA GREA");
+        rbReviews.setRating(rating);
 
     }
 
