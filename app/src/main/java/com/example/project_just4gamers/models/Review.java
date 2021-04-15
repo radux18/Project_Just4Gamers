@@ -6,44 +6,43 @@ import android.os.Parcelable;
 public class Review implements Parcelable {
 
     private String id = "";
-    private String user_id = "";
     private String userProfile_id = "";
+    private User user = null;
     private String description = "";
     private String title = "";
-    private int score = 0;
+    private float score = 0;
     private String date = "";
 
     public Review() {
     }
 
-    public Review(String user_id, String userProfile_id, String description, String title, int score, String date) {
-        this.user_id = user_id;
+    public Review(String userProfile_id, User user, String description, String title, float score, String date) {
         this.userProfile_id = userProfile_id;
+        this.user = user;
         this.description = description;
         this.title = title;
         this.score = score;
         this.date = date;
     }
 
-
     protected Review(Parcel in) {
         id = in.readString();
-        user_id = in.readString();
         userProfile_id = in.readString();
+        user = in.readParcelable(User.class.getClassLoader());
         description = in.readString();
         title = in.readString();
-        score = in.readInt();
+        score = in.readFloat();
         date = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
-        dest.writeString(user_id);
         dest.writeString(userProfile_id);
+        dest.writeParcelable(user, flags);
         dest.writeString(description);
         dest.writeString(title);
-        dest.writeInt(score);
+        dest.writeFloat(score);
         dest.writeString(date);
     }
 
@@ -64,6 +63,26 @@ public class Review implements Parcelable {
         }
     };
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
+    }
+
+    public static Creator<Review> getCREATOR() {
+        return CREATOR;
+    }
+
     public String getDate() {
         return date;
     }
@@ -72,21 +91,12 @@ public class Review implements Parcelable {
         this.date = date;
     }
 
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
     }
 
     public String getDescription() {
@@ -105,14 +115,6 @@ public class Review implements Parcelable {
         this.title = title;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public String getUserProfile_id() {
         return userProfile_id;
     }
@@ -125,8 +127,8 @@ public class Review implements Parcelable {
     public String toString() {
         return "Review{" +
                 "id='" + id + '\'' +
-                ", user_id='" + user_id + '\'' +
                 ", userProfile_id='" + userProfile_id + '\'' +
+                ", user=" + user +
                 ", description='" + description + '\'' +
                 ", title='" + title + '\'' +
                 ", score=" + score +

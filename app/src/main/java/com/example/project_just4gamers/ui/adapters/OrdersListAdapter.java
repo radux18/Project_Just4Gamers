@@ -48,7 +48,7 @@ public class OrdersListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (itemList instanceof OrdersListAdapter.ViewHolder){
             new GlideLoader(context).loadProductPicture(model.getImage(), ((ViewHolder) itemList).image);
             ((ViewHolder) itemList).tvName.setText(model.getTitle());
-            ((ViewHolder) itemList).tvTotalAmount.setText(context.getResources().getString(R.string.item_price_format,model.getTotalAmount()));
+            ((ViewHolder) itemList).tvTotalAmount.setText(context.getResources().getString(R.string.item_price_format, model.getTotalAmount()));
 
             ((ViewHolder) itemList).ibDelete.setVisibility(View.GONE);
 

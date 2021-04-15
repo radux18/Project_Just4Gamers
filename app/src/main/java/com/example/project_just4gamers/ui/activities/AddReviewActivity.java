@@ -15,6 +15,7 @@ import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Product;
 import com.example.project_just4gamers.models.Review;
+import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.utils.Constants;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -34,6 +35,7 @@ public class AddReviewActivity extends AppCompatActivity {
     private Intent intent;
     private ArrayList<Review> reviews = new ArrayList<>();
     private String userId;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +49,12 @@ public class AddReviewActivity extends AppCompatActivity {
             userId = intent.getStringExtra(Constants.getExtraProfileDetailsVisitor());
         }
 
+        new FirestoreManager().getCurrentUserDetails(AddReviewActivity.this);
+
         btnAddReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveReviewToFirestore();
+                saveReviewToFirestore(currentUser);
             }
         });
     }
@@ -63,19 +67,25 @@ public class AddReviewActivity extends AppCompatActivity {
         btnAddReview = findViewById(R.id.btn_sendReview);
     }
 
-    private void saveReviewToFirestore() {
+    private void saveReviewToFirestore(User currentUser) {
+        System.out.println(currentUser.toString() + "ACILISA2");
         String title = tietTitle.getText().toString();
         String description = tietDescription.getText().toString();
-        int score = (int) rbReviewScore.getRating();
+        float score = rbReviewScore.getRating();
 
         String dateFormat = "dd/MM/yyyy HH:mm";
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat, Locale.getDefault());
         Calendar calendar = Calendar.getInstance();
         String date = formatter.format(calendar.getTime());
 
-        Review review = new Review(new FirestoreManager().getCurrentUserID(), userId, description, title, score, date);
+        Review review = new Review(userId, currentUser, description, title, score, date);
         new FirestoreManager().addReviewToFirestore(AddReviewActivity.this, review);
 
+    }
+
+    public void successGetUser(User user){
+        currentUser = user;
+        System.out.println(currentUser.toString() + "ACILISA");
     }
 
     private void setupActionBar(){

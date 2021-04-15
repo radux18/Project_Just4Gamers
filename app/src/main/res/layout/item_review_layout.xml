@@ -16,15 +16,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="@drawable/item_dashboard_background"
-        android:padding="@dimen/cart_item_image_padding">
+        android:layout_marginStart="5dp"
+        android:orientation="vertical"
+        android:padding="@dimen/cart_item_image_padding"
+        android:layout_marginLeft="3dp">
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:text="@string/tv_user_nameT"/>
 
         <ImageView
             android:id="@+id/iv_user_image"
             android:layout_width="@dimen/cart_item_image_width"
             android:layout_height="@dimen/cart_item_image_height"
             android:contentDescription="@string/content_description"
+            android:background="@drawable/item_dashboard_background"
             android:scaleType="fitXY"/>
+
+
 
     </LinearLayout>
 
@@ -65,6 +78,7 @@
                     android:id="@+id/tv_review_description"
                     android:layout_width="match_parent"
                     android:minLines="5"
+                    android:padding="15dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@drawable/review_background"/>
@@ -74,9 +88,12 @@
 
         <RatingBar
             android:id="@+id/rb_score"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyle"
             android:numStars="5"
+            android:stepSize="0.1"
+            android:isIndicator="true"
             android:layout_gravity="center_horizontal|center_vertical"
             />
 

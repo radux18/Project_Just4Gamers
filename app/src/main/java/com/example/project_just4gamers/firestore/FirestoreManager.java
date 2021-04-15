@@ -510,6 +510,8 @@ public class FirestoreManager {
                             ((CheckoutActivity) activity).getUserDetailsSuccess(user);
                         } else if (activity instanceof DiscountCouponsActivity){
                             ((DiscountCouponsActivity) activity).successDetailsFromFirestore(user);
+                        } else if (activity instanceof AddReviewActivity){
+                            ((AddReviewActivity) activity).successGetUser(user);
                         }
 
                     }
@@ -549,19 +551,7 @@ public class FirestoreManager {
               });
     }
 
-    public void getUser(ReviewListAdapter adapter, String userId){
-        fStore.collection(Constants.getUSERS())
-                .document(userId)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        User user = documentSnapshot.toObject(User.class);
-                        System.out.println(user + "AOLO");
-                        adapter.successGetUser(user);
-                    }
-                });
-    }
+
 
     public void getSenderUser(MessageViewActivity activity, String senderId){
         fStore.collection(Constants.getUSERS())

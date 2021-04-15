@@ -24,7 +24,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private Context context;
     private ArrayList<Review> reviewArrayList;
-    private User currentUser;
 
     public ReviewListAdapter(Context context, ArrayList<Review> reviewArrayList) {
         this.context = context;
@@ -43,21 +42,15 @@ public class ReviewListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Review model = reviewArrayList.get(position);
-        String userId = model.getUser_id();
+        User user = model.getUser();
 
-        new FirestoreManager().getUser(ReviewListAdapter.this,userId);
-
-        successGetUser(currentUser);
-        System.out.println("AICIV2 + " + currentUser.toString());
         if (holder instanceof ViewHolder){
             ((ViewHolder) holder).tvDescription.setText(model.getDescription());
             ((ViewHolder) holder).tvDate.setText(model.getDate());
             ((ViewHolder) holder).tvTitle.setText(model.getTitle());
             ((ViewHolder) holder).rbScore.setRating(model.getScore());
-
-            new GlideLoader(context).loadUserPicture(currentUser.getImage(), ((ViewHolder) holder).ivProfileImg);
-           //de pus si poza de profil al utiliz
-
+            ((ViewHolder) holder).tvName.setText(context.getResources().getString(R.string.tv_settings_name, model.getUser().getFirstName(), model.getUser().getLastName()));
+           new GlideLoader(context).loadUserPicture(user.getImage(), ((ViewHolder) holder).ivProfileImg);
         }
     }
 
@@ -66,10 +59,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return super.getItemId(position);
     }
 
-    public void successGetUser(User user){
-        System.out.println("AICI + " + user.toString());
-        currentUser = user;
-    }
 
     @Override
     public int getItemCount() {
@@ -79,6 +68,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle;
         private TextView tvDate;
+        private TextView tvName;
         private TextView tvDescription;
         private RatingBar rbScore;
         private ImageView ivProfileImg;
@@ -91,7 +81,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             tvDescription = itemView.findViewById(R.id.tv_review_description);
             rbScore = itemView.findViewById(R.id.rb_score);
             ivProfileImg = itemView.findViewById(R.id.iv_user_image);
-
+            tvName = itemView.findViewById(R.id.tv_user_name);
         }
     }
 }

@@ -254,5 +254,6 @@
     <string name="tv_review_titleT">Review Title</string>
     <string name="tv_review_dateT">Date</string>
     <string name="btn_addReviewT">Adauga o recenzie</string>
+    <string name="tv_user_nameT">NUME</string>
 
 </resources>
