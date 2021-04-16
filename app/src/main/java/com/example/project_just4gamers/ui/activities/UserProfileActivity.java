@@ -52,7 +52,6 @@ public class UserProfileActivity extends AppCompatActivity {
     private RadioButton rb_female;
     private String gender;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +77,6 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(validate()){
                     //show progress dialog
-                    //TODO
                     if (selectedImageFileUri != null){
                         fManager.uploadImageToCloudStorage(UserProfileActivity.this,selectedImageFileUri, Constants.getUserProfileImage());
                     } else {
@@ -173,7 +171,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 rb_female.setChecked(true);
             }
         }
-
     }
 
     private void updateUserProfileDetails(){
@@ -222,12 +219,10 @@ public class UserProfileActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == Constants.getReadStoragePermissionCode()){
-            //If permission is granted
             if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 new Constants().showImageChooser(this);
             }
         } else {
-            //Displaying another toast if permission is not granted
             Toast.makeText(getApplicationContext(),"Oops, you just denied the permission for storage. You can also allow it from settings.",Toast.LENGTH_LONG).show();
         }
     }
@@ -239,7 +234,6 @@ public class UserProfileActivity extends AppCompatActivity {
             if (requestCode == Constants.getPickImageRequestCode()){
                 if (data != null){
                     try {
-                        //The uri of selected image from phone storage.
                          selectedImageFileUri = data.getData();
                         photoLoader.loadUserPicture(selectedImageFileUri,iv_userProfilePhoto);
                     } catch (Exception e){
@@ -253,15 +247,9 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     public void imageUploadSuccess(String imageURL){
-        //store the imageUrl
         userProfileURL = imageURL;
         updateUserProfileDetails();
     }
-
-
-
-
-
 
 
 }

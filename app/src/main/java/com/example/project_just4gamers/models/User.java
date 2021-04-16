@@ -12,7 +12,6 @@ public class User implements Parcelable {
     private String email = "";
     private String image = "";
     private int points = 0;
-    private float rating = 0;
     private String gender = "";
     private long mobile = 0;
     private int profileCompleted = 0;
@@ -27,7 +26,6 @@ public class User implements Parcelable {
         this.email = email;
         this.points = 0;
         this.image = "";
-        this.rating = 0;
         this.gender = "";
         this.mobile = 0;
         this.profileCompleted = 0;
@@ -41,7 +39,6 @@ public class User implements Parcelable {
         email = in.readString();
         image = in.readString();
         points = in.readInt();
-        rating = in.readFloat();
         gender = in.readString();
         mobile = in.readLong();
         profileCompleted = in.readInt();
@@ -55,7 +52,6 @@ public class User implements Parcelable {
         dest.writeString(email);
         dest.writeString(image);
         dest.writeInt(points);
-        dest.writeFloat(rating);
         dest.writeString(gender);
         dest.writeLong(mobile);
         dest.writeInt(profileCompleted);
@@ -78,13 +74,6 @@ public class User implements Parcelable {
         }
     };
 
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
 
     public static Creator<User> getCREATOR() {
         return CREATOR;
@@ -172,7 +161,6 @@ public class User implements Parcelable {
                 ", email='" + email + '\'' +
                 ", image='" + image + '\'' +
                 ", points=" + points +
-                ", rating=" + rating +
                 ", gender='" + gender + '\'' +
                 ", mobile=" + mobile +
                 ", profileCompleted=" + profileCompleted +

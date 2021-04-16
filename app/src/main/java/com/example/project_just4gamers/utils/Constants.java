@@ -46,6 +46,13 @@ public class Constants {
 
     private static final String PRODUCT_IMAGE = "Product_Image";
 
+    public static final String AGE = "age";
+    public static final String DESCRIPTION = "description";
+    public static final String TITLE = "title";
+    public static final String TYPE = "type";
+    public static final String PRICE = "price";
+
+
     private static final String USER_ID = "user_id";
 
     public static final String USER_PROFILE_IMAGE = "User_Profile_Image";
@@ -96,6 +103,31 @@ public class Constants {
 
     public static final String EXTRA_RECEIVER_ID = "userProfile_id";
 
+    public static final String EXTRA_PRODUCT_DETAILS = "extra_product_details";
+
+    public static String getPRICE() {
+        return PRICE;
+    }
+
+    public static String getAGE() {
+        return AGE;
+    }
+
+    public static String getDESCRIPTION() {
+        return DESCRIPTION;
+    }
+
+    public static String getTITLE() {
+        return TITLE;
+    }
+
+    public static String getTYPE() {
+        return TYPE;
+    }
+
+    public static String getExtraProductDetails() {
+        return EXTRA_PRODUCT_DETAILS;
+    }
 
     public static String getExtraProfileDetailsv2() {
         return EXTRA_PROFILE_DETAILSV2;

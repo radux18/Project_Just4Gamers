@@ -48,6 +48,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView tvUserName;
     private ImageView ivUserProfileImage;
     private LinearLayout llTriggerToProfile;
+    private TextView tvEditProduct;
 
     private Product productDetails;
 
@@ -73,8 +74,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
             btnAddToCart.setVisibility(View.GONE);
             btnGoToCart.setVisibility(View.GONE);
             fabAddMessage.setVisibility(View.GONE);
-
+            tvEditProduct.setVisibility(View.VISIBLE);
         } else {
+            tvEditProduct.setVisibility(View.GONE);
             btnAddToCart.setVisibility(View.VISIBLE);
             fabAddMessage.setVisibility(View.VISIBLE);
             btnAddToCart.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +120,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        tvEditProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UpdateProductActivity.class);
+                intent.putExtra(Constants.getExtraProductDetails(), productDetails);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -135,6 +146,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvUserName = findViewById(R.id.tv_user_detail_name);
         ivUserProfileImage = findViewById(R.id.iv_product_user_image);
         llTriggerToProfile = findViewById(R.id.ll_userGoToProfile);
+        tvEditProduct = findViewById(R.id.tv_edit_product);
     }
 
     private void getProductDetails(){

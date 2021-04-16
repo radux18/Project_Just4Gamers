@@ -151,11 +151,11 @@ public class AddAddressActivity extends AppCompatActivity {
 
                if (addressDetails != null && !addressDetails.getId().isEmpty()){
                    //update
+                   System.out.println(addressDetails.toString());
                    new FirestoreManager().updateAddress(AddAddressActivity.this, addressModel, addressDetails.getId());
                } else {
                    //add
                    new FirestoreManager().addAddress(AddAddressActivity.this, addressModel);
-
                }
         }
     }

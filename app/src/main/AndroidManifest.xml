@@ -14,10 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Just4Gamers">
-        <activity android:name=".ui.activities.ProductOwnerProfileActivity"
+        <activity android:name=".ui.activities.UpdateProductActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar"
             />
+        <activity
+            android:name=".ui.activities.ProductOwnerProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
             android:name=".ui.activities.AddReviewActivity"
             android:screenOrientation="portrait"

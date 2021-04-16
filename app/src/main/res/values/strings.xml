@@ -256,4 +256,9 @@
     <string name="btn_addReviewT">Adauga o recenzie</string>
     <string name="tv_user_nameT">NUME</string>
 
+    <string name="tv_title_editProduct">EDITARE PRODUS</string>
+    <string name="btn_editProduct">MODIFICA</string>
+    <string name="tv_title_editProductT">EDITARE PRODUS</string>
+    <string name="btn_editProduct_submitT">MODIFICA</string>
+
 </resources>

@@ -34,6 +34,7 @@ import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
 import com.example.project_just4gamers.ui.activities.ProductOwnerProfileActivity;
 import com.example.project_just4gamers.ui.activities.RegisterActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
+import com.example.project_just4gamers.ui.activities.UpdateProductActivity;
 import com.example.project_just4gamers.ui.activities.UserProfileActivity;
 import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
@@ -168,7 +169,6 @@ public class FirestoreManager {
                         imageFileUri
                 )
         );
-
         reference.putFile(imageFileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -181,6 +181,8 @@ public class FirestoreManager {
                                     ((UserProfileActivity) activity).imageUploadSuccess(uri.toString());
                                 } else if (activity instanceof AddProductActivity){
                                     ((AddProductActivity) activity).imageUploadSuccess(uri.toString());
+                                } else if (activity instanceof UpdateProductActivity){
+                                    ((UpdateProductActivity) activity).imageUploadSuccess(uri.toString());
                                 }
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -250,6 +252,7 @@ public class FirestoreManager {
                     @Override
                     public void onSuccess(DocumentSnapshot document) {
                         Product product = document.toObject(Product.class);
+                        product.setProduct_id(document.getId());
                         if (product != null)
                         activity.productDetailsSuccess(product);
                     }
@@ -343,7 +346,6 @@ public class FirestoreManager {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
             }
         });
     }
@@ -977,7 +979,18 @@ public class FirestoreManager {
                         activity.successGetReviews(reviews);
                     }
                 });
+    }
 
+    public void updateProduct(UpdateProductActivity activity, HashMap<String, Object> productHashMap, String productId){
+        fStore.collection(Constants.getPRODUCTS())
+                .document(productId)
+                .update(productHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        activity.productUpdateSuccess();
+                    }
+                });
 
     }
 }
