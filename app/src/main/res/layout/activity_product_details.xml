@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_productDetails"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/teal_200"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,13 +18,9 @@
 
         <TextView
             android:id="@+id/tv_productDetails"
-            android:layout_width="330dp"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
             android:textStyle="bold"
-            android:paddingEnd="10dp"
-            android:paddingStart="0dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="0dp"
             android:gravity="center"
             android:textSize="20sp"
             android:text="@string/product_detailsT"
@@ -32,7 +28,7 @@
 
         <CheckBox
             android:id="@+id/cb_product_favorite"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:scaleY="1.5"
             android:scaleX="1.5"
             android:layout_height="wrap_content"

@@ -18,8 +18,10 @@ public class Constants {
     public static final String DISCOUNTCOUPONS = "discount_coupons";
     public static final String MESSAGES = "messages";
     public static final String REVIEWS = "reviews";
+    public static final String FAVORITES = "favorites";
 
     public static final String POINTS = "points";
+    public static final String FAVORITE = "favorite";
 
     private static final String PREFS = "prefs";
     private static final String USERNAME = "username";
@@ -51,6 +53,8 @@ public class Constants {
     public static final String TITLE = "title";
     public static final String TYPE = "type";
     public static final String PRICE = "price";
+
+    public static final String USERFAVORITE_ID = "userFavorite_id";
 
 
     private static final String USER_ID = "user_id";
@@ -104,6 +108,10 @@ public class Constants {
     public static final String EXTRA_RECEIVER_ID = "userProfile_id";
 
     public static final String EXTRA_PRODUCT_DETAILS = "extra_product_details";
+
+    public static String getUserfavoriteId() {
+        return USERFAVORITE_ID;
+    }
 
     public static String getPRICE() {
         return PRICE;
@@ -356,6 +364,14 @@ public class Constants {
 
     public static String getLastName() {
         return LAST_NAME;
+    }
+
+    public static String getFAVORITE() {
+        return FAVORITE;
+    }
+
+    public static String getFAVORITES() {
+        return FAVORITES;
     }
 
     public Constants() {

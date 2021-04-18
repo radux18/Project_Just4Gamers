@@ -4,14 +4,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,15 +20,12 @@ import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.CartItem;
 import com.example.project_just4gamers.models.Product;
-import com.example.project_just4gamers.models.Review;
 import com.example.project_just4gamers.models.User;
-import com.example.project_just4gamers.ui.adapters.MessageListAdapter;
-import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     private Toolbar tb_productDetails;
@@ -49,6 +45,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ImageView ivUserProfileImage;
     private LinearLayout llTriggerToProfile;
     private TextView tvEditProduct;
+    private CheckBox cbFavorite;
+    private int isFavorite = 1;
+    private int isUnfavorite = 0;
 
     private Product productDetails;
 
@@ -60,6 +59,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
         intent = getIntent();
         initComponents();
+        setupActionBar();
 
         if (intent.hasExtra(Constants.getExtraProductId())){
             productId = intent.getStringExtra(Constants.getExtraProductId());
@@ -89,7 +89,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             });
         }
         getProductDetails();
-        setupActionBar();
 
         btnGoToCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +119,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 }
             }
         });
-
         tvEditProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +128,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void initComponents() {
         tb_productDetails = findViewById(R.id.tb_productDetails);
@@ -147,6 +144,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         ivUserProfileImage = findViewById(R.id.iv_product_user_image);
         llTriggerToProfile = findViewById(R.id.ll_userGoToProfile);
         tvEditProduct = findViewById(R.id.tv_edit_product);
+        cbFavorite = findViewById(R.id.cb_product_favorite);
     }
 
     private void getProductDetails(){
@@ -182,6 +180,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvProductDescription.setText(product.getDescription());
         tvProductQuantity.setText(product.getStock_quantity());
 
+        cbFavorite.setChecked(!productDetails.getFavorite().equals("") && !productDetails.getFavorite().equals("0"));
+
+        if (productDetails.getUser_id().equals(new FirestoreManager().getCurrentUserID())){
+            cbFavorite.setVisibility(View.GONE);
+        } else {
+            cbFavorite.setVisibility(View.VISIBLE);
+        }
+
         if (Integer.parseInt(product.getStock_quantity()) == 0){
             //hide progress dialog
             btnAddToCart.setVisibility(View.GONE);
@@ -197,6 +203,29 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 new FirestoreManager().checkIfItemExistInCart(ProductDetailsActivity.this, productId);
             }
         }
+
+        cbFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                HashMap<String, Object> productFavoriteHashMap = new HashMap<>();
+                HashMap<String, Object> productHashMap = new HashMap<>();
+                if (isChecked){
+                    productFavoriteHashMap.put(Constants.getFAVORITE(), String.valueOf(isFavorite));
+                    productHashMap.put(Constants.getUserfavoriteId(), new FirestoreManager().getCurrentUserID());
+
+                    new FirestoreManager().updateFavoriteProduct(ProductDetailsActivity.this, productFavoriteHashMap, productDetails.getProduct_id());
+                    new FirestoreManager().updateProductFavoriteId(ProductDetailsActivity.this, productHashMap, productDetails.getProduct_id());
+
+
+                } else if (!isChecked){
+                    productFavoriteHashMap.put(Constants.getFAVORITE(), String.valueOf(isUnfavorite));
+                    productHashMap.put(Constants.getUserfavoriteId(), "");
+                    new FirestoreManager().updateFavoriteProduct(ProductDetailsActivity.this, productFavoriteHashMap, productDetails.getProduct_id());
+                    new FirestoreManager().updateProductFavoriteId(ProductDetailsActivity.this, productHashMap, productDetails.getProduct_id());
+                    //delete it from db-favorites
+                }
+            }
+        });
 
 
     }
@@ -233,5 +262,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void favoriteAddSuccess() {
+       // Toast.makeText(getApplicationContext(), "Ai adaugat cu success produsul la favorite!", Toast.LENGTH_SHORT).show();
+    }
+
+
 
 }

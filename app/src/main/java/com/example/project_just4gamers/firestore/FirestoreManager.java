@@ -28,6 +28,7 @@ import com.example.project_just4gamers.ui.activities.CartListActivity;
 import com.example.project_just4gamers.ui.activities.CheckoutActivity;
 import com.example.project_just4gamers.ui.activities.DashboardActivity;
 import com.example.project_just4gamers.ui.activities.DiscountCouponsActivity;
+import com.example.project_just4gamers.ui.activities.FavoritesActivity;
 import com.example.project_just4gamers.ui.activities.LoginActivity;
 import com.example.project_just4gamers.ui.activities.MessageViewActivity;
 import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
@@ -37,7 +38,6 @@ import com.example.project_just4gamers.ui.activities.SettingsActivity;
 import com.example.project_just4gamers.ui.activities.UpdateProductActivity;
 import com.example.project_just4gamers.ui.activities.UserProfileActivity;
 import com.example.project_just4gamers.models.User;
-import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
 import com.example.project_just4gamers.ui.fragments.DashboardFragment;
 import com.example.project_just4gamers.ui.fragments.OrdersFragment;
 import com.example.project_just4gamers.ui.fragments.ProductsFragment;
@@ -223,7 +223,6 @@ public class FirestoreManager {
 
     public void getProductList(Fragment fragment){
         fStore.collection(Constants.getPRODUCTS())
-                //This function query the document if the user_id of the product equals to current user id
                 .whereEqualTo(Constants.getUserId(), getCurrentUserID())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -245,6 +244,7 @@ public class FirestoreManager {
     }
 
     public void getProductDetails(ProductDetailsActivity activity, String productID){
+        System.out.println(productID.toString() + "AWW");
         fStore.collection(Constants.getPRODUCTS())
                 .document(productID)
                 .get()
@@ -253,7 +253,7 @@ public class FirestoreManager {
                     public void onSuccess(DocumentSnapshot document) {
                         Product product = document.toObject(Product.class);
                         product.setProduct_id(document.getId());
-                        if (product != null)
+
                         activity.productDetailsSuccess(product);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -991,6 +991,49 @@ public class FirestoreManager {
                         activity.productUpdateSuccess();
                     }
                 });
-
     }
+
+    public void updateFavoriteProduct(ProductDetailsActivity activity, HashMap<String, Object> productHashMap, String productId){
+        fStore.collection(Constants.getPRODUCTS())
+                .document(productId)
+                .update(productHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        activity.favoriteAddSuccess();
+                    }
+                });
+    }
+
+   public void updateProductFavoriteId(ProductDetailsActivity activity, HashMap<String, Object> productHashMap, String productId){
+        fStore.collection(Constants.getPRODUCTS())
+                .document(productId)
+                .update(productHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    }
+                });
+   }
+
+   public void getFavoriteProducts(FavoritesActivity activity){
+        fStore.collection(Constants.getPRODUCTS())
+                .whereEqualTo(Constants.getFAVORITE(), "1")
+                .whereEqualTo(Constants.getUserfavoriteId(), getCurrentUserID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        ArrayList<Product> products = new ArrayList<>();
+                        for (DocumentSnapshot document : queryDocumentSnapshots){
+                            Product product = document.toObject(Product.class);
+                            product.setProduct_id(document.getId());
+                            products.add(product);
+                        }
+                        activity.successGetFavProducts(products);
+                    }
+                });
+   }
+
+
 }

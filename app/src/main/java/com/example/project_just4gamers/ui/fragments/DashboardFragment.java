@@ -28,6 +28,7 @@ import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Product;
 import com.example.project_just4gamers.ui.activities.CartListActivity;
 import com.example.project_just4gamers.ui.activities.DiscountCouponsActivity;
+import com.example.project_just4gamers.ui.activities.FavoritesActivity;
 import com.example.project_just4gamers.ui.activities.InboxActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
 import com.example.project_just4gamers.ui.adapters.DashboardListAdapter;
@@ -88,6 +89,8 @@ public class DashboardFragment extends Fragment {
                     return true;
                 } else if (item.getItemId() == R.id.action_inbox){
                     startActivity(new Intent(getActivity().getApplicationContext(), InboxActivity.class));
+                } else if (item.getItemId() == R.id.action_favorite){
+                    startActivity(new Intent(getActivity().getApplicationContext(), FavoritesActivity.class));
                 }
               return false;
             }

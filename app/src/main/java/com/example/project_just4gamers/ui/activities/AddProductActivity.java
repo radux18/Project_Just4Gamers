@@ -202,11 +202,11 @@ public class AddProductActivity extends AppCompatActivity {
         String userName = this.getSharedPreferences(Constants.getPREFS(), Context.MODE_PRIVATE).getString(Constants.getUSERNAME(),"");
 
             if (type.equals(Constants.getNEW())){
-                    Product product = new Product(new FirestoreManager().getCurrentUserID(), userName,
+                    Product product = new Product(new FirestoreManager().getCurrentUserID(), userName, "",
                             title,price,description,quantity, type, "N/A", productImageURL);
                     new FirestoreManager().uploadProductDetails(AddProductActivity.this, product);
             } else if (type.equals(Constants.getUSED())){
-                    Product product = new Product(new FirestoreManager().getCurrentUserID(),userName,
+                    Product product = new Product(new FirestoreManager().getCurrentUserID(),userName, "",
                             title,price,description,quantity, type, age, productImageURL);
                     new FirestoreManager().uploadProductDetails(AddProductActivity.this, product);
             }

@@ -21,10 +21,6 @@
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:gravity="center"
-
-            android:paddingEnd="0dp"
-
-            android:paddingRight="0dp"
             android:text="@string/my_discount_couponsT"
             android:textColor="@color/white"
             android:textSize="@dimen/toolbar_title_text_size"
