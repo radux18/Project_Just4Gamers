@@ -260,5 +260,6 @@
     <string name="btn_editProduct">MODIFICA</string>
     <string name="tv_title_editProductT">EDITARE PRODUS</string>
     <string name="btn_editProduct_submitT">MODIFICA</string>
+    <string name="action_favoriteT">Favorites</string>
 
 </resources>

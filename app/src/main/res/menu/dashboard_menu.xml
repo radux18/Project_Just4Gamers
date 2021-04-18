@@ -2,8 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/action_favorite"
+           android:icon="@drawable/ic_vector_favorite"
+            android:title="@string/action_favoriteT"
+           app:showAsAction="always"/>
+
     <item android:id="@+id/action_inbox"
-        android:icon="@drawable/ic_vector_inbox"
+        android:icon="@drawable/ic_message_vector"
         android:title="@string/action_boxT"
         app:showAsAction="always"/>
 

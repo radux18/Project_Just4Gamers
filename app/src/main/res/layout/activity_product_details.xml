@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/tv_productDetails"
-            android:layout_width="match_parent"
+            android:layout_width="330dp"
             android:layout_height="match_parent"
             android:textStyle="bold"
             android:paddingEnd="10dp"
@@ -29,6 +29,15 @@
             android:textSize="20sp"
             android:text="@string/product_detailsT"
             />
+
+        <CheckBox
+            android:id="@+id/cb_product_favorite"
+            android:layout_width="wrap_content"
+            android:scaleY="1.5"
+            android:scaleX="1.5"
+            android:layout_height="wrap_content"
+            android:button="@drawable/drawable_favorite_color_selector"/>
+
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -67,27 +76,27 @@
                 android:layout_marginTop="16dp"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tv_edit_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginRight="30dp"
-                    android:text="@string/lbl_edit"
-                    android:layout_gravity="end"
-                    android:paddingEnd="15dp"
-                    android:paddingStart="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:clickable="true"
-                    android:background="@drawable/textview_format_v2"
-                    android:focusable="true" />
+                    <TextView
+                        android:id="@+id/tv_edit_product"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="@string/lbl_edit"
+                        android:paddingEnd="15dp"
+                        android:paddingStart="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:clickable="true"
+                        android:background="@drawable/textview_format_v2"
+                        android:focusable="true"
+                        tools:ignore="RtlCompat" />
 
                 <TextView
                     android:id="@+id/tv_productDetails_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:text="@string/product_titleT"
                     android:textStyle="bold"
                     />

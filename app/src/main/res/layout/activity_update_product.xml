@@ -88,7 +88,6 @@
                     android:layout_height="match_parent"
                     android:padding="5dp"
                     android:background="@drawable/textview_format"
-                    android:hint="@string/product_titleT"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +106,6 @@
                     android:layout_height="match_parent"
                     android:padding="5dp"
                     android:background="@drawable/textview_format"
-                    android:hint="@string/product_pricet"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -197,7 +195,6 @@
                     android:layout_height="match_parent"
                     android:padding="5dp"
                     android:background="@drawable/textview_format"
-                    android:hint="@string/tiet_add_product_descriptionT"
                     android:inputType="textMultiLine"
                     android:minLines="3"
                     android:gravity="top|left"
@@ -219,7 +216,6 @@
                     android:layout_height="match_parent"
                     android:padding="5dp"
                     android:background="@drawable/textview_format"
-                    android:hint="@string/tiet_add_product_quantityT"
                     android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
