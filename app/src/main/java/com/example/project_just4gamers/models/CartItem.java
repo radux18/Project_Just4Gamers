@@ -15,14 +15,14 @@ public class CartItem implements Parcelable {
     private int price = 0;
     private String image = "";
     private String type = "";
-    private String age = "";
+    private int age = 0;
     private String cart_quantity = "";
     private String stock_quantity = "";
 
     public CartItem() {
     }
 
-    public CartItem(String user_id, String product_ownerId, String product_id, String title, int price, String image, String type, String age, String cart_quantity) {
+    public CartItem(String user_id, String product_ownerId, String product_id, String title, int price, String image, String type, int age, String cart_quantity) {
         this.user_id = user_id;
         this.product_ownerId = product_ownerId;
         this.product_id = product_id;
@@ -44,7 +44,7 @@ public class CartItem implements Parcelable {
         price = in.readInt();
         image = in.readString();
         type = in.readString();
-        age = in.readString();
+        age = in.readInt();
         cart_quantity = in.readString();
         stock_quantity = in.readString();
     }
@@ -59,7 +59,7 @@ public class CartItem implements Parcelable {
         dest.writeInt(price);
         dest.writeString(image);
         dest.writeString(type);
-        dest.writeString(age);
+        dest.writeInt(age);
         dest.writeString(cart_quantity);
         dest.writeString(stock_quantity);
     }
@@ -80,6 +80,10 @@ public class CartItem implements Parcelable {
             return new CartItem[size];
         }
     };
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public static Creator<CartItem> getCREATOR() {
         return CREATOR;
@@ -150,12 +154,8 @@ public class CartItem implements Parcelable {
         this.type = type;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
     }
 
     public String getCart_quantity() {

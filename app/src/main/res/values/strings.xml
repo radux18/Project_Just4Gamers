@@ -71,18 +71,31 @@
     <string name="tv_no_dashboardItemFound">No items found!</string>
 
     <string-array name="add_product_age_values">
-        <item>1 an</item>
-        <item>2 ani</item>
-        <item>3 ani</item>
-        <item>4 ani</item>
-        <item>5 ani</item>
-        <item>6 ani</item>
-        <item>7 ani</item>
-        <item>8 ani</item>
-        <item>9 ani</item>
-        <item>10+ ani</item>
-        <item>15+ ani</item>
-        <item>20+ ani</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -90,6 +103,7 @@
     <string name="tv_item_priceT">100 LEI</string>
 
     <string name="item_price_format">%1$s LEI</string>
+    <string name="item_age_format">%1$s ani</string>
     <string name="item_nameT">Item Name</string>
     <string name="item_priceT">100 LEI</string>
     <string name="delete_dialog_title">Delete Product</string>

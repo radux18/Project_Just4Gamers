@@ -87,7 +87,7 @@ public class DashboardListAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (itemList instanceof DashboardListAdapter.ViewHolder) {
             new GlideLoader(context).loadProductPicture(model.getImage(), ((ViewHolder) itemList).image);
             ((ViewHolder) itemList).tvTitle.setText(model.getTitle());
-            ((ViewHolder) itemList).tvAge.setText(model.getAge());
+            ((ViewHolder) itemList).tvAge.setText(context.getString(R.string.item_age_format, String.valueOf(model.getAge())));
             ((ViewHolder) itemList).tvPrice.setText(context.getString(R.string.item_price_format,String.valueOf(model.getPrice())));
         }
 

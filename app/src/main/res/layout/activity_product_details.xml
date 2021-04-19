@@ -18,17 +18,21 @@
 
         <TextView
             android:id="@+id/tv_productDetails"
-            android:layout_width="250dp"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             android:textStyle="bold"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/toolbar_title_paddingStart"
+            android:paddingRight="0dp"
+            android:textSize="@dimen/toolbar_title_text_size"
             android:text="@string/product_detailsT"
-            />
+            android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:paddingEnd="0dp" />
 
         <CheckBox
             android:id="@+id/cb_product_favorite"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:scaleY="1.5"
             android:scaleX="1.5"
             android:layout_height="wrap_content"
@@ -66,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_product_details_image"
+                app:layout_constraintTop_toBottomOf="@id/ll_user_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:orientation="vertical"
                 android:layout_marginTop="16dp"
@@ -144,7 +148,11 @@
                 android:gravity="center_vertical"
                 app:layout_constraintTop_toBottomOf="@id/tv_product_detailsDescription"
                 android:orientation="horizontal"
-                android:layout_margin="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="50dp"
+               >
 
                 <TextView
                     android:id="@+id/lbl_product_details_stock_quantity"
@@ -215,7 +223,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/ll_product_details_quantity"
+                app:layout_constraintTop_toBottomOf="@id/iv_product_details_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 

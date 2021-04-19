@@ -175,8 +175,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 .loadUserPicture(product.getImage(), iv_productDetailsImg);
 
         tvProductTitle.setText(product.getTitle());
-        tvProductPrice.setText(String.valueOf(product.getPrice()));
-        tvProductAge.setText(product.getAge());
+        tvProductPrice.setText(getString(R.string.item_price_format, String.valueOf(product.getPrice())));
+        tvProductAge.setText(getString(R.string.item_age_format, String.valueOf(product.getAge())));
         tvProductDescription.setText(product.getDescription());
         tvProductQuantity.setText(product.getStock_quantity());
 
@@ -222,12 +222,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     productHashMap.put(Constants.getUserfavoriteId(), "");
                     new FirestoreManager().updateFavoriteProduct(ProductDetailsActivity.this, productFavoriteHashMap, productDetails.getProduct_id());
                     new FirestoreManager().updateProductFavoriteId(ProductDetailsActivity.this, productHashMap, productDetails.getProduct_id());
-                    //delete it from db-favorites
                 }
             }
         });
-
-
     }
 
     private void addToCart(){
@@ -264,7 +261,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     public void favoriteAddSuccess() {
-       // Toast.makeText(getApplicationContext(), "Ai adaugat cu success produsul la favorite!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Ai adaugat cu success produsul la favorite!", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -281,24 +281,38 @@ public class CheckoutActivity extends AppCompatActivity {
         HashMap<String, Object> userHashMap = new HashMap<>();
         for (CartItem items : cartItems){
             switch (items.getAge()) {
-                case "1 an":
-                case "2 ani":
-                case "3 ani":
-                case "4 ani":
-                case "5 ani":
-                case "6 ani":
-                case "7 ani":
-                case "8 ani":
-                case "9 ani":
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
                     points += 5 * Integer.parseInt(items.getCart_quantity());
                     break;
-                case "10+ ani":
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
                     points += 10 * Integer.parseInt(items.getCart_quantity());
                     break;
-                case "15+ ani":
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
                     points += 15 * Integer.parseInt(items.getCart_quantity());
                     break;
-                case "20+ ani":
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                case 25:
                     points += 30 * Integer.parseInt(items.getCart_quantity());
                     break;
             }
@@ -316,32 +330,44 @@ public class CheckoutActivity extends AppCompatActivity {
                 if (item.getProduct_ownerId().equals(user.getId())){
                     diffPoints = user.getPoints();
                     switch (item.getAge()) {
-                        case "1 an":
-                        case "2 ani":
-                        case "3 ani":
-                        case "4 ani":
-                        case "5 ani":
-                        case "6 ani":
-                        case "7 ani":
-                        case "8 ani":
-                        case "9 ani":
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                        case 9:
                             diffPoints += 5 * Integer.parseInt(item.getCart_quantity());
                             break;
-                        case "10+ ani":
+                        case 10:
+                        case 11:
+                        case 12:
+                        case 13:
+                        case 14:
                             diffPoints += 10 * Integer.parseInt(item.getCart_quantity());
                             break;
-                        case "15+ ani":
+                        case 15:
+                        case 16:
+                        case 17:
+                        case 18:
+                        case 19:
                             diffPoints += 15 * Integer.parseInt(item.getCart_quantity());
                             break;
-                        case "20+ ani":
+                        case 20:
+                        case 21:
+                        case 22:
+                        case 23:
+                        case 24:
+                        case 25:
                             diffPoints += 30 * Integer.parseInt(item.getCart_quantity());
                             break;
                     }
-
                     productOwnerUserHashMap.put(Constants.getPOINTS(), diffPoints);
                     new FirestoreManager().setPointsForDifferentUsers(productOwnerUserHashMap, user);
                 }
-
             }
         }
 

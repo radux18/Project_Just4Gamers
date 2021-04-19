@@ -191,7 +191,7 @@ public class AddProductActivity extends AppCompatActivity {
         int price = Integer.parseInt(tiet_price.getText().toString().trim());
         String description = tiet_description.getText().toString().trim();
         String quantity = tiet_quantity.getText().toString().trim();
-        String age = spnProductAge.getSelectedItem().toString();
+        int age =Integer.parseInt(spnProductAge.getSelectedItem().toString());
 
         if (rbUsed.isChecked()){
             type = Constants.getUSED();
@@ -203,7 +203,7 @@ public class AddProductActivity extends AppCompatActivity {
 
             if (type.equals(Constants.getNEW())){
                     Product product = new Product(new FirestoreManager().getCurrentUserID(), userName, "",
-                            title,price,description,quantity, type, "N/A", productImageURL);
+                            title,price,description,quantity, type, 0, productImageURL);
                     new FirestoreManager().uploadProductDetails(AddProductActivity.this, product);
             } else if (type.equals(Constants.getUSED())){
                     Product product = new Product(new FirestoreManager().getCurrentUserID(),userName, "",

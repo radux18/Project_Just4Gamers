@@ -22,6 +22,7 @@ import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -34,9 +35,10 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
     private TextView tv_points;
     private TextView tv_email;
     private Toolbar tb_profile;
+    private FloatingActionButton fabAddMsg;
 
     private Intent intent;
-    private User visitatorUser;
+    private User productOwner;
     private String userId;
 
     private RatingBar rbReviews;
@@ -70,6 +72,15 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        fabAddMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddMessageActivity.class);
+                intent.putExtra(Constants.getExtraDetailsMessage(), productOwner);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initComp() {
@@ -84,18 +95,19 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
         addReview = findViewById(R.id.btn_addReview);
         llReviews = findViewById(R.id.ll_reviews);
         rvReviewList = findViewById(R.id.rv_reviews);
+        fabAddMsg = findViewById(R.id.fab_add_message_profile);
     }
 
 
     public void successGetUser(User user) {
-        visitatorUser = user;
+        productOwner = user;
 
-         new GlideLoader(ProductOwnerProfileActivity.this).loadUserPicture(visitatorUser.getImage(),iv_userPhoto);
-        tv_points.setText(String.valueOf(visitatorUser.getPoints()));
-        tv_name.setText(getString(R.string.tv_settings_name, visitatorUser.getFirstName(),visitatorUser.getLastName()));
-        tv_mobile.setText(getString(R.string.mobile_format, visitatorUser.getMobile()));
-        tv_gender.setText(visitatorUser.getGender());
-        tv_email.setText(visitatorUser.getEmail());
+         new GlideLoader(ProductOwnerProfileActivity.this).loadUserPicture(productOwner.getImage(),iv_userPhoto);
+        tv_points.setText(String.valueOf(productOwner.getPoints()));
+        tv_name.setText(getString(R.string.tv_settings_name, productOwner.getFirstName(), productOwner.getLastName()));
+        tv_mobile.setText(getString(R.string.mobile_format, productOwner.getMobile()));
+        tv_gender.setText(productOwner.getGender());
+        tv_email.setText(productOwner.getEmail());
     }
 
 
@@ -114,14 +126,13 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
 
         float rating;
         for (Review review : reviews){
-            if (review.getUserProfile_id().equals(visitatorUser.getId())){
+            if (review.getUserProfile_id().equals(productOwner.getId())){
                 ratingUser += review.getScore();
                 nrRatings ++ ;
             }
         }
 
         rating = ratingUser / nrRatings;
-        System.out.println(rating + "BOALA GREA");
         rbReviews.setRating(rating);
 
     }

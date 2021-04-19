@@ -14,7 +14,7 @@ public class Product implements Parcelable {
     private String description;
     private String stock_quantity;
     private String type;
-    private String age;
+    private int age;
     private String image;
     private String favorite;
 
@@ -27,13 +27,13 @@ public class Product implements Parcelable {
         this.description = "";
         this.stock_quantity = "";
         this.type = "";
-        this.age = "";
+        this.age = 0;
         this.image = "";
         this.favorite = "";
         this.userFavorite_id = "";
     }
 
-    public Product(String user_id, String user_name, String userFavorite_id, String title, int price, String description, String stock_quantity, String type, String age, String image) {
+    public Product(String user_id, String user_name, String userFavorite_id, String title, int price, String description, String stock_quantity, String type, int age, String image) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.userFavorite_id = userFavorite_id;
@@ -59,7 +59,7 @@ public class Product implements Parcelable {
         description = in.readString();
         stock_quantity = in.readString();
         type = in.readString();
-        age = in.readString();
+        age = in.readInt();
         image = in.readString();
         favorite = in.readString();
     }
@@ -75,7 +75,7 @@ public class Product implements Parcelable {
         dest.writeString(description);
         dest.writeString(stock_quantity);
         dest.writeString(type);
-        dest.writeString(age);
+        dest.writeInt(age);
         dest.writeString(image);
         dest.writeString(favorite);
     }
@@ -191,11 +191,11 @@ public class Product implements Parcelable {
         this.type = type;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

@@ -192,8 +192,7 @@ public class DashboardFragment extends Fragment {
                         Collections.sort(dashboardItemsList, new Comparator<Product>() {
                             @Override
                             public int compare(Product o1, Product o2) {
-                                return Integer.parseInt(o1.getAge()) - Integer.parseInt(o2.getAge());
-                               // return o1.getAge().compareToIgnoreCase(o2.getAge());
+                               return o2.getAge() - o1.getAge();
                             }
                         });
                         adapter.notifyDataSetChanged();
@@ -202,7 +201,7 @@ public class DashboardFragment extends Fragment {
                     Collections.sort(dashboardItemsList, new Comparator<Product>() {
                         @Override
                         public int compare(Product o1, Product o2) {
-                            return o2.getAge().compareToIgnoreCase(o1.getAge());
+                            return o1.getAge() - o2.getAge();
                         }
                     });
                     adapter.notifyDataSetChanged();
@@ -213,7 +212,6 @@ public class DashboardFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
