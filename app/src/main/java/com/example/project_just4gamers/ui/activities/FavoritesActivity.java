@@ -1,6 +1,8 @@
 package com.example.project_just4gamers.ui.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,13 +23,31 @@ public class FavoritesActivity extends AppCompatActivity {
 
     private RecyclerView rv_favoriteListItems;
     private TextView tvNoProductFound;
+    private Toolbar tbFavs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
         initComp();
+        setupActionBar();
         getFavoriteProduct();
+    }
+
+    private void setupActionBar() {
+        setSupportActionBar(tbFavs);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp);
+        }
+
+        tbFavs.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void getFavoriteProduct() {
@@ -38,8 +58,8 @@ public class FavoritesActivity extends AppCompatActivity {
     private void initComp() {
         rv_favoriteListItems = findViewById(R.id.rv_favorite_items);
         tvNoProductFound = findViewById(R.id.tv_no_favorites_found);
+        tbFavs = findViewById(R.id.toolbar_favoriteProducts);
     }
-
 
     public void successGetFavProducts(ArrayList<Product> products) {
         if (products.size() > 0){

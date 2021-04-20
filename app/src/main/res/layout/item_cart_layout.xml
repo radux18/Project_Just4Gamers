@@ -87,10 +87,10 @@
                     android:paddingStart="@dimen/cart_quantity_paddingStartEnd"
                     android:paddingTop="@dimen/cart_quantity_paddingTopBottom"
                     android:paddingEnd="@dimen/cart_quantity_paddingStartEnd"
-                    android:paddingBottom="@dimen/cart_quantity_paddingTopBottom"
+                    android:paddingBottom="12dp"
                     android:text="@string/tv_cart_quantityT"
                     android:textSize="@dimen/cart_quantity_textSize"
-                    android:textColor="@color/black"
+                    android:textColor="@color/redError"
                     android:textStyle="bold" />
 
                 <ImageButton

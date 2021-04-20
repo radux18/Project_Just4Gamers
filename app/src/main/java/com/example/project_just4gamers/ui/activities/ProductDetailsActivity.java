@@ -44,7 +44,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView tvUserName;
     private ImageView ivUserProfileImage;
     private LinearLayout llTriggerToProfile;
-    private TextView tvEditProduct;
+    private FloatingActionButton fabEdit;
     private CheckBox cbFavorite;
     private int isFavorite = 1;
     private int isUnfavorite = 0;
@@ -74,9 +74,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
             btnAddToCart.setVisibility(View.GONE);
             btnGoToCart.setVisibility(View.GONE);
             fabAddMessage.setVisibility(View.GONE);
-            tvEditProduct.setVisibility(View.VISIBLE);
+            fabEdit.setVisibility(View.VISIBLE);
         } else {
-            tvEditProduct.setVisibility(View.GONE);
+            fabEdit.setVisibility(View.GONE);
             btnAddToCart.setVisibility(View.VISIBLE);
             fabAddMessage.setVisibility(View.VISIBLE);
             btnAddToCart.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +119,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 }
             }
         });
-        tvEditProduct.setOnClickListener(new View.OnClickListener() {
+        fabEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UpdateProductActivity.class);
@@ -143,7 +143,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvUserName = findViewById(R.id.tv_user_detail_name);
         ivUserProfileImage = findViewById(R.id.iv_product_user_image);
         llTriggerToProfile = findViewById(R.id.ll_userGoToProfile);
-        tvEditProduct = findViewById(R.id.tv_edit_product);
+        fabEdit = findViewById(R.id.fab_edit_product);
         cbFavorite = findViewById(R.id.cb_product_favorite);
     }
 

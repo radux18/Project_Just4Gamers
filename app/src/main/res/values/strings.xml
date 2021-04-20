@@ -2,51 +2,50 @@
     <string name="app_name">Project_Just4Gamers</string>
     <string name="tv_splash_mottoT">MUST PLAY</string>
     <string name="header_image">Header_Image</string>
-    <string name="tv_loginT">LOGIN</string>
+    <string name="tv_loginT">Autentificare</string>
     <string name="tiet_login_emailT">Email ID</string>
-    <string name="tv_login_forgot_password">Forgot Password?</string>
+    <string name="tv_login_forgot_password">Parola uitată?</string>
     <string name="btn_loginT">LOGIN</string>
-    <string name="tv_login_registerBtnT">Don`t have an account? Register here</string>
+    <string name="tv_login_registerBtnT">Nu ai cont? Creaza cont aici</string>
     <string name="tiet_login_passwordT">Password</string>
-    <string name="tv_createAccT">CREATE AN ACCOUNT</string>
+    <string name="tv_createAccT">CREAZĂ CONT NOU</string>
     <string name="tiet_register_firstNameT">First name</string>
     <string name="tiet_register_lastNameT">Last name</string>
     <string name="tiet_register_emailT">Email ID</string>
     <string name="tiet_register_passwordT">Password</string>
-    <string name="tiet_register_passwordConfirmT">Confirm Password</string>
+    <string name="tiet_register_passwordConfirmT">Confirmă parolă</string>
     <string name="cb_register_termsT"><![CDATA[I Agree To The Terms & Condition]]></string>
-    <string name="btn_registerT">REGISTER</string>
-    <string name="tv_register_loginBtnT">Already have an account? Login</string>
+    <string name="btn_registerT">Înregistrare</string>
+    <string name="tv_register_loginBtnT">Ai deja un cont? Loghează-te</string>
     <string name="tiet_emailIdT">Email ID</string>
-    <string name="tv_detailsT">Please enter your e-mail address and we\'ll send you an e-mail to reset your password</string>
-    <string name="tv_forgotPassT">FORGOT PASSWORD?</string>
+    <string name="tv_detailsT">Introdu adresa de e-mail și noi îți vom furniza un mail cu parola nouă</string>
+    <string name="tv_forgotPassT">Ai uitat parola?</string>
     <string name="btn_submitT">SUBMIT</string>
 
     <string name="mobile_format">0%1$d</string>
 
     <string name="tv_main_welcome">Welcome aboard, %1$s !</string>
     <string name="tv_settings_name">%1$s %2$s</string>
-    <string name="tv_hi">HEY THERE</string>
-    <string name="cb_rememberT">Remember me</string>
+    <string name="cb_rememberT">Ține-mă minte</string>
 
-    <string name="tv_titleT">PROFILE</string>
-    <string name="tv_complete_profile">COMPLETE PROFILE</string>
-    <string name="tv_edit_profile">EDIT PROFILE</string>
+    <string name="tv_titleT">PROFIL</string>
+    <string name="tv_complete_profile">COMPLETARE PROFIL</string>
+    <string name="tv_edit_profile">EDITARE PROFIL</string>
 
     <string name="iv_profileC">photo</string>
     <string name="tiet_profile_mobileNrT">Mobile Number</string>
-    <string name="rb_lbl_male">MALE</string>
-    <string name="rb_lbl_female">FEMALE</string>
+    <string name="rb_lbl_male">BARBAT</string>
+    <string name="rb_lbl_female">FEMEIE</string>
     <string name="btn_submit">Submit</string>
 
-    <string name="title_orders">Orders</string>
+    <string name="title_orders">Comenzi</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_products">Products</string>
+    <string name="title_products">Produse</string>
 
-    <string name="please_click_back_again_to_exit">Please click back again to exit.</string>
+    <string name="please_click_back_again_to_exit">Apasă din nou pentru iesire</string>
     <string name="action_settings">Settings</string>
     <string name="content_description">Image portrait</string>
-    <string name="title_settings">Settings</string>
+    <string name="title_settings">Setări cont</string>
     <string name="lbl_edit">Edit</string>
     <string name="user_name">User Name</string>
     <string name="gender">Gender</string>
@@ -57,13 +56,13 @@
     <string name="action_add_product">Add Product</string>
 
 
-    <string name="title_add_product">ADD PRODUCT</string>
+    <string name="title_add_product">ADAUGA PRODUS</string>
     <string name="product_titleT">Product Title</string>
-    <string name="product_pricet">Product Price ($)</string>
-    <string name="tv_product_ageT">Please choose your product age</string>
-    <string name="rb_newT">NEW</string>
-    <string name="rb_usedT">USED</string>
-    <string name="tiet_add_product_descriptionT">Product Description</string>
+    <string name="product_pricet">Product Price (LEI)</string>
+    <string name="tv_product_ageT">Alege vechimea produsului tău</string>
+    <string name="rb_newT">NOU</string>
+    <string name="rb_usedT">UZAT</string>
+    <string name="tiet_add_product_descriptionT">Descrierea produsului</string>
     <string name="btn_add_product_submit">SUBMIT</string>
     <string name="tiet_add_product_quantityT">Product Quantity</string>
     <string name="tv_no_productsT">No products added yet!</string>
@@ -106,47 +105,47 @@
     <string name="item_age_format">%1$s ani</string>
     <string name="item_nameT">Item Name</string>
     <string name="item_priceT">100 LEI</string>
-    <string name="delete_dialog_title">Delete Product</string>
-    <string name="delete_dialog_message">Are you sure to delete this product?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="product_detailsT">Product Details</string>
+    <string name="delete_dialog_title">Sterge produs</string>
+    <string name="delete_dialog_message">Ești sigur că vrei să-l ștergi?</string>
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+    <string name="product_detailsT">Detalii produs</string>
     <string name="product_titleTT">Product Title</string>
     <string name="tv_productDetPriceT">100 LEI</string>
-    <string name="product_descriptionT">Product Description</string>
+    <string name="product_descriptionT">Descriere produs</string>
     <string name="this_is_product_details_descriptionT">This is product details description.</string>
-    <string name="stock_quantityT">Stock Quantity</string>
+    <string name="stock_quantityT">Cantitate stoc</string>
     <string name="tv_stockT">5</string>
 
-    <string name="btn_lbl_add_to_cart">ADD TO CART</string>
+    <string name="btn_lbl_add_to_cart">ADAUGA IN COS</string>
 
-    <string name="btn_lbl_go_to_cart">GO TO CART</string>
+    <string name="btn_lbl_go_to_cart">CATRE COS</string>
 
-    <string name="title_my_cart">MY CART</string>
+    <string name="title_my_cart">COSUL MEU</string>
     <string name="no_cart_item_found">No item found in cart!</string>
     <string name="lbl_subtotal">Subtotal</string>
     <string name="lbl_shipping_charge">Shipping charge</string>
     <string name="lbl_total_amount">Total Amount</string>
-    <string name="btn_lbl_checkout">Checkout</string>
+    <string name="btn_lbl_checkout">PlASEAZĂ COMANDA</string>
     <string name="action_cart">My cart</string>
     <string name="tv_subTotalT">100 LEI</string>
     <string name="tv_shippingT">10 LEI</string>
     <string name="tv_totalT">110 LEI</string>
-    <string name="btn_checkoutT">Checkout</string>
-    <string name="cartTitle">Cart</string>
+    <string name="btn_checkoutT">PlASEAZĂ COMANDA</string>
+    <string name="cartTitle">Cos</string>
     <string name="cart_item_titleT">Cart Item Title</string>
     <string name="tv_carPriceT">100 LEI</string>
     <string name="tv_cart_quantityT">1</string>
 
     <string name="lbl_out_of_stock">OUT OF STOCK</string>
-    <string name="msg_item_removed_successfully">Item removed successfully!</string>
-    <string name="msg_for_available_stock">Available stock is %1$s!You can not add more than stock quantity! </string>
+    <string name="msg_item_removed_successfully">Produsul a fost sters cu succes!</string>
+    <string name="msg_for_available_stock">Cantitatea din stoc este %1$s!Nu poți adauga mai multe produse! </string>
 
-    <string name="title_address_list">ADDRESS LIST</string>
+    <string name="title_address_list">LISTĂ ADRESE</string>
     <string name="no_address_found">No Address Found!</string>
-    <string name="lbl_add_address">Add Address</string>
+    <string name="lbl_add_address">Adauga adresă</string>
 
-    <string name="title_add_address">ADD ADDRESS</string>
+    <string name="title_add_address">Adauga adresă</string>
     <string name="hint_fullName">Full name</string>
     <string name="hint_phone_number">Phone number</string>
     <string name="hint_address">Address</string>
@@ -163,19 +162,19 @@
 
     <string name="address_details">%1$s, %2$s</string>
 
-    <string name="title_edit_address">EDIT ADDRESS</string>
-    <string name="btn_update">UPDATE</string>
+    <string name="title_edit_address">EDITEAZĂ ADRESĂ</string>
+    <string name="btn_update">MODIFICĂ</string>
     <string name="address_update_success">Your address was updated successfully!</string>
     <string name="err_update_success">Your address was not updated successfully!</string>
-    <string name="title_select_address">SELECT ADDRESS</string>
+    <string name="title_select_address">SELECTEAZĂ ADRESĂ</string>
 
-    <string name="title_checkout">CHECKOUT</string>
-    <string name="checkout_lbl_product_items">Product Items</string>
-    <string name="checkout_lbl_selected_address">Selected Address</string>
-    <string name="checkout_lbl_items_receipt">Items Receipt</string>
-    <string name="lbl_payment_mode">Payment Mode</string>
-    <string name="lbl_cash_on_delivery">Cash On Delivery</string>
-    <string name="btn_lbl_place_order">PLACE ORDER</string>
+    <string name="title_checkout">PLASEAZĂ COMANDA</string>
+    <string name="checkout_lbl_product_items">Produsele tale</string>
+    <string name="checkout_lbl_selected_address">Adresa selectată</string>
+    <string name="checkout_lbl_items_receipt">Chitanță</string>
+    <string name="lbl_payment_mode">Modalitate de plată</string>
+    <string name="lbl_cash_on_delivery">Ramburs</string>
+    <string name="btn_lbl_place_order">PlASEAZĂ COMANDA</string>
     <string name="tv_addressTypeT">Home</string>
     <string name="tv_checkout_fullNameT">Full name</string>
     <string name="tv_checkout_addressT">Address</string>
@@ -188,48 +187,48 @@
 
     <string name="no_orders_placed_yet">No orders placed yet!</string>
 
-    <string name="title_order_details">MY ORDER DETAILS</string>
-    <string name="order_details_lbl">Order Details</string>
-    <string name="order_details_lbl_order_id">Order ID</string>
-    <string name="order_details_lbl_order_date">Order Date</string>
-    <string name="order_details_lbl_order_status">Order Status</string>
-    <string name="order_status_pending">Pending</string>
-    <string name="order_details_lbl_shipping_address">Shipping Address</string>
+    <string name="title_order_details">DETALII COMANDĂ</string>
+    <string name="order_details_lbl">DETALII COMANDĂ</string>
+    <string name="order_details_lbl_order_id">ID Comandă</string>
+    <string name="order_details_lbl_order_date">Dată comandă</string>
+    <string name="order_details_lbl_order_status">Status comandă</string>
+    <string name="order_status_pending">In curs de livrare</string>
+    <string name="order_details_lbl_shipping_address">Adresa de livrare</string>
 
-    <string name="order_status_inProcess">In Process</string>
-    <string name="order_status_delivered">Delivered</string>
+    <string name="order_status_inProcess">In curs</string>
+    <string name="order_status_delivered">Livrat</string>
     <string name="tv_order_detailsIdT">12345</string>
     <string name="tv_orderDetailsDateT">22 02 2020</string>
 
-    <string name="title_soldProducts">Sold Products</string>
+    <string name="title_soldProducts">Produse vândute</string>
     <string name="no_products_sold_out_Yet">No products sold yet!</string>
 
-    <string name="title_sold_product_details">SOLD PRODUCT DETAILS</string>
-    <string name="tv_settings_pointsT">Points</string>
-    <string name="tv_item_ageT">Age</string>
-    <string name="tv_productDetails_ageT">Age</string>
-    <string name="couponsT">Coupons</string>
-    <string name="tv_dashboard_item_ageT">Age</string>
-    <string name="my_discount_couponsT">MY DISCOUNT COUPONS</string>
-    <string name="discount_coupon_10T">DISCOUNT COUPON (10%)</string>
-    <string name="btn_type0T">BUY 1 COUPON FOR 500 GAME-POINTS</string>
-    <string name="discount_coupon_15T">DISCOUNT COUPON (15%)</string>
-    <string name="btn_type1T">BUY 1 COUPON FOR 1000 GAME-POINTS</string>
-    <string name="discount_coupon_25T">DISCOUNT COUPON (25%)</string>
-    <string name="btn_type2T">BUY 1 COUPON FOR 2000 GAME-POINTS</string>
-    <string name="your_pointsT">Your Points</string>
+    <string name="title_sold_product_details">DETALII PRODUSE VÂNDUTE</string>
+    <string name="tv_settings_pointsT">Puncte</string>
+    <string name="tv_item_ageT">Vechime</string>
+    <string name="tv_productDetails_ageT">Vechime</string>
+    <string name="couponsT">Cupoane</string>
+    <string name="tv_dashboard_item_ageT">Vechime</string>
+    <string name="my_discount_couponsT">CUPOANELE MELE</string>
+    <string name="discount_coupon_10T">CUPON REDUCERE BRONZE (10%)</string>
+    <string name="btn_type0T">DEBLOCHEAZĂ CUPON PENTRU 500 PUNCTE</string>
+    <string name="discount_coupon_15T">CUPON REDUCERE SILVER (15%)</string>
+    <string name="btn_type1T">DEBLOCHEAZĂ CUPON PENTRU 1000 PUNCTE</string>
+    <string name="discount_coupon_25T">CUPON REDUCERE GOLD (25%)</string>
+    <string name="btn_type2T">DEBLOCHEAZĂ CUPON PENTRU 2000 PUNCTE</string>
+    <string name="your_pointsT">Punctele tale</string>
     <string name="pointsTT">0</string>
     <string name="tv_item_typeT">10% coupon</string>
-    <string name="my_discount_couponsTT">MY DISCOUNT COUPONS</string>
+    <string name="my_discount_couponsTT">CUPOANELE MELE DE REDUCERE</string>
     <string name="no_discount_coupon_foundT">No discount coupon found!</string>
     <string name="discount_statusT">Discount status</string>
-    <string name="tv_discountActiveT">ACTIVE</string>
-    <string name="add_discount_couponT">ADD DISCOUNT COUPON</string>
+    <string name="tv_discountActiveT">ACTIV</string>
+    <string name="add_discount_couponT">ADAUGA CUPON DE DISCOUNT</string>
     <string name="tv_progress_textT">Please wait</string>
-    <string name="tiet_dashboard_searchT">Search…</string>
-    <string name="search_productT">Search product…</string>
-    <string name="btn_dasboard_filterT">Filter</string>
-    <string name="action_boxT">Inbox messages</string>
+    <string name="tiet_dashboard_searchT">Caută…</string>
+    <string name="search_productT">Caută produs…</string>
+    <string name="btn_dasboard_filterT">Filtare</string>
+    <string name="action_boxT">Mesajele mele</string>
     <string name="tv_title_inboxT">Inbox</string>
 
     <string-array name="filter_items">
@@ -241,32 +240,32 @@
         <item>Cel mai nou</item>
     </string-array>
     <string name="title_activity_inbox">InboxActivity</string>
-    <string name="tab_section_1">Received messages</string>
-    <string name="tab_section_2">Sent messages</string>
+    <string name="tab_section_1">Mesaje primite</string>
+    <string name="tab_section_2">Mesaje trimise</string>
     <string name="tv_user_detail_nameT">Name</string>
     <string name="tv_title_msgT">Trimite Mesaj</string>
     <string name="tv_receiverT">Destinatar:</string>
     <string name="btn_sendMessageT">Trimite</string>
     <string name="tiet_addMessage_descriptionT">Scrie ceva</string>
     <string name="tiet_addMessage_titleT">Titlu</string>
-    <string name="tv_message_title">title</string>
-    <string name="tv_message_dateT">Date</string>
-    <string name="tv_message_description">Description:</string>
+    <string name="tv_message_title">titlu</string>
+    <string name="tv_message_dateT">Dată</string>
+    <string name="tv_message_description">Descriere:</string>
     <string name="tv_no_messages_foundT">No messages found!</string>
     <string name="tv_title_messageT">INBOX</string>
-    <string name="tv_message_fromTextT">From:</string>
-    <string name="tv_message_fromT">From</string>
-    <string name="tv_message_toTextT">To:</string>
-    <string name="tv_message_toT">To</string>
-    <string name="tvTitleText">Title:</string>
+    <string name="tv_message_fromTextT">De la:</string>
+    <string name="tv_message_fromT">De la</string>
+    <string name="tv_message_toTextT">Către:</string>
+    <string name="tv_message_toT">Către</string>
+    <string name="tvTitleText">Titlu:</string>
     <string name="tv_Expeditor">Expeditor:</string>
     <string name="btn_replyT">Raspunde</string>
     <string name="tv_title_msgTT">Vizualizare Mesaj</string>
     <string name="tv_productDetails_reviewTriggerT">Vezi review-uri la acest produs</string>
     <string name="btn_productDetails_addReviewT">Adauga recenzie</string>
-    <string name="tv_title_reviewT">Adauga review</string>
-    <string name="tv_review_titleT">Review Title</string>
-    <string name="tv_review_dateT">Date</string>
+    <string name="tv_title_reviewT">Adauga recenzie</string>
+    <string name="tv_review_titleT">Titlu recenzie</string>
+    <string name="tv_review_dateT">Dată</string>
     <string name="btn_addReviewT">Adauga o recenzie</string>
     <string name="tv_user_nameT">NUME</string>
 
@@ -275,5 +274,7 @@
     <string name="tv_title_editProductT">EDITARE PRODUS</string>
     <string name="btn_editProduct_submitT">MODIFICA</string>
     <string name="action_favoriteT">Favorites</string>
+    <string name="tv_parolaUitatat">RESETARE PAROLĂ</string>
+    <string name="tv_favProductst">PRODUSE PREFERATE</string>
 
 </resources>

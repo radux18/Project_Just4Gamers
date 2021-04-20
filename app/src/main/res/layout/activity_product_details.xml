@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/tv_productDetails"
-            android:layout_width="230dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textStyle="bold"
             android:gravity="center"
@@ -30,13 +30,7 @@
             android:paddingStart="@dimen/toolbar_title_paddingStart"
             android:paddingEnd="0dp" />
 
-        <CheckBox
-            android:id="@+id/cb_product_favorite"
-            android:layout_width="wrap_content"
-            android:scaleY="1.5"
-            android:scaleX="1.5"
-            android:layout_height="wrap_content"
-            android:button="@drawable/drawable_favorite_color_selector"/>
+
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -54,16 +48,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_product_details_image"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:layout_constraintTop_toTopOf="parent"
+                <ImageView
+                    android:id="@+id/iv_product_details_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/colorImageViewBackground"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/content_description"/>
+
+                <CheckBox
+                    android:id="@+id/cb_product_favorite"
+                    android:layout_width="wrap_content"
+                    android:scaleY="2"
+                    android:scaleX="2"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginEnd="30dp"
+                    android:button="@drawable/drawable_favorite_color_selector"
+                    android:layout_marginRight="30dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_edit_product"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_edit"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/colorImageViewBackground"
-                android:scaleType="fitXY"
-                android:contentDescription="@string/content_description"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="130dp"
+                android:focusable="true"
+                android:src="@drawable/ic_vector_edit"
+                android:contentDescription="@string/content_description" />
+
 
             <LinearLayout
                 android:id="@+id/ll_product_details_title_price"
@@ -75,22 +100,6 @@
                 android:orientation="vertical"
                 android:layout_marginTop="16dp"
                 android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/tv_edit_product"
-                        android:layout_width="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:text="@string/lbl_edit"
-                        android:paddingEnd="15dp"
-                        android:paddingStart="15dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:clickable="true"
-                        android:background="@drawable/textview_format_v2"
-                        android:focusable="true"
-                        tools:ignore="RtlCompat" />
 
                 <TextView
                     android:id="@+id/tv_productDetails_title"
@@ -173,7 +182,9 @@
                     android:text="@string/tv_stockT"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
+                    android:textColor="@color/black"
                     android:paddingTop="5dp"
+
                     android:paddingBottom="5dp"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -195,7 +206,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_user_details"
+                app:layout_constraintTop_toBottomOf="@id/ll_product_details_quantity"
                 />
 
             <Button
@@ -213,7 +224,8 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_user_details"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_product_details_quantity"
                 app:layout_goneMarginBottom="20dp"
                 />
 

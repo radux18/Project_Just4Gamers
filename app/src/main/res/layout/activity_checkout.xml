@@ -93,12 +93,14 @@
                     android:paddingBottom="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
                     android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:text="@string/tv_addressTypeT"/>
 
                 <TextView
                     android:id="@+id/tv_checkout_fullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/item_address_name_textSize"
                     android:text="@string/tv_checkout_fullNameT"/>
 
@@ -106,6 +108,7 @@
                     android:id="@+id/tv_checkout_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
                     android:text="@string/tv_checkout_addressT"/>
@@ -114,6 +117,7 @@
                     android:id="@+id/tv_checkout_additionalNote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
                     android:text="@string/tv_checkout_additionalNoteT"/>
@@ -123,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/address_details_marginTop"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/address_details_textSize"
                     android:text="@string/tv_checkout_otherDetails"/>
 
@@ -130,6 +135,7 @@
                     android:id="@+id/tv_checkout_mobileNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
                     android:text="@string/tv_checkout_mobileNrT"/>
@@ -166,6 +172,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:layout_weight="1"
                         android:text="@string/lbl_subtotal"
                         android:textSize="@dimen/checkout_lbl_textSize"/>
@@ -175,6 +182,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/checkout_label_value_textSize"
                         android:text="@string/tv_checkout_subtotalT"
                         android:gravity="center"/>
@@ -189,6 +197,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:text="@string/lbl_shipping_charge"
                         android:textSize="@dimen/checkout_label_value_textSize"/>
 
@@ -196,6 +205,7 @@
                         android:id="@+id/tv_checkout_shippingCharge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:text="@string/t_checkout_shippingCharge"
                         android:textSize="@dimen/checkout_label_value_textSize"/>
                 </LinearLayout>
@@ -209,6 +219,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:text="@string/lbl_total_amount"
                         android:textSize="@dimen/checkout_label_value_textSize" />
 
@@ -218,6 +229,7 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:textSize="@dimen/checkout_label_value_textSize"
+                        android:textColor="@color/black"
                         android:text="@string/tv_checkout_totalT"
                         android:gravity="center" />
                 </LinearLayout>
@@ -233,6 +245,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:text="@string/discount_statusT"
                         android:textSize="@dimen/checkout_label_value_textSize" />
 
@@ -275,6 +288,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="@string/lbl_payment_mode"
                 android:textSize="@dimen/checkout_label_value_textSize" />
 
@@ -284,6 +298,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_cash_on_delivery"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="@dimen/checkout_label_value_textSize"
                 android:gravity="center" />
         </LinearLayout>

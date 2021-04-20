@@ -47,7 +47,7 @@ public class DiscountCouponsActivity extends AppCompatActivity {
                     userHashMap.put(Constants.getPOINTS(), points);
                     new FirestoreManager().setPointForCurrentUser(DiscountCouponsActivity.this, userHashMap);
 
-                    DiscountCoupon discountCoupon = new DiscountCoupon(new FirestoreManager().getCurrentUserID(), "0");
+                    DiscountCoupon discountCoupon = new DiscountCoupon(new FirestoreManager().getCurrentUserID(), "bronze");
                     new FirestoreManager().setDiscountCouponForCurrentUser(discountCoupon, getApplicationContext());
                     tvPoints.setText(String.valueOf(points));
                 } else {
@@ -66,7 +66,7 @@ public class DiscountCouponsActivity extends AppCompatActivity {
                     userHashMap.put(Constants.getPOINTS(), points);
                     new FirestoreManager().setPointForCurrentUser(DiscountCouponsActivity.this, userHashMap);
 
-                    DiscountCoupon discountCoupon = new DiscountCoupon(new FirestoreManager().getCurrentUserID(), "1");
+                    DiscountCoupon discountCoupon = new DiscountCoupon(new FirestoreManager().getCurrentUserID(), "silver");
                     new FirestoreManager().setDiscountCouponForCurrentUser(discountCoupon, getApplicationContext());
                     tvPoints.setText(String.valueOf(points));
                 } else {
@@ -84,7 +84,7 @@ public class DiscountCouponsActivity extends AppCompatActivity {
                     userHashMap.put(Constants.getPOINTS(), points);
                     new FirestoreManager().setPointForCurrentUser(DiscountCouponsActivity.this, userHashMap);
 
-                    DiscountCoupon discountCoupon = new DiscountCoupon(new FirestoreManager().getCurrentUserID(), "2");
+                    DiscountCoupon discountCoupon = new DiscountCoupon(new FirestoreManager().getCurrentUserID(), "gold");
                     new FirestoreManager().setDiscountCouponForCurrentUser(discountCoupon, getApplicationContext());
                     tvPoints.setText(String.valueOf(points));
                 } else {

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="15dp"
-    android:background="@color/lightGrey"
+    android:background="@drawable/silver_background"
     android:padding="20dp">
 
     <LinearLayout
@@ -30,51 +30,40 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_product_details"
+        android:id="@+id/ll_coupon_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:gravity="center"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/ll_item_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ib_delete_product">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/tv_item_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/tv_item_nameT"
+            android:layout_weight="1"
+            android:text="Coupon type:"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/tv_item_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tv_item_typeT"
             android:textStyle="bold"
             android:textSize="20sp"/>
 
 
-        <TextView
-            android:id="@+id/tv_item_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="20sp"
-            android:text="@string/tv_item_priceT"
-             />
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/ib_delete_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/content_description"
-        android:src="@drawable/ic_vector_delete"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ll_product_details"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="5dp"
-        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

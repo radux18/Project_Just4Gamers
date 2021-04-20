@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="15dp"
-    android:background="@drawable/user_image_background"
+    android:background="@drawable/bronze_background"
     android:padding="20dp">
 
     <LinearLayout

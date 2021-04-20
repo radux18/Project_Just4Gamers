@@ -52,7 +52,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             new GlideLoader(context).loadProductPicture(model.getImage(), ((ViewHolder) itemList).image);
             ((ViewHolder) itemList).tvName.setText(model.getTitle());
             ((ViewHolder) itemList).tvPrice.setText(context.getResources().getString(R.string.item_price_format,String.valueOf(model.getPrice())));
-            ((ViewHolder) itemList).tvAge.setText(model.getAge());
+            ((ViewHolder) itemList).tvAge.setText(context.getResources().getString(R.string.item_age_format, String.valueOf(model.getAge())));
 
             ((ViewHolder) itemList).ibDelete.setOnClickListener(new View.OnClickListener() {
                 @Override

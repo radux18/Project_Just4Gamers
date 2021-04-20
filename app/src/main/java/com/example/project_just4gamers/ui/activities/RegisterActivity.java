@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.R;
@@ -39,6 +41,7 @@ public class RegisterActivity extends ProgressDialogActivity {
     private Button btn_register;
     private CheckBox cb_terms;
     private ProgressBar progressBar;
+    private Toolbar tbRegister;
 
     private FirebaseAuth fAuth;
 
@@ -46,7 +49,7 @@ public class RegisterActivity extends ProgressDialogActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        setupActionBar();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             final WindowInsetsController insetsController = getWindow().getInsetsController();
             if (insetsController != null) {
@@ -64,6 +67,22 @@ public class RegisterActivity extends ProgressDialogActivity {
         tv_loginBtn.setOnClickListener(loginListener());
         btn_register.setOnClickListener(registerListener());
 
+    }
+
+    private void setupActionBar() {
+        setSupportActionBar(tbRegister);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp);
+        }
+
+        tbRegister.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private View.OnClickListener loginListener() {
@@ -126,7 +145,7 @@ public class RegisterActivity extends ProgressDialogActivity {
         btn_register = findViewById(R.id.btn_register);
         cb_terms = findViewById(R.id.cb_register_terms);
         progressBar = findViewById(R.id.pb_loading);
-
+        tbRegister = findViewById(R.id.toolbar_register_activity);
         fAuth = FirebaseAuth.getInstance();
     }
 

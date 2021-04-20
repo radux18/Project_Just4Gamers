@@ -7,6 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.FavoritesActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_favoriteProducts"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/redError"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tv_favProducts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/tv_favProductst"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:paddingLeft="@dimen/toolbar_title_paddingStart"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp" />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_favorite_items"
         android:layout_width="match_parent"

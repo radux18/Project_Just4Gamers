@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.RegisterActivity">
 
-    <TextView
-        android:id="@+id/tv_createAcc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_createAccT"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_register_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp" />
+        android:background="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tv_createAcc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/tv_createAccT"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:paddingLeft="@dimen/toolbar_title_paddingStart"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp" />
+
+
+    </androidx.appcompat.widget.Toolbar>
 
 
     <ScrollView
@@ -23,7 +43,7 @@
         android:fillViewport="true"
         android:scrollbars="none"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_createAcc"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_register_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -40,7 +60,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_register_firstName"
-                android:layout_width="@dimen/auth_login_email_width"
+                android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +88,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiet_register_lastName"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="match_parent"
                     android:padding="5dp"
                     android:background="@drawable/textview_format"
@@ -78,7 +98,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_register_email"
-                android:layout_width="@dimen/auth_login_email_width"
+                android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +126,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiet_register_password"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="match_parent"
                     android:padding="5dp"
                     android:background="@drawable/textview_format"
@@ -116,7 +136,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_register_passwordConfirm"
-                android:layout_width="@dimen/auth_login_email_width"
+                android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
                 app:layout_constraintEnd_toEndOf="parent"

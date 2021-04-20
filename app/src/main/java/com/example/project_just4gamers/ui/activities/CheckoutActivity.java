@@ -167,7 +167,7 @@ public class CheckoutActivity extends AppCompatActivity {
         if (addressDetails != null){
              orderDetails = new Order(new FirestoreManager().getCurrentUserID(),
                     cartItems, addressDetails,
-                    "OrderNo. " + System.currentTimeMillis(),
+                    "Nr. comanda " + System.currentTimeMillis(),
                     cartItems.get(0).getImage(),
                     String.valueOf(subtotal), String.valueOf(totalAmount),
                     "10.0",
@@ -179,7 +179,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
     public void successCartItemsList(ArrayList<CartItem> cartList){
         //hide progress dialog
-        //check-method if we have the right amount of stock.
         for (Product product : products){
             for (CartItem cartItem : cartList){
                 if (product.getProduct_id().equals(cartItem.getProduct_id())){
@@ -213,19 +212,19 @@ public class CheckoutActivity extends AppCompatActivity {
             ll_discountActive.setVisibility(View.VISIBLE);
 
             switch (discountCoupon.getType()) {
-                case "0":
+                case "bronze":
                         subtotal = subtotal * discountProcent0;
                         totalAmount = subtotal + 10;
                         tvSubtotal.setText(String.valueOf(subtotal));
                         tvTotal.setText(String.valueOf(totalAmount));
                     break;
-                case "1":
+                case "silver":
                     subtotal = subtotal * discountProcent1;
                     totalAmount = subtotal + 10;
                     tvSubtotal.setText(String.valueOf(subtotal));
                     tvTotal.setText(String.valueOf(totalAmount));
                     break;
-                case "2":
+                case "gold":
                     subtotal = subtotal * discountProcent2;
                     totalAmount = subtotal + 10;
                     tvSubtotal.setText(String.valueOf(subtotal));
@@ -269,7 +268,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     public void allDetailsUpdatedSuccessfully(){
         //hide progress dialog
-        Toast.makeText(getApplicationContext(), "Order was placed successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Comanda a fost plasata cu succes!", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

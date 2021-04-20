@@ -30,7 +30,8 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_settings_activity"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/redError">
 
                 <TextView
                     android:id="@+id/tv_title_address"
@@ -92,6 +93,19 @@
             android:background="@drawable/textview_format_v2"
             android:focusable="true" />
 
+<!--        <TextView-->
+<!--            android:id="@+id/tv_myRating"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="My rating"-->
+<!--            android:textStyle="italic"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_below="@id/fl_user_image"/>-->
+
+
+
         <LinearLayout
             android:id="@+id/ll_user_det"
             android:layout_width="match_parent"
@@ -99,6 +113,16 @@
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:layout_below="@+id/fl_user_image">
+
+            <RatingBar
+                android:id="@+id/rb_settings"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="11dp"
+                android:isIndicator="true"
+                android:numStars="5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -238,23 +262,7 @@
                     />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="My rating"
-                android:textStyle="italic"
-                android:layout_gravity="center_horizontal"
-                android:textSize="30sp"/>
 
-            <RatingBar
-                android:id="@+id/rb_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
 

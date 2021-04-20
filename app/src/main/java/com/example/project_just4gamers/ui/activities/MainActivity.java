@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initComp() {
-        tv_welcome = findViewById(R.id.tv_main_hello);
+      //  tv_welcome = findViewById(R.id.tv_main_hello);
     }
 
 
