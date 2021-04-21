@@ -63,8 +63,8 @@ public class PodiumActivity extends AppCompatActivity {
         new FirestoreManager().getAllUsers(PodiumActivity.this);
     }
 
-    public void successGetSoldProductUser(User userr) {
-        user = userr;
+    public void successGetAllSoldProducts(ArrayList<SoldProduct> soldProducts) {
+
     }
 
     public void successGetUsers(ArrayList<User> users){

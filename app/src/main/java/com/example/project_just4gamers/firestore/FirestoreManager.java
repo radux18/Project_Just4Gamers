@@ -1060,18 +1060,6 @@ public class FirestoreManager {
                 });
    }
 
-   public void getUsers(PodiumActivity activity, String userId){
-        fStore.collection(Constants.getUSERS())
-                .document(userId)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        User user = documentSnapshot.toObject(User.class);
 
-                        activity.successGetSoldProductUser(user);
-                    }
-                });
-   }
 
 }
