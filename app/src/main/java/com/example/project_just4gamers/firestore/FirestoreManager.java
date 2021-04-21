@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.project_just4gamers.ui.activities.PodiumActivity;
 import com.example.project_just4gamers.models.Address;
 import com.example.project_just4gamers.models.CartItem;
 import com.example.project_just4gamers.models.DiscountCoupon;
@@ -652,7 +653,7 @@ public class FirestoreManager {
                 });
     }
 
-    public void getAllUsers(CheckoutActivity activity){
+    public void getAllUsers(Activity activity){
         fStore.collection(Constants.getUSERS())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -664,10 +665,17 @@ public class FirestoreManager {
                                 if (user != null)
                                 users.add(user);
                             }
-                            activity.successGetUsersFromFirestore(users);
+                            if (activity instanceof CheckoutActivity){
+                                ((CheckoutActivity) activity).successGetUsersFromFirestore(users);
+                            } else  if (activity instanceof PodiumActivity){
+                                ((PodiumActivity) activity).successGetUsers(users);
+                            }
+
                     }
                 });
     }
+
+
 
     public void setPointsForDifferentUsers(HashMap<String, Object> userHasMap, User user){
         fStore.collection(Constants.getUSERS())
@@ -1034,5 +1042,36 @@ public class FirestoreManager {
                 });
    }
 
+   public void getAllSoldProducts(PodiumActivity activity){
+        fStore.collection(Constants.getSoldProducts())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<SoldProduct> soldProducts = new ArrayList<>();
+
+                        for (DocumentSnapshot documentSnapshot : documents){
+                            SoldProduct soldProduct = documentSnapshot.toObject(SoldProduct.class);
+                            soldProduct.setId(documentSnapshot.getId());
+                            soldProducts.add(soldProduct);
+                        }
+                        activity.successGetAllSoldProducts(soldProducts);
+                    }
+                });
+   }
+
+   public void getUsers(PodiumActivity activity, String userId){
+        fStore.collection(Constants.getUSERS())
+                .document(userId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        User user = documentSnapshot.toObject(User.class);
+
+                        activity.successGetSoldProductUser(user);
+                    }
+                });
+   }
 
 }

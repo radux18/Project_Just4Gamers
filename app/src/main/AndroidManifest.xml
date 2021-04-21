@@ -14,9 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Just4Gamers">
-        <activity android:name=".ui.activities.FavoritesActivity"
+        <activity android:name=".ui.activities.PodiumActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Project_Just4Gamers.NoActionBar"/>
+            android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
+        <activity
+            android:name=".ui.activities.FavoritesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
             android:name=".ui.activities.UpdateProductActivity"
             android:screenOrientation="portrait"
@@ -85,9 +89,7 @@
             android:name=".ui.activities.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".ui.activities.DashboardActivity"
-            android:label="@string/app_name" />
+        <activity android:name=".ui.activities.DashboardActivity" />
         <activity
             android:name=".ui.activities.UserProfileActivity"
             android:screenOrientation="portrait"
@@ -118,8 +120,9 @@
             android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

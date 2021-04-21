@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/action_podium"
+          android:icon="@drawable/podium"
+          android:title="Podium"
+          app:showAsAction="always"/>
+
     <item android:id="@+id/action_favorite"
            android:icon="@drawable/ic_vector_favorite"
             android:title="@string/action_favoriteT"

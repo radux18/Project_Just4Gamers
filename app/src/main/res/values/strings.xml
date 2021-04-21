@@ -279,6 +279,16 @@
 
     <string name="facebook_app_id">454854602405675</string>
     <string name="fb_login_protocol_scheme">fb454854602405675</string>
+    <string name="tv_podiumT">Clasament</string>
+    <string name="tv_userNameT">Name</string>
+    <string name="tv_userPointsT">Puncte</string>
 
+    <string-array name="podium_category_items">
+        <item>Cele mai multe puncte</item>
+        <item>Cele mai multe produse vandute</item>
+        <item>Cele mai multe produse cumparate</item>
+    </string-array>
+
+    <string name="item1">Cele mai multe puncte</string>
 
 </resources>

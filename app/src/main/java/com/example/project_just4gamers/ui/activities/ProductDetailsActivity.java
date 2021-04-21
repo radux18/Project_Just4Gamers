@@ -216,8 +216,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     new FirestoreManager().updateFavoriteProduct(ProductDetailsActivity.this, productFavoriteHashMap, productDetails.getProduct_id());
                     new FirestoreManager().updateProductFavoriteId(ProductDetailsActivity.this, productHashMap, productDetails.getProduct_id());
 
-
-                } else if (!isChecked){
+                } else {
                     productFavoriteHashMap.put(Constants.getFAVORITE(), String.valueOf(isUnfavorite));
                     productHashMap.put(Constants.getUserfavoriteId(), "");
                     new FirestoreManager().updateFavoriteProduct(ProductDetailsActivity.this, productFavoriteHashMap, productDetails.getProduct_id());

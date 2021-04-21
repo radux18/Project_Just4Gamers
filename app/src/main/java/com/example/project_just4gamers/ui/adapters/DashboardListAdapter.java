@@ -97,8 +97,6 @@ public class DashboardListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 Intent intent = new Intent(context, ProductDetailsActivity.class);
                 intent.putExtra(Constants.getExtraProductId(), model.getProduct_id());
                 intent.putExtra(Constants.getExtraProductOwnerId(), model.getUser_id());
-                System.out.println(model.getProduct_id() + "AICI1");
-                System.out.println(model.getUser_id() + "AICI2");
                 context.startActivity(intent);
             }
         });

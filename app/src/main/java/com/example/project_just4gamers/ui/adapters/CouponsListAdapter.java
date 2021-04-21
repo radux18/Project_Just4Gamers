@@ -112,28 +112,4 @@ public class CouponsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-//    public static class ViewHolderSilver extends RecyclerView.ViewHolder {
-//        private ImageView ivImage;
-//        private TextView tvCouponType;
-//
-//        public ViewHolderSilver(View itemView){
-//            super(itemView);
-//            ivImage = itemView.findViewById(R.id.iv_cart_item_image);
-//            tvCouponType= itemView.findViewById(R.id.tv_item_type);
-//        }
-//    }
-//
-//    public static class ViewHolderGold extends RecyclerView.ViewHolder {
-//        private ImageView ivImage;
-//        private TextView tvCouponType;
-//
-//        public ViewHolderGold(View itemView){
-//            super(itemView);
-//            ivImage = itemView.findViewById(R.id.iv_cart_item_image);
-//            tvCouponType= itemView.findViewById(R.id.tv_item_type);
-//        }
-//    }
-
-
-
 }

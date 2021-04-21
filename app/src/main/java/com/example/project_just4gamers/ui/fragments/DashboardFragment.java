@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project_just4gamers.ui.activities.PodiumActivity;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.models.Product;
@@ -91,7 +92,10 @@ public class DashboardFragment extends Fragment {
                     startActivity(new Intent(getActivity().getApplicationContext(), InboxActivity.class));
                 } else if (item.getItemId() == R.id.action_favorite){
                     startActivity(new Intent(getActivity().getApplicationContext(), FavoritesActivity.class));
+                } else if (item.getItemId() == R.id.action_podium){
+                    startActivity(new Intent(getActivity().getApplicationContext(), PodiumActivity.class));
                 }
+
               return false;
             }
         });
