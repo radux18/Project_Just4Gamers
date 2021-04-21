@@ -1,7 +1,12 @@
 package com.example.project_just4gamers.ui.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,13 +20,14 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.utils.Constants;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -39,10 +45,13 @@ public class LoginActivity extends ProgressDialogActivity {
     private Button btnLogin;
     private FirebaseAuth fAuth;
     private CheckBox cb_remember;
+    private LoginButton fbLoginButton;
     private String email;
     private String password;
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
+
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +80,27 @@ public class LoginActivity extends ProgressDialogActivity {
         updateViews();
 
         tiet_passwordForgot.setOnClickListener(forgotPassEvListener());
+
+        //fb login
+        FacebookSdk.sdkInitialize(getApplicationContext());
+      //  AppEventsLogger.activateApp(this);
+        callbackManager = CallbackManager.Factory.create();
+        fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
     }
 
     private View.OnClickListener loginEventListener() {
@@ -190,6 +220,7 @@ public class LoginActivity extends ProgressDialogActivity {
         tiet_passwordForgot = findViewById(R.id.tv_login_forgotPassword);
         btnLogin = findViewById(R.id.btn_login);
         cb_remember = findViewById(R.id.cb_login_remember);
+        fbLoginButton = findViewById(R.id.btn_fbLogin);
         fAuth = FirebaseAuth.getInstance();
     }
 

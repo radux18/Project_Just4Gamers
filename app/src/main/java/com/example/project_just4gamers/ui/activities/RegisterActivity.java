@@ -49,6 +49,7 @@ public class RegisterActivity extends ProgressDialogActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        initComponents();
         setupActionBar();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             final WindowInsetsController insetsController = getWindow().getInsetsController();
@@ -62,7 +63,6 @@ public class RegisterActivity extends ProgressDialogActivity {
             );
         }
 
-        initComponents();
 
         tv_loginBtn.setOnClickListener(loginListener());
         btn_register.setOnClickListener(registerListener());

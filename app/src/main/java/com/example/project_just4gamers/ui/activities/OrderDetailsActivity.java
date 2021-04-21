@@ -92,7 +92,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
     }
 
     private void setupUI(Order orderDetails){
-        //setup the order interface with order details
         tvOrderId.setText(orderDetails.getTitle());
 
         String dateFormat = "dd MM yyyy HH:mm";
@@ -105,24 +104,20 @@ public class OrderDetailsActivity extends AppCompatActivity {
         long diffInMilliSeconds = System.currentTimeMillis() - orderDetails.getOrder_dateTime();
         long diffInHours = TimeUnit.MILLISECONDS.toHours(diffInMilliSeconds);
 
-        // if the order has been made less than 1 hour -> status = pending
         if (diffInHours < 1){
             tvOrderStatus.setText(getResources().getString(R.string.order_status_pending));
             tvOrderStatus.setTextColor(ContextCompat.getColor(OrderDetailsActivity.this, R.color.redError));
-        } else if (diffInHours > 1 && diffInHours < 4){   // if the order has been made less than 4 hour -> status = in progress
+        } else if (diffInHours > 1 && diffInHours < 4){
             tvOrderStatus.setText(getResources().getString(R.string.order_status_inProcess));
             tvOrderStatus.setTextColor(ContextCompat.getColor(OrderDetailsActivity.this, R.color.orderStatusInProcess));
-        } else {   // if the order has been made for more than 4 hours -> status = delivered
+        } else {
             tvOrderStatus.setText(getResources().getString(R.string.order_status_delivered));
             tvOrderStatus.setTextColor(ContextCompat.getColor(OrderDetailsActivity.this, R.color.orderStatusDelivered));
         }
 
-        //setting up the recycler view
         rvOrderDetailsList.setLayoutManager(new LinearLayoutManager(OrderDetailsActivity.this));
         rvOrderDetailsList.setHasFixedSize(true);
 
-        //re-use the cart adapter
-        //we pass with this adapter the items list
         CartItemsAdapter adapter = new CartItemsAdapter(OrderDetailsActivity.this, orderDetails.getItems(), false);
         rvOrderDetailsList.setAdapter(adapter);
 

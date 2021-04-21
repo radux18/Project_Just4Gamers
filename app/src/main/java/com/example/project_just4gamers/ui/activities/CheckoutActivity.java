@@ -167,7 +167,7 @@ public class CheckoutActivity extends AppCompatActivity {
         if (addressDetails != null){
              orderDetails = new Order(new FirestoreManager().getCurrentUserID(),
                     cartItems, addressDetails,
-                    "Nr. comanda " + System.currentTimeMillis(),
+                    "nr." + System.currentTimeMillis(),
                     cartItems.get(0).getImage(),
                     String.valueOf(subtotal), String.valueOf(totalAmount),
                     "10.0",

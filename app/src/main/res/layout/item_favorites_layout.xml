@@ -22,7 +22,7 @@
         >
 
         <ImageView
-            android:id="@+id/iv_item_image"
+            android:id="@+id/iv_favItem_image"
             android:layout_width="80dp"
             android:layout_height="70dp"
             android:contentDescription="@string/content_description"
@@ -44,7 +44,7 @@
         >
 
         <TextView
-            android:id="@+id/tv_item_name"
+            android:id="@+id/tv_favItem_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_item_nameT"
@@ -52,7 +52,7 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/tv_item_age"
+            android:id="@+id/tv_favItem_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_item_ageT"
@@ -60,7 +60,7 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/tv_item_price"
+            android:id="@+id/tv_favItem_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

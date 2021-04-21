@@ -16,13 +16,11 @@ import com.example.project_just4gamers.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //This is for making the splash activity on fullscreen
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             final WindowInsetsController insetsController = getWindow().getInsetsController();
             if (insetsController != null) {
@@ -35,7 +33,6 @@ public class SplashActivity extends AppCompatActivity {
             );
         }
 
-        //is used for time-delay between intro activity and main activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -515,7 +515,6 @@ public class FirestoreManager {
                         } else if (activity instanceof AddReviewActivity){
                             ((AddReviewActivity) activity).successGetUser(user);
                         }
-
                     }
                 });
     }

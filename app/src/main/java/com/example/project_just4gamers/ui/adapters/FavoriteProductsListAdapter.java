@@ -80,14 +80,11 @@ public class FavoriteProductsListAdapter extends RecyclerView.Adapter<RecyclerVi
 
         public ViewHolder(View itemView){
             super(itemView);
-            image = itemView.findViewById(R.id.iv_item_image);
-            tvName = itemView.findViewById(R.id.tv_item_name);
-            tvPrice = itemView.findViewById(R.id.tv_item_price);
+            image = itemView.findViewById(R.id.iv_favItem_image);
+            tvName = itemView.findViewById(R.id.tv_favItem_name);
+            tvPrice = itemView.findViewById(R.id.tv_favItem_price);
           //  ibDelete = itemView.findViewById(R.id.ib_delete_product);
-            tvAge = itemView.findViewById(R.id.tv_item_age);
+            tvAge = itemView.findViewById(R.id.tv_favItem_age);
         }
     }
-
-
-
 }

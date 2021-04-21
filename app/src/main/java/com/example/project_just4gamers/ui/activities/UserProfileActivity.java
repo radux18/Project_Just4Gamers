@@ -250,6 +250,4 @@ public class UserProfileActivity extends AppCompatActivity {
         userProfileURL = imageURL;
         updateUserProfileDetails();
     }
-
-
 }

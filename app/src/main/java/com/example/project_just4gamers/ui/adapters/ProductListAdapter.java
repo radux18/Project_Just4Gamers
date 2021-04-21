@@ -99,7 +99,4 @@ public class ProductListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvAge = itemView.findViewById(R.id.tv_item_age);
         }
     }
-
-
-
 }

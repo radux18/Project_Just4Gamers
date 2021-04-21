@@ -277,4 +277,8 @@
     <string name="tv_parolaUitatat">RESETARE PAROLĂ</string>
     <string name="tv_favProductst">PRODUSE PREFERATE</string>
 
+    <string name="facebook_app_id">454854602405675</string>
+    <string name="fb_login_protocol_scheme">fb454854602405675</string>
+
+
 </resources>

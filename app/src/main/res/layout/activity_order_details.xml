@@ -85,11 +85,11 @@
                         android:id="@+id/tv_order_details_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/tv_order_detailsIdT"
                         android:textAlignment="center"
                         android:textColor="@color/darkGrey"
-                        android:textSize="@dimen/order_details_label_value_textSize"
-                        android:text="@string/tv_order_detailsIdT"
-                        android:gravity="center_horizontal" />
+                        android:textSize="@dimen/order_details_label_value_textSize" />
                 </LinearLayout>
 
                 <LinearLayout

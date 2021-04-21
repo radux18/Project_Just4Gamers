@@ -72,7 +72,7 @@ public class UpdateProductActivity extends AppCompatActivity {
             productDetails = intent.getParcelableExtra(Constants.getExtraProductDetails());
         }
 
-        populateUI();
+        populateUI(productDetails);
 
         rgType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("ResourceType")
@@ -80,9 +80,9 @@ public class UpdateProductActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton rb = (RadioButton) group.findViewById(checkedId);
                 if (null != rb && checkedId > -1){
-                    if (checkedId == R.id.rb_used){
+                    if (checkedId == R.id.rb_editUsed){
                         llProductAge.setVisibility(View.VISIBLE);
-                    } else if (checkedId == R.id.rb_new){
+                    } else if (checkedId == R.id.rb_editNew){
                         llProductAge.setVisibility(View.GONE);
                     }
                 }
@@ -138,6 +138,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         int price = Integer.parseInt(tiet_price.getText().toString().trim());
         String quantity = tiet_quantity.getText().toString().trim();
         String description = tiet_description.getText().toString();
+        int age = Integer.parseInt(spnProductAge.getSelectedItem().toString());
 
         HashMap<String, Object> productHashMap = new HashMap<>();
 
@@ -159,8 +160,12 @@ public class UpdateProductActivity extends AppCompatActivity {
 
         if (rbNew.isChecked()){
             type = Constants.getNEW();
+            productHashMap.put(Constants.getTYPE(), type);
+            productHashMap.put(Constants.getAGE(), "0");
         } else {
             type = Constants.getUSED();
+            productHashMap.put(Constants.getTYPE(), type);
+            productHashMap.put(Constants.getAGE(), age);
         }
 
 
@@ -193,7 +198,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         return true;
     }
 
-    private void populateUI() {
+    private void populateUI(Product productDetails) {
         tiet_title.setText(productDetails.getTitle());
         tiet_description.setText(productDetails.getDescription());
         tiet_price.setText(String.valueOf(productDetails.getPrice()));
