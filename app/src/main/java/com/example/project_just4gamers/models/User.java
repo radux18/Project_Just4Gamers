@@ -15,6 +15,8 @@ public class User implements Parcelable {
     private String gender = "";
     private long mobile = 0;
     private int profileCompleted = 0;
+    private int soldProducts = 0;
+    private int orders = 0;
 
     public User() {
     }
@@ -29,6 +31,8 @@ public class User implements Parcelable {
         this.gender = "";
         this.mobile = 0;
         this.profileCompleted = 0;
+        this.soldProducts = 0;
+        this.orders = 0;
     }
 
 
@@ -42,6 +46,8 @@ public class User implements Parcelable {
         gender = in.readString();
         mobile = in.readLong();
         profileCompleted = in.readInt();
+        soldProducts = in.readInt();
+        orders = in.readInt();
     }
 
     @Override
@@ -55,6 +61,8 @@ public class User implements Parcelable {
         dest.writeString(gender);
         dest.writeLong(mobile);
         dest.writeInt(profileCompleted);
+        dest.writeInt(soldProducts);
+        dest.writeInt(orders);
     }
 
     @Override
@@ -73,11 +81,6 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
-
-
-    public static Creator<User> getCREATOR() {
-        return CREATOR;
-    }
 
     public String getId() {
         return id;
@@ -152,6 +155,26 @@ public class User implements Parcelable {
         this.profileCompleted = profileCompleted;
     }
 
+    public int getSoldProducts() {
+        return soldProducts;
+    }
+
+    public void setSoldProducts(int soldProducts) {
+        this.soldProducts = soldProducts;
+    }
+
+    public static Creator<User> getCREATOR() {
+        return CREATOR;
+    }
+
+    public int getOrders() {
+        return orders;
+    }
+
+    public void setOrders(int orders) {
+        this.orders = orders;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -164,6 +187,8 @@ public class User implements Parcelable {
                 ", gender='" + gender + '\'' +
                 ", mobile=" + mobile +
                 ", profileCompleted=" + profileCompleted +
+                ", soldProducts=" + soldProducts +
+                ", orders=" + orders +
                 '}';
     }
 }

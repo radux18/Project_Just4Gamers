@@ -19,6 +19,7 @@ public class Constants {
     public static final String MESSAGES = "messages";
     public static final String REVIEWS = "reviews";
     public static final String FAVORITES = "favorites";
+    public static final String SOLDPRODUCTS = "soldProducts";
 
     public static final String POINTS = "points";
     public static final String FAVORITE = "favorite";
@@ -108,6 +109,10 @@ public class Constants {
     public static final String EXTRA_RECEIVER_ID = "userProfile_id";
 
     public static final String EXTRA_PRODUCT_DETAILS = "extra_product_details";
+
+    public static String getSOLDPRODUCTS() {
+        return SOLDPRODUCTS;
+    }
 
     public static String getUserfavoriteId() {
         return USERFAVORITE_ID;

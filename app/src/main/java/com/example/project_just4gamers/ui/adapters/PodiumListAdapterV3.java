@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
+import com.example.project_just4gamers.models.CartItem;
+import com.example.project_just4gamers.models.Order;
+import com.example.project_just4gamers.models.Product;
 import com.example.project_just4gamers.models.SoldProduct;
 import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.utils.Constants;
@@ -20,20 +23,21 @@ import com.example.project_just4gamers.utils.GlideLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PodiumListAdapterV2 extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class PodiumListAdapterV3 extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private Context context;
     private ArrayList<User> userList;
-    private ArrayList<SoldProduct> soldProducts;
+    private ArrayList<Order> orders;
     private static int TYPE_BRONZE = 2;
     private static int TYPE_SILVER = 1;
     private static int TYPE_GOLD = 0;
     private static int TYPE_DEFAULT = 3;
 
-    public PodiumListAdapterV2(Context context, ArrayList<User> userList, ArrayList<SoldProduct> soldProductList) {
+
+    public PodiumListAdapterV3(Context context, ArrayList<User> userList, ArrayList<Order> orderList) {
         this.context = context;
         this.userList = userList;
-        this.soldProducts = soldProductList;
+        this.orders = orderList;
     }
 
     @NonNull
@@ -70,14 +74,14 @@ public class PodiumListAdapterV2 extends RecyclerView.Adapter<RecyclerView.ViewH
         HashMap<String, Object> userHashMap = new HashMap<>();
         int counter = 0;
 
-        for (SoldProduct soldProduct : soldProducts){
-            if (soldProduct.getUser_id().equals(user.getId())){
-                counter ++;
-            }
+        for (Order order : orders){
+            for (CartItem cartItem : order.getItems())
+               if (order.getUser_id().equals(user.getId())){
+                counter += Integer.parseInt(cartItem.getCart_quantity());
+               }
         }
-
-        userHashMap.put(Constants.getSOLDPRODUCTS(), counter);
-        new FirestoreManager().updateSoldProductsUser(user.getId() ,userHashMap);
+        userHashMap.put(Constants.getORDERS(), counter);
+        new FirestoreManager().updateOrdersUser(user.getId() ,userHashMap);
 
         if (holder instanceof ViewHolder){
             ((ViewHolder) holder).tvPosition.setText(String.valueOf(holder.getAdapterPosition() + 1));
@@ -87,8 +91,6 @@ public class PodiumListAdapterV2 extends RecyclerView.Adapter<RecyclerView.ViewH
 
         }
     }
-
-
 
     @Override
     public int getItemViewType(int position) {

@@ -66,6 +66,7 @@ public class SoldProduct implements Parcelable {
         dest.writeString(subtotal);
         dest.writeString(shippingCharge);
         dest.writeString(totalAmount);
+        dest.writeParcelable(address, flags);
     }
 
     @Override
@@ -84,7 +85,6 @@ public class SoldProduct implements Parcelable {
             return new SoldProduct[size];
         }
     };
-
 
     public int getPrice() {
         return price;

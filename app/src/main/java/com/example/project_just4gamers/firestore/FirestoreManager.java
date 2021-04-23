@@ -553,8 +553,6 @@ public class FirestoreManager {
               });
     }
 
-
-
     public void getSenderUser(MessageViewActivity activity, String senderId){
         fStore.collection(Constants.getUSERS())
                 .document(senderId)
@@ -1075,6 +1073,61 @@ public class FirestoreManager {
                            ((PodiumActivity) activity).successGetUsersV2(users);
                    }
                });
+   }
+
+   public void getAllUsersV3(PodiumActivity activity){
+       fStore.collection(Constants.getUSERS())
+               .get()
+               .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                   @Override
+                   public void onSuccess(QuerySnapshot documents) {
+                       ArrayList<User> users = new ArrayList<>();
+                       for (DocumentSnapshot item : documents){
+                           User user = item.toObject(User.class);
+                           if (user != null)
+                               users.add(user);
+                       }
+                           ((PodiumActivity) activity).successGetUsersV3(users);
+                   }
+               });
+   }
+
+   public void updateSoldProductsUser(String userId, HashMap<String, Object> userHashMap){
+        fStore.collection(Constants.getUSERS())
+                .document(userId)
+                .update(userHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    }
+                });
+   }
+
+   public void getAllOrders(DashboardFragment fragment){
+        fStore.collection(Constants.getORDERS())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<Order> orders = new ArrayList<>();
+                        for (DocumentSnapshot document : documents){
+                            Order order = document.toObject(Order.class);
+                            orders.add(order);
+                        }
+                        fragment.successGetAllOrders(orders);
+                    }
+                });
+   }
+
+   public void updateOrdersUser(String userId, HashMap<String, Object> userHashMap){
+        fStore.collection(Constants.getUSERS())
+                .document(userId)
+                .update(userHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    }
+                });
    }
 
 

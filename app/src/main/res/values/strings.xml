@@ -291,5 +291,10 @@
 
     <string name="item1">Cele mai multe puncte</string>
     <string name="item2">Cele mai multe produse vandute</string>
+    <string name="item3">Cele mai multe produse cumparate</string>
+
+    <string name="item_categ0">PUNCTE</string>
+    <string name="item_categ1">PRODUSE VANDUTE</string>
+    <string name="item_categ2">PRODUSE CUMPARATE</string>
 
 </resources>

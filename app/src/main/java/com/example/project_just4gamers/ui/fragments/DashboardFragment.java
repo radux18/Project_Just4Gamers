@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project_just4gamers.models.Order;
 import com.example.project_just4gamers.models.SoldProduct;
 import com.example.project_just4gamers.ui.activities.PodiumActivity;
 import com.example.project_just4gamers.R;
@@ -51,6 +52,7 @@ public class DashboardFragment extends Fragment {
     private DashboardListAdapter adapter;
     private ImageView ivResetBtn;
     private ArrayList<SoldProduct> soldProducts;
+    private ArrayList<Order> orders;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,6 +99,7 @@ public class DashboardFragment extends Fragment {
                     startActivity(new Intent(getActivity().getApplicationContext(), FavoritesActivity.class));
                 } else if (item.getItemId() == R.id.action_podium){
                     Intent intent = new Intent(getActivity().getApplicationContext(), PodiumActivity.class);
+                    intent.putExtra(Constants.getExtraMyOrderDetails(), orders);
                     intent.putExtra(Constants.getExtraSoldProductDetails(), soldProducts);
                     startActivity(intent);
                 }
@@ -236,6 +239,11 @@ public class DashboardFragment extends Fragment {
         super.onResume();
         getDashboardItemsList();
         getAllSoldProducts();
+        getAllOrders();
+    }
+
+    private void getAllOrders() {
+        new FirestoreManager().getAllOrders(DashboardFragment.this);
     }
 
     private void getAllSoldProducts() {
@@ -252,5 +260,9 @@ public class DashboardFragment extends Fragment {
 
     public void successGetAllSoldProducts(ArrayList<SoldProduct> soldProductss) {
         soldProducts = soldProductss;
+    }
+
+    public void successGetAllOrders(ArrayList<Order> orderss) {
+        orders = orderss;
     }
 }
