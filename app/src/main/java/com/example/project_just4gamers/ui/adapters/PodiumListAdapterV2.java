@@ -16,9 +16,8 @@ import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.utils.GlideLoader;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class PodiumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class PodiumListAdapterV2 extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private Context context;
     private ArrayList<User> userList;
@@ -28,12 +27,12 @@ public class PodiumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static int TYPE_GOLD = 0;
     private static int TYPE_DEFAULT = 3;
 
-    public PodiumListAdapter(Context context, ArrayList<User> userList) {
+
+    public PodiumListAdapterV2(Context context, ArrayList<User> userList, ArrayList<SoldProduct> soldProductList) {
         this.context = context;
         this.userList = userList;
+        this.soldProducts = soldProductList;
     }
-
-
 
     @NonNull
     @Override
@@ -67,11 +66,19 @@ public class PodiumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         User user = userList.get(position);
 
-        if (holder instanceof ViewHolder){
+        int counter = 0;
+        for (SoldProduct soldProduct : soldProducts){
+            if (soldProduct.getUser_id().equals(user.getId())){
+                counter ++;
+            }
+        }
+
+        if (holder instanceof ViewHolder && counter != 0){
             ((ViewHolder) holder).tvPosition.setText(String.valueOf(holder.getAdapterPosition() + 1));
             ((ViewHolder) holder).tvName.setText(context.getString(R.string.tv_settings_name, user.getFirstName(), user.getLastName()));
-            ((ViewHolder) holder).tvPoints.setText(String.valueOf(user.getPoints()));
+            ((ViewHolder) holder).tvPoints.setText(String.valueOf(counter));
             new GlideLoader(context).loadProductPicture(user.getImage(), ((ViewHolder) holder).ivProfile);
+
         }
     }
 

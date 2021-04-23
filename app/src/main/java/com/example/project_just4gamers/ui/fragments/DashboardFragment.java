@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project_just4gamers.models.SoldProduct;
 import com.example.project_just4gamers.ui.activities.PodiumActivity;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.firestore.FirestoreManager;
@@ -33,6 +34,7 @@ import com.example.project_just4gamers.ui.activities.FavoritesActivity;
 import com.example.project_just4gamers.ui.activities.InboxActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
 import com.example.project_just4gamers.ui.adapters.DashboardListAdapter;
+import com.example.project_just4gamers.utils.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class DashboardFragment extends Fragment {
     private FloatingActionButton fabSearch;
     private DashboardListAdapter adapter;
     private ImageView ivResetBtn;
+    private ArrayList<SoldProduct> soldProducts;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,7 +96,9 @@ public class DashboardFragment extends Fragment {
                 } else if (item.getItemId() == R.id.action_favorite){
                     startActivity(new Intent(getActivity().getApplicationContext(), FavoritesActivity.class));
                 } else if (item.getItemId() == R.id.action_podium){
-                    startActivity(new Intent(getActivity().getApplicationContext(), PodiumActivity.class));
+                    Intent intent = new Intent(getActivity().getApplicationContext(), PodiumActivity.class);
+                    intent.putExtra(Constants.getExtraSoldProductDetails(), soldProducts);
+                    startActivity(intent);
                 }
 
               return false;
@@ -230,6 +235,11 @@ public class DashboardFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getDashboardItemsList();
+        getAllSoldProducts();
+    }
+
+    private void getAllSoldProducts() {
+        new FirestoreManager().getAllSoldProducts(DashboardFragment.this);
     }
 
     private void addSpinnerAdapter() {
@@ -240,4 +250,7 @@ public class DashboardFragment extends Fragment {
     }
 
 
+    public void successGetAllSoldProducts(ArrayList<SoldProduct> soldProductss) {
+        soldProducts = soldProductss;
+    }
 }

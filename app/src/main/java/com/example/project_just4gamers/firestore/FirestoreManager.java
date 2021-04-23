@@ -1042,7 +1042,7 @@ public class FirestoreManager {
                 });
    }
 
-   public void getAllSoldProducts(PodiumActivity activity){
+   public void getAllSoldProducts(DashboardFragment fragment){
         fStore.collection(Constants.getSoldProducts())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -1055,9 +1055,26 @@ public class FirestoreManager {
                             soldProduct.setId(documentSnapshot.getId());
                             soldProducts.add(soldProduct);
                         }
-                        activity.successGetAllSoldProducts(soldProducts);
+                        fragment.successGetAllSoldProducts(soldProducts);
                     }
                 });
+   }
+
+   public void getAllUsersV2(PodiumActivity activity){
+       fStore.collection(Constants.getUSERS())
+               .get()
+               .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                   @Override
+                   public void onSuccess(QuerySnapshot documents) {
+                       ArrayList<User> users = new ArrayList<>();
+                       for (DocumentSnapshot item : documents){
+                           User user = item.toObject(User.class);
+                           if (user != null)
+                               users.add(user);
+                       }
+                           ((PodiumActivity) activity).successGetUsersV2(users);
+                   }
+               });
    }
 
 
