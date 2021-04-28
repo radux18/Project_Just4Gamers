@@ -14,6 +14,8 @@
 
     <color name="redError">#E53411</color>
 
+    <color name="yellowGray">#F7F8EA</color>
+    <color name="edittextdefaultcolor">#787871</color>
 
     <color name="colorImageViewBackground">#E1E1E1</color>
 
@@ -21,4 +23,14 @@
 
     <color name="orderStatusInProcess">#FF9800</color>
     <color name="orderStatusDelivered">#88C34A</color>
+
+
+    <color name="colorThemePink">#ED2173</color>
+    <color name="colorThemeOrange">#F4442d</color>
+
+    <color name="colorPrimaryText">#222934</color>
+    <color name="colorSecondaryText">#989898</color>
+
+
+
 </resources>

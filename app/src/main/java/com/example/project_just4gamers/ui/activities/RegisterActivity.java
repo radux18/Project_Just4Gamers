@@ -10,13 +10,13 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.project_just4gamers.firestore.FirestoreManager;
@@ -24,24 +24,20 @@ import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
 public class RegisterActivity extends ProgressDialogActivity {
 
-    private TextInputEditText tiet_firstName;
-    private TextInputEditText tiet_lastName;
-    private TextInputEditText tiet_email;
-    private TextInputEditText tiet_password;
-    private TextInputEditText tiet_passwordConfirm;
+    private EditText et_firstName;
+    private EditText et_lastName;
+    private EditText et_email;
+    private EditText et_password;
+    private EditText et_passwordConfirm;
     private TextView tv_loginBtn;
     private Button btn_register;
     private CheckBox cb_terms;
-    private ProgressBar progressBar;
-    private Toolbar tbRegister;
 
     private FirebaseAuth fAuth;
 
@@ -50,7 +46,6 @@ public class RegisterActivity extends ProgressDialogActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initComponents();
-        setupActionBar();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             final WindowInsetsController insetsController = getWindow().getInsetsController();
             if (insetsController != null) {
@@ -69,22 +64,6 @@ public class RegisterActivity extends ProgressDialogActivity {
 
     }
 
-    private void setupActionBar() {
-        setSupportActionBar(tbRegister);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null){
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp);
-        }
-
-        tbRegister.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-    }
-
     private View.OnClickListener loginListener() {
         return new View.OnClickListener() {
             @Override
@@ -100,10 +79,10 @@ public class RegisterActivity extends ProgressDialogActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = tiet_email.getText().toString().trim();
-                String password1 = tiet_password.getText().toString().trim();
-                String firstName = tiet_firstName.getText().toString();
-                String lastName = tiet_lastName.getText().toString();
+                String email = et_email.getText().toString().trim();
+                String password1 = et_password.getText().toString().trim();
+                String firstName = et_firstName.getText().toString();
+                String lastName = et_lastName.getText().toString();
 
                 if (validateInputs()) {
                     showProgressDialog(getString(R.string.tv_progress_textT));
@@ -111,7 +90,7 @@ public class RegisterActivity extends ProgressDialogActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                progressBar.setVisibility(View.GONE);
+                                //progress bar gone
 
                                 FirebaseUser fUser = fAuth.getCurrentUser();
                                 assert fUser != null;
@@ -136,52 +115,50 @@ public class RegisterActivity extends ProgressDialogActivity {
     }
 
     private void initComponents() {
-        tiet_firstName = findViewById(R.id.tiet_register_firstName);
-        tiet_lastName = findViewById(R.id.tiet_register_lastName);
-        tiet_email = findViewById(R.id.tiet_register_email);
-        tiet_password = findViewById(R.id.tiet_register_password);
-        tiet_passwordConfirm = findViewById(R.id.tiet_register_passwordConfirm);
+        et_firstName = findViewById(R.id.et_register_prenume);
+        et_lastName = findViewById(R.id.et_register_nume);
+        et_email = findViewById(R.id.et_register_email);
+        et_password = findViewById(R.id.et_register_password1);
+        et_passwordConfirm = findViewById(R.id.et_register_password2);
         tv_loginBtn = findViewById(R.id.tv_register_loginBtn);
         btn_register = findViewById(R.id.btn_register);
         cb_terms = findViewById(R.id.cb_register_terms);
-        progressBar = findViewById(R.id.pb_loading);
-        tbRegister = findViewById(R.id.toolbar_register_activity);
         fAuth = FirebaseAuth.getInstance();
     }
 
     private boolean validateInputs() {
-        String email = tiet_email.getText().toString().trim();
-        String password1 = tiet_password.getText().toString().trim();
-        String password2 = tiet_passwordConfirm.getText().toString().trim();
-        String firstName = tiet_firstName.getText().toString();
-        String lastName = tiet_lastName.getText().toString();
+        String email = et_email.getText().toString().trim();
+        String password1 = et_password.getText().toString().trim();
+        String password2 = et_passwordConfirm.getText().toString().trim();
+        String firstName = et_firstName.getText().toString();
+        String lastName = et_lastName.getText().toString();
         if (TextUtils.isEmpty(firstName)) {
-            tiet_firstName.setError("First name is required.");
+            et_firstName.setError("First name is required.");
             return false;
         }
         if (TextUtils.isEmpty(lastName)) {
-            tiet_lastName.setError("Last name is required.");
+            et_lastName.setError("Last name is required.");
             return false;
         }
 
         if (TextUtils.isEmpty(email)) {
-            tiet_email.setError("Email is required.");
+            et_email.setError("Email is required.");
             return false;
         }
         if (TextUtils.isEmpty(password1)) {
-            tiet_password.setError("Password is required.");
+            et_password.setError("Password is required.");
             return false;
         }
         if (TextUtils.isEmpty(password2)) {
-            tiet_passwordConfirm.setError("Confirm password.");
+            et_passwordConfirm.setError("Confirm password.");
             return false;
         }
         if (!password2.equals(password1)) {
-            tiet_passwordConfirm.setError("The password is not the same.");
+            et_passwordConfirm.setError("The password is not the same.");
             return false;
         }
         if (password1.length() < 6) {
-            tiet_password.setError("Password must have at least 6 Characters.");
+            et_password.setError("Password must have at least 6 Characters.");
             return false;
         }
 

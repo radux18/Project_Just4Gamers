@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yellowGray"
     tools:context=".ui.activities.LoginActivity">
 
     <FrameLayout
         android:id="@+id/fl_login_header_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/auth_header_image_height"
+        android:layout_height="300dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -18,88 +20,119 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/header_image"
+            android:src="@drawable/color_logo_with_background"
             android:contentDescription="@string/header_image" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/tv_login"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/lightGrey"
+        app:layout_constraintTop_toBottomOf="@id/fl_login_header_image"/>
+
+    <LinearLayout
+        android:id="@+id/ll_login_ll"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/tv_loginT"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/fl_login_header_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_login_email"
-        android:layout_width="355dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_login">
+        android:layout_marginTop="10dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_login_email"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/message"
+            android:layout_gravity="center"
+            android:contentDescription="@string/content_description" />
+
+        <EditText
+            android:id="@+id/et_login_email"
             android:layout_width="match_parent"
-            android:padding="5dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/textview_format"
-            android:hint="@string/tiet_register_emailT"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:hint="@string/et_login_emailT"
+            android:textColorHint="@color/edittextdefaultcolor"
+            android:layout_marginLeft="15dp"
+            android:background="#00000000"
+            android:textSize="16dp"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:autofillHints="" />
+    </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_login_password"
-        android:layout_width="@dimen/auth_login_email_width"
-        android:layout_height="60dp"
-        app:layout_constraintTop_toBottomOf="@id/til_login_email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorThemeOrange"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_login_password"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/pswrd"
+            android:layout_gravity="center"
+            android:contentDescription="@string/content_description" />
+
+        <EditText
+            android:id="@+id/et_login_password"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:background="@drawable/textview_format"
-            android:hint="@string/tiet_login_passwordT"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:hint="@string/et_login_passwordT"
+            android:textColorHint="@color/edittextdefaultcolor"
+            android:layout_marginLeft="15dp"
+            android:background="#00000000"
+            android:inputType="textPassword"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_delim"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorThemeOrange"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_login_forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_login_forgot_password"
-        app:layout_constraintTop_toBottomOf="@id/til_login_password"
+        app:layout_constraintTop_toBottomOf="@id/ll_login_ll"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
         android:layout_marginEnd="30dp"
         android:clickable="true" />
-
-    <ProgressBar
-        android:id="@+id/pb_loading"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_login_forgotPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"
-        android:layout_marginTop="40dp" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="@drawable/button_background"
         android:text="@string/btn_loginT"
         app:layout_constraintTop_toBottomOf="@id/tv_login_forgotPassword"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.facebook.login.widget.LoginButton
@@ -120,6 +153,10 @@
         app:layout_constraintTop_toBottomOf="@id/btn_fbLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:padding="8dp"
         android:layout_marginTop="10dp"
         android:clickable="true" />
 
@@ -128,8 +165,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cb_rememberT"
-        app:layout_constraintTop_toBottomOf="@id/til_login_password"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/ll_login_ll"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:checked="false"/>

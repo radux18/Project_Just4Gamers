@@ -96,7 +96,7 @@
                     android:id="@+id/tiet_profile_firstName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:background="@drawable/textview_format"
                     android:hint="@string/tiet_register_firstNameT"
                     android:inputType="text" />
@@ -114,7 +114,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiet_profile_lastName"
                     android:layout_width="match_parent"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/textview_format"
                     android:hint="@string/tiet_register_lastNameT"
@@ -134,7 +134,7 @@
                     android:id="@+id/tiet_profile_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:background="@drawable/textview_format"
                     android:hint="@string/tiet_register_emailT"
                     android:inputType="textEmailAddress" />
@@ -153,8 +153,9 @@
                     android:id="@+id/tiet_profile_mobileNr"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:background="@drawable/textview_format"
+                    android:focusedByDefault="true"
                     android:hint="@string/tiet_profile_mobileNrT"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>

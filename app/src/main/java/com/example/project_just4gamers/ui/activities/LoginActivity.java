@@ -20,6 +20,7 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +40,8 @@ public class LoginActivity extends ProgressDialogActivity {
 
     private boolean doubleBackToExitPressedOnce = false;
     private TextView tv_registerBtn;
-    private TextInputEditText tiet_email;
-    private TextInputEditText tiet_password;
+    private EditText etEmail;
+    private EditText etPassword;
     private TextView tiet_passwordForgot;
     private Button btnLogin;
     private FirebaseAuth fAuth;
@@ -69,7 +70,6 @@ public class LoginActivity extends ProgressDialogActivity {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN
             );
         }
-
         initComponents();
         FirebaseApp.initializeApp(this);
 
@@ -112,8 +112,8 @@ public class LoginActivity extends ProgressDialogActivity {
                     if (cb_remember.isChecked()){
                         saveData();
                     }
-                    String email = tiet_email.getText().toString().trim();
-                    String password = tiet_password.getText().toString().trim();
+                    String email = etEmail.getText().toString().trim();
+                    String password = etPassword.getText().toString().trim();
                     fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -135,25 +135,27 @@ public class LoginActivity extends ProgressDialogActivity {
     private void saveData() {
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.getPREFS(),MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EMAIL,tiet_email.getText().toString());
-        editor.putString(PASSWORD,tiet_password.getText().toString());
+        editor.putString(EMAIL,etEmail.getText().toString());
+        editor.putString(PASSWORD,etPassword.getText().toString());
         editor.apply();
     }
 
     private boolean validateLoginEntries() {
-        String email = tiet_email.getText().toString().trim();
-        String password = tiet_password.getText().toString().trim();
+//        String email = tiet_email.getText().toString().trim();
+//        String password = tiet_password.getText().toString().trim();
+          String email = etEmail.getText().toString().trim();
+          String password = etPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            tiet_email.setError("Email is required.");
+            etEmail.setError("Email is required.");
             return false;
         }
         if (TextUtils.isEmpty(password)) {
-            tiet_password.setError("Password is required.");
+            etPassword.setError("Password is required.");
             return false;
         }
         if (password.length() < 6) {
-            tiet_password.setError("Password must have at least 6 Characters.");
+            etPassword.setError("Password must have at least 6 Characters.");
             return false;
         }
         return true;
@@ -209,14 +211,18 @@ public class LoginActivity extends ProgressDialogActivity {
     }
 
     private void updateViews() {
-        tiet_email.setText(email);
-        tiet_password.setText(password);
+//        tiet_email.setText(email);
+//        tiet_password.setText(password);
+        etEmail.setText(email);
+        etPassword.setText(password);
     }
 
     private void initComponents() {
         tv_registerBtn = findViewById(R.id.tv_login_registerBtn);
-        tiet_email = findViewById(R.id.tiet_login_email);
-        tiet_password = findViewById(R.id.tiet_login_password);
+//        tiet_email = findViewById(R.id.tiet_login_email);
+//        tiet_password = findViewById(R.id.tiet_login_password);
+        etPassword = findViewById(R.id.et_login_password);
+        etEmail = findViewById(R.id.et_login_email);
         tiet_passwordForgot = findViewById(R.id.tv_login_forgotPassword);
         btnLogin = findViewById(R.id.btn_login);
         cb_remember = findViewById(R.id.cb_login_remember);

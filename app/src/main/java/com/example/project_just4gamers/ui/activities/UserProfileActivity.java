@@ -32,7 +32,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.HashMap;
 
-public class UserProfileActivity extends AppCompatActivity {
+public class UserProfileActivity extends ProgressDialogActivity {
 
     private GlideLoader photoLoader = new GlideLoader(UserProfileActivity.this);
     private FirestoreManager fManager = new FirestoreManager();
@@ -150,12 +150,12 @@ public class UserProfileActivity extends AppCompatActivity {
         if (userDetails.getProfileCompleted() == 0){
             tvTitle.setText(getString(R.string.tv_complete_profile));
             tiet_firstName.setEnabled(false);
-            tiet_firstName.setTextColor(Color.GRAY);
+            tiet_firstName.setTextColor(Color.BLACK);
 
             tiet_lastName.setEnabled(false);
-            tiet_lastName.setTextColor(Color.GRAY);
-
-            tiet_email.setTextColor(Color.GRAY);
+            tiet_lastName.setTextColor(Color.DKGRAY);
+            tiet_mobile.setHintTextColor(Color.GRAY);
+            tiet_email.setTextColor(Color.DKGRAY);
         } else {
             //setupActionBar();
             tvTitle.setText(getString(R.string.tv_edit_profile));

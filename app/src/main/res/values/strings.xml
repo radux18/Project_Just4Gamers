@@ -14,11 +14,11 @@
     <string name="tiet_register_emailT">Email ID</string>
     <string name="tiet_register_passwordT">Password</string>
     <string name="tiet_register_passwordConfirmT">Confirmă parolă</string>
-    <string name="cb_register_termsT"><![CDATA[I Agree To The Terms & Condition]]></string>
+    <string name="cb_register_termsT"><![CDATA[Accept Termenii & Conditiile]]></string>
     <string name="btn_registerT">Înregistrare</string>
     <string name="tv_register_loginBtnT">Ai deja un cont? Loghează-te</string>
     <string name="tiet_emailIdT">Email ID</string>
-    <string name="tv_detailsT">Introdu adresa de e-mail și noi îți vom furniza un mail cu parola nouă</string>
+    <string name="tv_detailsT">Introdu adresa de e-mail și noi îți vom furniza un mail cu parola nouă.</string>
     <string name="tv_forgotPassT">Ai uitat parola?</string>
     <string name="btn_submitT">SUBMIT</string>
 
@@ -296,5 +296,12 @@
     <string name="item_categ0">PUNCTE</string>
     <string name="item_categ1">PRODUSE VANDUTE</string>
     <string name="item_categ2">PRODUSE CUMPARATE</string>
+    <string name="et_login_passwordT">Parola</string>
+    <string name="et_register_password2T">Confirma parola</string>
+    <string name="et_register_password1T">Parola</string>
+    <string name="et_register_numeT">Nume</string>
+    <string name="et_register_prenumeT">Prenume</string>
+    <string name="et_register_emailT">Adresa de email</string>
+    <string name="et_login_emailT">Email</string>
 
 </resources>

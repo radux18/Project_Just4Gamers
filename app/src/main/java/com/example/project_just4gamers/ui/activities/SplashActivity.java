@@ -42,10 +42,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 4500);
 
-        Typeface font = Typeface.createFromAsset(getAssets(), "bold_italic.ttf");
-        TextView tv_motto_name = findViewById(R.id.tv_splash_motto);
 
-        tv_motto_name.setTypeface(font);
 
 
     }

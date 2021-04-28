@@ -16,8 +16,6 @@ import com.google.android.material.snackbar.Snackbar;
 public class ProgressDialogActivity extends AppCompatActivity {
 
     private Dialog progressDialog;
-    private TextView tv_progress_text ;
-
 
     public void showErrorSnackBar(String message, boolean errorMessage){
         Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),

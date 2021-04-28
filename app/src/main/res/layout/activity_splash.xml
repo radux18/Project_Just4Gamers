@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_logo"
+    android:background="#F8F9F9"
     tools:context=".ui.activities.SplashActivity">
 
-    <TextView
-        android:id="@+id/tv_splash_motto"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/splash_title_text_height"
-        android:gravity="center_horizontal"
-        android:text="@string/tv_splash_mottoT"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/color_logo_with_background"
+            android:contentDescription="@string/content_description" />
+
+    </FrameLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
