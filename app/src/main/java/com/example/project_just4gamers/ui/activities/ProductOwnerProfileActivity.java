@@ -1,12 +1,19 @@
 package com.example.project_just4gamers.ui.activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,9 +29,21 @@ import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 
 public class ProductOwnerProfileActivity extends AppCompatActivity {
 
@@ -49,11 +68,12 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
     private float ratingUser;
     private int nrRatings;
 
+    private SupportMapFragment supportMapFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_owner_profile);
-
         intent = getIntent();
         initComp();
         setupActionBar();
@@ -61,7 +81,6 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
         if (intent.hasExtra(Constants.getExtraProfileDetailsv2()) ){
             userId = intent.getStringExtra(Constants.getExtraProfileDetailsv2());
             new FirestoreManager().getUserFromId(ProductOwnerProfileActivity.this, userId);
-            new FirestoreManager().getUserVisitorDetails(ProductOwnerProfileActivity.this, userId);
         }
 
         addReview.setOnClickListener(new View.OnClickListener() {
@@ -101,16 +120,44 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
 
     public void successGetUser(User user) {
         productOwner = user;
+        new FirestoreManager().getUserVisitorDetails(ProductOwnerProfileActivity.this, productOwner.getId());
 
-         new GlideLoader(ProductOwnerProfileActivity.this).loadUserPicture(productOwner.getImage(),iv_userPhoto);
+         new GlideLoader(ProductOwnerProfileActivity.this).loadUserPicture(productOwner.getImage(), iv_userPhoto);
         tv_points.setText(String.valueOf(productOwner.getPoints()));
         tv_name.setText(getString(R.string.tv_settings_name, productOwner.getFirstName(), productOwner.getLastName()));
         tv_mobile.setText(getString(R.string.mobile_format, productOwner.getMobile()));
         tv_gender.setText(productOwner.getGender());
         tv_email.setText(productOwner.getEmail());
+
+        //update coordonates
+        setupGPSUI(productOwner);
+    }
+
+    private void setupGPSUI(User productOwner) {
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_map);
+
+        if (ActivityCompat.checkSelfPermission(ProductOwnerProfileActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+            supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(@NonNull GoogleMap googleMap) {
+                    LatLng latLng = new LatLng(productOwner.getLatitude(), productOwner.getLongitude());
+                        MarkerOptions options = new MarkerOptions().position(latLng)
+                                .title("Pozitia lui " + getString(R.string.tv_settings_name, productOwner.getFirstName(), productOwner.getLastName()));
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                        googleMap.addMarker(options);
+                }
+            });
+        } else {
+            ActivityCompat.requestPermissions(ProductOwnerProfileActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void successGetReviews(ArrayList<Review> reviews) {
         if (reviews.size() > 0){
             rvReviewList.setVisibility(View.VISIBLE);
@@ -118,23 +165,30 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
             rvReviewList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             rvReviewList.setHasFixedSize(true);
 
+            reviews.sort(new Comparator<Review>() {
+                @Override
+                public int compare(Review o1, Review o2) {
+                    if (o1.getDate() == null || o2.getDate() == null)
+                        return 0;
+                    return o1.getDate().compareTo(o2.getDate());
+                }
+            });
+
             ReviewListAdapter adapter = new ReviewListAdapter(getApplicationContext(), reviews);
             rvReviewList.setAdapter(adapter);
+
+            float rating;
+            for (Review review : reviews){
+                if (review.getUserProfile_id().equals(productOwner.getId())){
+                    ratingUser += review.getScore();
+                    nrRatings ++ ;
+                }
+            }
+            rating = ratingUser / nrRatings;
+            rbReviews.setRating(rating);
         } else {
             rvReviewList.setVisibility(View.GONE);
         }
-
-        float rating;
-        for (Review review : reviews){
-            if (review.getUserProfile_id().equals(productOwner.getId())){
-                ratingUser += review.getScore();
-                nrRatings ++ ;
-            }
-        }
-
-        rating = ratingUser / nrRatings;
-        rbReviews.setRating(rating);
-
     }
 
     private void setupActionBar(){
@@ -152,5 +206,6 @@ public class ProductOwnerProfileActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

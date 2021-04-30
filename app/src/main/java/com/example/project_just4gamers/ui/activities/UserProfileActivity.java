@@ -1,11 +1,17 @@
 package com.example.project_just4gamers.ui.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +33,13 @@ import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.models.User;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 
 
@@ -52,6 +65,8 @@ public class UserProfileActivity extends ProgressDialogActivity {
     private RadioButton rb_female;
     private String gender;
 
+    private FusedLocationProviderClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +75,15 @@ public class UserProfileActivity extends ProgressDialogActivity {
         initComponents();
         setupActionBar();
 
-        if (intent.hasExtra(Constants.getExtraUserDetails())){
+        if (intent.hasExtra(Constants.getExtraUserDetails())) {
             userDetails = intent.getParcelableExtra(Constants.getExtraUserDetails());
         }
 
         setUserDetailsMethod();
 
         iv_userProfilePhoto.setOnClickListener(setProfilePhotoListener());
+
+        client = LocationServices.getFusedLocationProviderClient(getApplicationContext());
 
         btn_submit.setOnClickListener(submitProfileListener());
     }
@@ -75,17 +92,81 @@ public class UserProfileActivity extends ProgressDialogActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validate()){
+                if (validate()) {
                     //show progress dialog
-                    if (selectedImageFileUri != null){
-                        fManager.uploadImageToCloudStorage(UserProfileActivity.this,selectedImageFileUri, Constants.getUserProfileImage());
+                    if (selectedImageFileUri != null) {
+                        fManager.uploadImageToCloudStorage(UserProfileActivity.this, selectedImageFileUri, Constants.getUserProfileImage());
+
+                        //update the gps location for user
+                        if (ActivityCompat.checkSelfPermission(UserProfileActivity.this,
+                                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                                ActivityCompat.checkSelfPermission(UserProfileActivity.this,
+                                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
+                            getCoordonates();
+                        } else {
+                            ActivityCompat.requestPermissions(UserProfileActivity.this,
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                            Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+                        }
                     } else {
-                       updateUserProfileDetails();
+                        updateUserProfileDetails();
                     }
                 }
             }
         };
     }
+
+    @SuppressLint("MissingPermission")
+    private void getCoordonates() {
+        HashMap<String, Object> hashMap = new HashMap<>();
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+            client.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    Location location = task.getResult();
+                    if (location != null) {
+                        double latitude = location.getLatitude();
+                        hashMap.put(Constants.getLATITUDE(), latitude);
+                        double longitude = location.getLongitude();
+                        hashMap.put(Constants.getLONGITUDE(), longitude);
+
+                        new FirestoreManager().setCoordonatesForUser(hashMap);
+                    } else {
+                        LocationRequest locationRequest = new LocationRequest()
+                                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                                .setInterval(1000)
+                                .setFastestInterval(1000)
+                                .setNumUpdates(1);
+
+                        LocationCallback locationCallback = new LocationCallback() {
+                            @Override
+                            public void onLocationResult(@NonNull LocationResult locationResult) {
+                                Location location1 = locationResult.getLastLocation();
+
+                                double latitude = location1.getLatitude();
+                                hashMap.put(Constants.getLATITUDE(), latitude);
+                                double longitude = location1.getLongitude();
+                                hashMap.put(Constants.getLONGITUDE(), longitude);
+                                new FirestoreManager().setCoordonatesForUser(hashMap);
+                            }
+                        };
+                      //  if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            client.requestLocationUpdates(locationRequest,
+                                    locationCallback, Looper.myLooper());
+                        }
+                    }
+            });
+        } else {
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+    }
+
+
 
     private boolean validate() {
         String mobile = tiet_mobile.getText().toString().trim();
@@ -156,6 +237,10 @@ public class UserProfileActivity extends ProgressDialogActivity {
             tiet_lastName.setTextColor(Color.DKGRAY);
             tiet_mobile.setHintTextColor(Color.GRAY);
             tiet_email.setTextColor(Color.DKGRAY);
+
+
+
+
         } else {
             //setupActionBar();
             tvTitle.setText(getString(R.string.tv_edit_profile));
@@ -222,9 +307,12 @@ public class UserProfileActivity extends ProgressDialogActivity {
             if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 new Constants().showImageChooser(this);
             }
-        } else {
-            Toast.makeText(getApplicationContext(),"Oops, you just denied the permission for storage. You can also allow it from settings.",Toast.LENGTH_LONG).show();
+        } else if (requestCode == 100 && grantResults.length > 0 && (grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED)){
+
         }
+//        else {
+//            Toast.makeText(getApplicationContext(),"Oops, you just denied the permission for storage. You can also allow it from settings.",Toast.LENGTH_LONG).show();
+//        }
     }
 
     @Override

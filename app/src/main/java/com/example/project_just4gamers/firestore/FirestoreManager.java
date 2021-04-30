@@ -957,12 +957,10 @@ public class FirestoreManager {
                         @Override
                         public void onSuccess(QuerySnapshot documents) {
                             ArrayList<Review> reviews = new ArrayList<>();
-
                             for (DocumentSnapshot documentSnapshot : documents){
                                 Review review = documentSnapshot.toObject(Review.class);
                                 reviews.add(review);
                             }
-
                             activity.successGetReviews(reviews);
                         }
                     });
@@ -1130,6 +1128,15 @@ public class FirestoreManager {
                 });
    }
 
-
+    public void setCoordonatesForUser(HashMap<String, Object> hashMap){
+            fStore.collection(Constants.getUSERS())
+                    .document(getCurrentUserID())
+                    .update(hashMap)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                        }
+                    });
+    }
 
 }

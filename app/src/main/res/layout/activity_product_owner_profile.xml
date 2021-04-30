@@ -25,7 +25,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/content_description"
                 android:scaleType="fitXY"
-                android:src="@drawable/header_image"/>
+                android:src="@drawable/color_logo_with_background"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_profile"
@@ -84,7 +84,6 @@
                 android:background="@drawable/user_image_background"/>
         </FrameLayout>
 
-
         <LinearLayout
             android:id="@+id/ll_user_det"
             android:layout_width="match_parent"
@@ -92,6 +91,16 @@
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:layout_below="@+id/fl_user_image">
+
+            <RatingBar
+                android:id="@+id/rb_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_gravity="center_horizontal"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -230,27 +239,15 @@
                     android:text="@string/tv_mobileT"
                     />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Rating"
-                android:textStyle="italic"
-                android:layout_gravity="center_horizontal"
-                android:textSize="30sp"/>
-
-            <RatingBar
-                android:id="@+id/rb_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:layout_gravity="center_horizontal"/>
-
         </LinearLayout>
 
+        <fragment
+            android:id="@+id/fragment_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/ll_user_det"
+            android:layout_margin="10dp"/>
 
         <LinearLayout
             android:id="@+id/ll_reviews"
@@ -258,7 +255,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="visible"
-            android:layout_below="@id/ll_user_det">
+            android:layout_below="@id/fragment_map">
 
 
             <LinearLayout

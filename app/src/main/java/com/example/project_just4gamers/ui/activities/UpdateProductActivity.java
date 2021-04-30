@@ -160,14 +160,13 @@ public class UpdateProductActivity extends AppCompatActivity {
 
         if (rbNew.isChecked()){
             type = Constants.getNEW();
+            productHashMap.put(Constants.getAGE(), 0);
             productHashMap.put(Constants.getTYPE(), type);
-            productHashMap.put(Constants.getAGE(), "0");
         } else {
             type = Constants.getUSED();
-            productHashMap.put(Constants.getTYPE(), type);
             productHashMap.put(Constants.getAGE(), age);
+            productHashMap.put(Constants.getTYPE(), type);
         }
-
 
         new FirestoreManager().updateProduct(UpdateProductActivity.this, productHashMap, productDetails.getProduct_id());
     }

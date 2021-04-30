@@ -24,6 +24,9 @@ public class Constants {
     public static final String POINTS = "points";
     public static final String FAVORITE = "favorite";
 
+    public static final String LATITUDE = "latitude";
+    public static final String LONGITUDE = "longitude";
+
     private static final String PREFS = "prefs";
     private static final String USERNAME = "username";
     public static final String FIRST_NAME = "firstName";
@@ -109,6 +112,14 @@ public class Constants {
     public static final String EXTRA_RECEIVER_ID = "userProfile_id";
 
     public static final String EXTRA_PRODUCT_DETAILS = "extra_product_details";
+
+    public static String getLATITUDE() {
+        return LATITUDE;
+    }
+
+    public static String getLONGITUDE() {
+        return LONGITUDE;
+    }
 
     public static String getSOLDPRODUCTS() {
         return SOLDPRODUCTS;

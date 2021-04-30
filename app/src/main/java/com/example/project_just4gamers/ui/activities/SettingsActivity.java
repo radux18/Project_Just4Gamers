@@ -80,10 +80,9 @@ public class SettingsActivity extends ProgressDialogActivity {
         tv_edit.setOnClickListener(editProfileListener());
         ll_address.setOnClickListener(editAddressListener());
 
-        setupGPSUI();
     }
 
-    private void setupGPSUI() {
+    private void setupGPSUI(User userDetails) {
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_map);
 
@@ -100,7 +99,7 @@ public class SettingsActivity extends ProgressDialogActivity {
                         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                             @Override
                             public void onMapReady(@NonNull GoogleMap googleMap) {
-                                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                                LatLng latLng = new LatLng(userDetails.getLatitude(), userDetails.getLongitude());
                                 MarkerOptions options = new MarkerOptions().position(latLng)
                                         .title("Pozitia mea");
                                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
@@ -194,6 +193,8 @@ public class SettingsActivity extends ProgressDialogActivity {
         tv_mobile.setText(getString(R.string.mobile_format, user.getMobile()));
         tv_gender.setText(user.getGender());
         tv_email.setText(user.getEmail());
+
+        setupGPSUI(userDetails);
 
         new FirestoreManager().getReviewsForUser(SettingsActivity.this, userDetails.getId());
     }

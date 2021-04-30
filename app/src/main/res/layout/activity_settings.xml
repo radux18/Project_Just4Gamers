@@ -93,19 +93,6 @@
             android:background="@drawable/textview_format_v2"
             android:focusable="true" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_myRating"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="My rating"-->
-<!--            android:textStyle="italic"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:textSize="30sp"-->
-<!--            android:layout_below="@id/fl_user_image"/>-->
-
-
-
         <LinearLayout
             android:id="@+id/ll_user_det"
             android:layout_width="match_parent"
@@ -269,7 +256,7 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_below="@+id/ll_user_det"
-            android:layout_marginTop="8dp"/>
+            android:layout_margin="10dp"/>
 
         <LinearLayout
             android:id="@+id/ll_address"

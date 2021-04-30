@@ -17,6 +17,8 @@ public class User implements Parcelable {
     private int profileCompleted = 0;
     private int soldProducts = 0;
     private int orders = 0;
+    private double latitude = 0.0;
+    private double longitude = 0.0;
 
     public User() {
     }
@@ -33,6 +35,8 @@ public class User implements Parcelable {
         this.profileCompleted = 0;
         this.soldProducts = 0;
         this.orders = 0;
+        this.latitude = 0.0;
+        this.longitude = 0.0;
     }
 
 
@@ -48,6 +52,8 @@ public class User implements Parcelable {
         profileCompleted = in.readInt();
         soldProducts = in.readInt();
         orders = in.readInt();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
     }
 
     @Override
@@ -63,6 +69,8 @@ public class User implements Parcelable {
         dest.writeInt(profileCompleted);
         dest.writeInt(soldProducts);
         dest.writeInt(orders);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
     }
 
     @Override
@@ -175,6 +183,22 @@ public class User implements Parcelable {
         this.orders = orders;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -189,6 +213,8 @@ public class User implements Parcelable {
                 ", profileCompleted=" + profileCompleted +
                 ", soldProducts=" + soldProducts +
                 ", orders=" + orders +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
 }
