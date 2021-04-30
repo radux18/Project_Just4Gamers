@@ -1,13 +1,9 @@
 package com.example.project_just4gamers.ui.activities;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
-
 import com.example.project_just4gamers.R;
-import com.example.project_just4gamers.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +29,6 @@ public class DashboardActivity extends AppCompatActivity {
         );
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_products, R.id.navigation_dashboard, R.id.navigation_orders, R.id.navigation_soldProducts)
                 .build();

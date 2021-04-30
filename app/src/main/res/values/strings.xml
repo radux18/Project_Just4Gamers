@@ -279,6 +279,8 @@
 
     <string name="facebook_app_id">454854602405675</string>
     <string name="fb_login_protocol_scheme">fb454854602405675</string>
+    <string name="google_maps_your_key">AIzaSyCAm5Wvs5aY6mbIXoxmTbfNIBAB1jag65c</string>
+
     <string name="tv_podiumT">Clasament</string>
     <string name="tv_userNameT">Name</string>
     <string name="tv_userPointsT">Puncte</string>
@@ -303,5 +305,7 @@
     <string name="et_register_prenumeT">Prenume</string>
     <string name="et_register_emailT">Adresa de email</string>
     <string name="et_login_emailT">Email</string>
+
+
 
 </resources>
