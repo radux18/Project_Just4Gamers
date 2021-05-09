@@ -13,6 +13,11 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.project_just4gamers.R;
+import com.example.project_just4gamers.firestore.FirestoreManager;
+import com.example.project_just4gamers.models.User;
+import com.example.project_just4gamers.utils.Constants;
+
+import java.util.ArrayList;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -32,7 +37,6 @@ public class SplashActivity extends AppCompatActivity {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN
             );
         }
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -41,9 +45,13 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 4500);
+    }
 
+    private void getAllUsers() {
+        new FirestoreManager().getAllUsers(SplashActivity.this);
+    }
 
-
+    public void successGetUsers(ArrayList<User> users){
 
     }
 }

@@ -90,8 +90,7 @@ public class RegisterActivity extends ProgressDialogActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                //progress bar gone
-
+                                hideProgressDialog();
                                 FirebaseUser fUser = fAuth.getCurrentUser();
                                 assert fUser != null;
                                 User user = new User(fUser.getUid(),
@@ -99,10 +98,9 @@ public class RegisterActivity extends ProgressDialogActivity {
 
                                 FirestoreManager fStore = new FirestoreManager();
                                 fStore.registerUser(RegisterActivity.this, user);
-                                Toast.makeText(getApplicationContext(),"You are registered succesfully. Your user id is " + fUser.getUid(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"Te-ai inregistrat cu succes!", Toast.LENGTH_SHORT).show();
                                 fAuth.signOut();
                                 finish();
-
                             } else {
                                 hideProgressDialog();
                                 showErrorSnackBar(task.getException().getMessage(),true);

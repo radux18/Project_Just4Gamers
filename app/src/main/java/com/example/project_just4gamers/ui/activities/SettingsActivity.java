@@ -29,6 +29,7 @@ import com.example.project_just4gamers.ui.adapters.ReviewListAdapter;
 import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
@@ -142,6 +143,7 @@ public class SettingsActivity extends ProgressDialogActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

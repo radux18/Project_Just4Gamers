@@ -1,12 +1,16 @@
 package com.example.project_just4gamers.ui.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
+import com.example.project_just4gamers.models.User;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,10 +35,14 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends ProgressDialogActivity {
 
@@ -52,13 +60,14 @@ public class LoginActivity extends ProgressDialogActivity {
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
 
+    private AccessTokenTracker accessTokenTracker;
+    private FirebaseAuth.AuthStateListener authStateListener;
     private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             final WindowInsetsController insetsController = getWindow().getInsetsController();
             if (insetsController != null) {
@@ -70,6 +79,7 @@ public class LoginActivity extends ProgressDialogActivity {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN
             );
         }
+
         initComponents();
         FirebaseApp.initializeApp(this);
 
@@ -81,26 +91,95 @@ public class LoginActivity extends ProgressDialogActivity {
 
         tiet_passwordForgot.setOnClickListener(forgotPassEvListener());
 
-        //fb login
+        fbLoginButton.setPermissions("email", "public_profile");
         FacebookSdk.sdkInitialize(getApplicationContext());
-      //  AppEventsLogger.activateApp(this);
         callbackManager = CallbackManager.Factory.create();
+
+        getAllUsers();
+
+    }
+
+    private void getAllUsers() {
+        new FirestoreManager().getAllUsersV4(LoginActivity.this);
+    }
+
+    public void successGetUsers(ArrayList<User> users) {
         fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
+                showProgressDialog(getString(R.string.tv_progress_textT));
+                AuthCredential credential = FacebookAuthProvider.getCredential(loginResult.getAccessToken().getToken());
+                fAuth.signInWithCredential(credential).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            FirebaseUser user = fAuth.getCurrentUser();
+                            updateUI(user, users);
+                        } else {
+                            hideProgressDialog();
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            updateUI(null, null);
+                        }
+                    }
+                });
             }
 
             @Override
             public void onCancel() {
-
             }
 
             @Override
             public void onError(FacebookException error) {
-
+                Toast.makeText(getApplicationContext() ,"Error with fb login: " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    updateUI(user, users);
+                } else {
+                    updateUI(null, null);
+                }
+            }
+        };
+
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if (currentAccessToken == null){
+                    FirebaseAuth.getInstance().signOut();
+                }
+            }
+        };
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void updateUI(FirebaseUser user, ArrayList<User> users) {
+        if (user != null){
+            String[] name = user.getDisplayName().split(" ");
+            String firstName = name[0];
+            String lastName = name[1];
+            String email = user.getEmail();
+            String image = user.getPhotoUrl().toString();
+
+            if (!containsID(users, user.getUid())) {
+                User newUser = new User(user.getUid(),
+                        firstName, lastName, email, image);
+                new FirestoreManager().registerUser(LoginActivity.this, newUser);
+            }
+
+            new FirestoreManager().getUserDetails(LoginActivity.this);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public boolean containsID(final ArrayList<User> list, final String id){
+        return list.stream().anyMatch(o -> o.getId().equals(id));
     }
 
     private View.OnClickListener loginEventListener() {
@@ -120,7 +199,6 @@ public class LoginActivity extends ProgressDialogActivity {
                             if (task.isSuccessful()) {
                                 FirestoreManager fStore = new FirestoreManager();
                                 fStore.getUserDetails(LoginActivity.this);
-
                             } else {
                                 hideProgressDialog();
                                 showErrorSnackBar(task.getException().getMessage(),true);
@@ -141,8 +219,6 @@ public class LoginActivity extends ProgressDialogActivity {
     }
 
     private boolean validateLoginEntries() {
-//        String email = tiet_email.getText().toString().trim();
-//        String password = tiet_password.getText().toString().trim();
           String email = etEmail.getText().toString().trim();
           String password = etPassword.getText().toString().trim();
 
@@ -211,16 +287,34 @@ public class LoginActivity extends ProgressDialogActivity {
     }
 
     private void updateViews() {
-//        tiet_email.setText(email);
-//        tiet_password.setText(password);
         etEmail.setText(email);
         etPassword.setText(password);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        fAuth.addAuthStateListener(authStateListener);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if (authStateListener != null){
+//            fAuth.removeAuthStateListener(authStateListener);
+//        }
+//    }
+
+
+
     private void initComponents() {
         tv_registerBtn = findViewById(R.id.tv_login_registerBtn);
-//        tiet_email = findViewById(R.id.tiet_login_email);
-//        tiet_password = findViewById(R.id.tiet_login_password);
         etPassword = findViewById(R.id.et_login_password);
         etEmail = findViewById(R.id.et_login_email);
         tiet_passwordForgot = findViewById(R.id.tv_login_forgotPassword);
@@ -229,6 +323,7 @@ public class LoginActivity extends ProgressDialogActivity {
         fbLoginButton = findViewById(R.id.btn_fbLogin);
         fAuth = FirebaseAuth.getInstance();
     }
+
 
 
 }

@@ -34,8 +34,10 @@ import com.example.project_just4gamers.ui.activities.LoginActivity;
 import com.example.project_just4gamers.ui.activities.MessageViewActivity;
 import com.example.project_just4gamers.ui.activities.ProductDetailsActivity;
 import com.example.project_just4gamers.ui.activities.ProductOwnerProfileActivity;
+import com.example.project_just4gamers.ui.activities.ProgressDialogActivity;
 import com.example.project_just4gamers.ui.activities.RegisterActivity;
 import com.example.project_just4gamers.ui.activities.SettingsActivity;
+import com.example.project_just4gamers.ui.activities.SplashActivity;
 import com.example.project_just4gamers.ui.activities.UpdateProductActivity;
 import com.example.project_just4gamers.ui.activities.UserProfileActivity;
 import com.example.project_just4gamers.models.User;
@@ -46,6 +48,7 @@ import com.example.project_just4gamers.ui.fragments.ReceivedMessagesFragment;
 import com.example.project_just4gamers.ui.fragments.SentMessagesFragment;
 import com.example.project_just4gamers.ui.fragments.SoldProductsFragment;
 import com.example.project_just4gamers.utils.Constants;
+import com.facebook.login.Login;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -66,28 +69,28 @@ import java.util.HashMap;
 public class FirestoreManager {
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
-    public void registerUser(RegisterActivity activity, User userInfo){
+    public void registerUser(Activity activity, User userInfo){
         fStore.collection(Constants.getUSERS())
                 .document(userInfo.getId())
                 .set(userInfo, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        activity.hideProgressDialog();
+                        if (activity instanceof LoginActivity){
+                            ((LoginActivity) activity).hideProgressDialog();
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        activity.hideProgressDialog();
+                       // activity.hideProgressDialog();
                     }
                 });
     }
 
     public String getCurrentUserID(){
-        // An instance of currentUser using FirebaseAuth
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        // A variable to assign the currentUserId if it is not null or else it will be blank.
         String currentUserID = "";
         if (currentUser != null){
             currentUserID = currentUser.getUid();
@@ -96,14 +99,12 @@ public class FirestoreManager {
     }
 
     public void getUserDetails(Activity activity){
-        //Here we pass the collection name from which we wants the data.
         fStore.collection(Constants.getUSERS())
                 .document(getCurrentUserID())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot document) {
-                        //Here we have received the document snapshot which is converted into the User Data model object.
                         User user = document.toObject(User.class);
 
                         SharedPreferences prefs = activity.getSharedPreferences(Constants.getPREFS(),
@@ -170,10 +171,10 @@ public class FirestoreManager {
                         imageFileUri
                 )
         );
+
         reference.putFile(imageFileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                //Get the downloadable url from the task snapshot
                 taskSnapshot.getMetadata().getReference().getDownloadUrl()
                         .addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -668,9 +669,31 @@ public class FirestoreManager {
                             } else  if (activity instanceof PodiumActivity){
                                 ((PodiumActivity) activity).successGetUsers(users);
                             }
-
                     }
                 });
+    }
+
+    public void getAllUsersV4(LoginActivity activity){
+        fStore.collection(Constants.getUSERS())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<User> users = new ArrayList<>();
+                            for (DocumentSnapshot item : documents){
+                                User user = item.toObject(User.class);
+                                if (user != null)
+                                users.add(user);
+                            }
+                        System.out.println("AICISA1");
+                            activity.successGetUsers(users);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println(e.getMessage().toString() + " Eroare");
+            }
+        });
     }
 
 

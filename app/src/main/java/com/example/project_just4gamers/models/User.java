@@ -39,6 +39,22 @@ public class User implements Parcelable {
         this.longitude = 0.0;
     }
 
+    public User(String id, String firstName, String lastName, String email, String image) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.image = image;
+        this.points = 0;
+        this.gender = "";
+        this.mobile = 0;
+        this.profileCompleted = 0;
+        this.soldProducts = 0;
+        this.orders = 0;
+        this.latitude = 0.0;
+        this.longitude = 0.0;
+    }
+
 
     protected User(Parcel in) {
         id = in.readString();

@@ -82,7 +82,6 @@ public class UserProfileActivity extends ProgressDialogActivity {
         setUserDetailsMethod();
 
         iv_userProfilePhoto.setOnClickListener(setProfilePhotoListener());
-
         client = LocationServices.getFusedLocationProviderClient(getApplicationContext());
 
         btn_submit.setOnClickListener(submitProfileListener());
@@ -96,20 +95,19 @@ public class UserProfileActivity extends ProgressDialogActivity {
                     //show progress dialog
                     if (selectedImageFileUri != null) {
                         fManager.uploadImageToCloudStorage(UserProfileActivity.this, selectedImageFileUri, Constants.getUserProfileImage());
-
-                        //update the gps location for user
-                        if (ActivityCompat.checkSelfPermission(UserProfileActivity.this,
-                                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                                ActivityCompat.checkSelfPermission(UserProfileActivity.this,
-                                        Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
-                            getCoordonates();
-                        } else {
-                            ActivityCompat.requestPermissions(UserProfileActivity.this,
-                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                                            Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-                        }
                     } else {
                         updateUserProfileDetails();
+                    }
+                    //update the gps location for user
+                    if (ActivityCompat.checkSelfPermission(UserProfileActivity.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(UserProfileActivity.this,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
+                        getCoordonates();
+                    } else {
+                        ActivityCompat.requestPermissions(UserProfileActivity.this,
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                                        Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
                     }
                 }
             }
@@ -154,7 +152,6 @@ public class UserProfileActivity extends ProgressDialogActivity {
                                 new FirestoreManager().setCoordonatesForUser(hashMap);
                             }
                         };
-                      //  if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                             client.requestLocationUpdates(locationRequest,
                                     locationCallback, Looper.myLooper());
                         }
@@ -165,7 +162,6 @@ public class UserProfileActivity extends ProgressDialogActivity {
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
-
 
 
     private boolean validate() {
@@ -185,7 +181,6 @@ public class UserProfileActivity extends ProgressDialogActivity {
                         == PackageManager.PERMISSION_GRANTED) {
                     new Constants().showImageChooser(UserProfileActivity.this);
                 } else {
-                   //Requests permissions to be granted.
                     ActivityCompat.requestPermissions(UserProfileActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}
                     ,Constants.getReadStoragePermissionCode());
                 }
@@ -228,21 +223,22 @@ public class UserProfileActivity extends ProgressDialogActivity {
         tiet_email.setEnabled(false);
         tiet_email.setText(userDetails.getEmail());
 
+        if (userDetails.getImage() != null){
+            photoLoader.loadUserPicture(userDetails.getImage(),iv_userProfilePhoto);
+        }
+
         if (userDetails.getProfileCompleted() == 0){
             tvTitle.setText(getString(R.string.tv_complete_profile));
             tiet_firstName.setEnabled(false);
-            tiet_firstName.setTextColor(Color.BLACK);
+            tiet_firstName.setTextColor(Color.DKGRAY);
+            tiet_mobile.setTextColor(Color.BLACK);
 
             tiet_lastName.setEnabled(false);
             tiet_lastName.setTextColor(Color.DKGRAY);
-            tiet_mobile.setHintTextColor(Color.GRAY);
+            tiet_mobile.setHintTextColor(Color.DKGRAY);
             tiet_email.setTextColor(Color.DKGRAY);
 
-
-
-
         } else {
-            //setupActionBar();
             tvTitle.setText(getString(R.string.tv_edit_profile));
             photoLoader.loadUserPicture(userDetails.getImage(),iv_userProfilePhoto);
 
@@ -289,13 +285,14 @@ public class UserProfileActivity extends ProgressDialogActivity {
         if (!mobile.isEmpty() && !mobile.equals(String.valueOf(userDetails.getMobile()))){
             userHashMap.put(Constants.getMOBILE(),Long.parseLong(mobile));
         }
+
         userHashMap.put(Constants.getCompleteProfile(), 1);
 
         fManager.updateUserProfileData(UserProfileActivity.this, userHashMap);
     }
 
     public void userProfileUpdateSuccess(){
-        Toast.makeText(getApplicationContext(),"Profile update succeed!",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Success!",Toast.LENGTH_LONG).show();
         startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
         finish();
     }
@@ -308,11 +305,7 @@ public class UserProfileActivity extends ProgressDialogActivity {
                 new Constants().showImageChooser(this);
             }
         } else if (requestCode == 100 && grantResults.length > 0 && (grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED)){
-
         }
-//        else {
-//            Toast.makeText(getApplicationContext(),"Oops, you just denied the permission for storage. You can also allow it from settings.",Toast.LENGTH_LONG).show();
-//        }
     }
 
     @Override
