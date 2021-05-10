@@ -31,8 +31,15 @@ import android.widget.Toast;
 import com.example.project_just4gamers.firestore.FirestoreManager;
 import com.example.project_just4gamers.R;
 import com.example.project_just4gamers.utils.Constants;
+import com.facebook.login.Login;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -41,6 +48,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.ArrayList;
 
@@ -55,10 +63,14 @@ public class LoginActivity extends ProgressDialogActivity {
     private FirebaseAuth fAuth;
     private CheckBox cb_remember;
     private LoginButton fbLoginButton;
+    private SignInButton googleLoginButton;
+    private GoogleSignInClient googleSignInClient;
     private String email;
     private String password;
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
+    private static int RC_SIGN_IN = 1;
+    private ArrayList<User> users = new ArrayList<>();
 
     private AccessTokenTracker accessTokenTracker;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -94,9 +106,25 @@ public class LoginActivity extends ProgressDialogActivity {
         fbLoginButton.setPermissions("email", "public_profile");
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-
         getAllUsers();
+    }
 
+    private void loginGoogleSetup() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN
+                                       ).requestIdToken(getString(R.string.default_web_client_id))
+                                        .requestEmail()
+                                        .build();
+        googleSignInClient = GoogleSignIn.getClient(getApplicationContext(), gso);
+        googleLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    signInGoogle();
+            }
+        });
+    }
+    private void signInGoogle() {
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     private void getAllUsers() {
@@ -104,6 +132,10 @@ public class LoginActivity extends ProgressDialogActivity {
     }
 
     public void successGetUsers(ArrayList<User> users) {
+        facebookLoginSetup(users);
+    }
+
+    private void facebookLoginSetup(ArrayList<User> users) {
         fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -295,23 +327,80 @@ public class LoginActivity extends ProgressDialogActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        fAuth.addAuthStateListener(authStateListener);
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if (authStateListener != null){
-//            fAuth.removeAuthStateListener(authStateListener);
-//        }
-//    }
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Toast.makeText(getApplicationContext(), "Autentificarea cu Google a fost realizata cu succes!", Toast.LENGTH_SHORT).show();
+            firebaseGoogleAuth(account);
+        } catch (ApiException e){
+            Toast.makeText(getApplicationContext(), "Autentificarea cu Google nu a fost realizata.", Toast.LENGTH_SHORT).show();
+            firebaseGoogleAuth(null);
+        }
+    }
+
+    private void firebaseGoogleAuth(GoogleSignInAccount account) {
+        AuthCredential authCredential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        fAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    showProgressDialog(getString(R.string.tv_progress_textT));
+                    Toast.makeText(getApplicationContext(), "Succes!", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = fAuth.getCurrentUser();
+                    updateUIG(user);
+                } else {
+                    hideProgressDialog();
+                    Toast.makeText(getApplicationContext(), "Eroare.", Toast.LENGTH_SHORT).show();
+                    updateUIG(null);
+                }
+            }
+        });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void updateUIG(FirebaseUser user) {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        if (account != null){
+            String name = account.getDisplayName();
+            String[] fullName = name.split(" ");
+            String firstName = fullName[0];
+            String lastName = fullName[1];
+            String photoUrl = account.getPhotoUrl().toString();
+            String email = account.getEmail();
+
+            if (!containsID(users, user.getUid())) {
+                User newUser = new User(user.getUid(),
+                        firstName, lastName, email, photoUrl);
+                new FirestoreManager().registerUser(LoginActivity.this, newUser);
+            }
+
+            new FirestoreManager().getUserDetails(LoginActivity.this);
 
 
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAllUsersV5();
+        loginGoogleSetup();
+    }
+
+    private void getAllUsersV5() {
+        new FirestoreManager().getAllUsersV5(LoginActivity.this);
+    }
+
+    public void successGetUsersV5(ArrayList<User> userss){
+        users = userss;
+    }
 
     private void initComponents() {
         tv_registerBtn = findViewById(R.id.tv_login_registerBtn);
@@ -321,6 +410,7 @@ public class LoginActivity extends ProgressDialogActivity {
         btnLogin = findViewById(R.id.btn_login);
         cb_remember = findViewById(R.id.cb_login_remember);
         fbLoginButton = findViewById(R.id.btn_fbLogin);
+        googleLoginButton = findViewById(R.id.btn_googleLogin);
         fAuth = FirebaseAuth.getInstance();
     }
 

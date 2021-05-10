@@ -685,8 +685,29 @@ public class FirestoreManager {
                                 if (user != null)
                                 users.add(user);
                             }
-                        System.out.println("AICISA1");
                             activity.successGetUsers(users);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println(e.getMessage().toString() + " Eroare");
+            }
+        });
+    }
+
+    public void getAllUsersV5(LoginActivity activity){
+        fStore.collection(Constants.getUSERS())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documents) {
+                        ArrayList<User> users = new ArrayList<>();
+                            for (DocumentSnapshot item : documents){
+                                User user = item.toObject(User.class);
+                                if (user != null)
+                                users.add(user);
+                            }
+                            activity.successGetUsersV5(users);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -30,6 +30,9 @@ import com.example.project_just4gamers.utils.Constants;
 import com.example.project_just4gamers.utils.GlideLoader;
 
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
@@ -65,6 +68,7 @@ public class SettingsActivity extends ProgressDialogActivity {
     private int nrRatings;
     private RecyclerView rvReviews;
 
+    private GoogleSignInClient googleSignInClient;
     private SupportMapFragment supportMapFragment;
     private FusedLocationProviderClient client;
 
@@ -122,7 +126,6 @@ public class SettingsActivity extends ProgressDialogActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), AddressListActivity.class));
-
             }
         };
     }
@@ -144,6 +147,13 @@ public class SettingsActivity extends ProgressDialogActivity {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
+
+                GoogleSignInOptions gso = new GoogleSignInOptions.
+                        Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
+                        build();
+                GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getApplicationContext(), gso);
+                googleSignInClient.signOut();
+
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
