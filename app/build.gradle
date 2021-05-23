@@ -60,4 +60,10 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
     implementation 'com.google.firebase:firebase-core:18.0.3'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.wonderkiln:camerakit:0.13.1'
+    implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.2'
+    //noinspection OutdatedLibrary
+    implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
+    implementation 'com.google.mlkit:face-detection:16.0.7'
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
 }

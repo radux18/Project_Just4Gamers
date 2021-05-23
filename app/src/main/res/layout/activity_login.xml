@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F3F3EE"
-    tools:context=".ui.activities.LoginActivity">
+    tools:context=".userInterface.activities.LoginActivity">
 
     <FrameLayout
         android:id="@+id/fl_login_header_image"
@@ -132,7 +132,7 @@
         android:text="@string/btn_loginT"
         app:layout_constraintTop_toBottomOf="@id/tv_login_forgotPassword"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.facebook.login.widget.LoginButton
@@ -162,10 +162,9 @@
         app:layout_constraintTop_toBottomOf="@id/btn_googleLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:padding="5dp"
-        android:layout_marginTop="6dp"
         android:clickable="true" />
 
     <CheckBox

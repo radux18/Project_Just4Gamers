@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.activities.ProductOwnerProfileActivity"
+    tools:context=".userInterface.activities.ProductOwnerProfileActivity"
     android:fillViewport="true"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
+    android:background="@color/yellowbrightgrey"
     app:layout_constraintStart_toStartOf="parent">
 
     <RelativeLayout
@@ -17,7 +18,7 @@
         <FrameLayout
             android:id="@+id/fl_header_bg"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="300dp">
 
             <ImageView
                 android:id="@+id/iv_header_bg"
@@ -30,7 +31,8 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_profile"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/toolbar_background">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -43,7 +45,8 @@
                     android:textStyle="bold"
                     android:paddingLeft="@dimen/toolbar_title_paddingStart"
                     android:paddingRight="0dp"
-                    android:text="User Profile" />
+                    android:fontFamily="@font/lato_regular"
+                    android:text="Profil" />
             </androidx.appcompat.widget.Toolbar>
         </FrameLayout>
 
@@ -112,9 +115,11 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Name:"
+                    android:text="Nume:"
                     android:layout_gravity="end"
                     android:layout_marginStart="40dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     android:textSize="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="40dp" />
@@ -145,9 +150,11 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Points:"
+                    android:text="Puncte:"
                     android:layout_marginStart="40dp"
-                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
+                    android:textSize="20dp"
                     android:layout_marginLeft="40dp" />
 
                 <TextView
@@ -170,9 +177,11 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Gender:"
+                    android:text="Gen:"
                     android:layout_gravity="end"
-                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
+                    android:textSize="20dp"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp" />
@@ -198,7 +207,9 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
+                    android:textSize="20dp"
                     android:layout_marginStart="40dp"
                     android:text="Email:"
                     android:layout_marginLeft="40dp" />
@@ -223,9 +234,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
+                    android:textSize="20dp"
                     android:layout_marginStart="40dp"
-                    android:text="Mobile number:"
+                    android:text="Numar mobil:"
                     android:layout_marginLeft="40dp" />
 
                 <TextView
@@ -263,9 +276,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:orientation="vertical"
-                android:background="@color/mediumGrey"
+                android:background="@color/darkGrey"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"/>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_reviews"
@@ -278,7 +292,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:orientation="vertical"
-                android:background="@color/mediumGrey"
+                android:background="@color/darkGrey"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"/>
 
@@ -292,6 +306,9 @@
             android:layout_below="@id/ll_reviews"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="30dp"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:textColor="@color/white"
             android:layout_marginEnd="30dp"
             android:gravity="center"/>
 

@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.AddressListActivity">
+    android:background="@color/yellowbrightgrey"
+    tools:context=".userInterface.activities.AddressListActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_discounts"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/redError"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

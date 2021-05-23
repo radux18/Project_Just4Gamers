@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
+    android:theme="@style/Theme.Project_Just4Gamers"
     android:layout_height="match_parent">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,7 +13,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="@color/purple_700"
+        android:background="@drawable/toolbar_background"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -5,15 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.AddProductActivity">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.activities.AddProductActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_add_product_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/teal_200"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,14 +23,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:fontFamily="@font/lato_regular"
             android:text="@string/title_add_product"
-            android:paddingEnd="10dp"
-            android:paddingStart="0dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="0dp"
+            android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:paddingLeft="@dimen/toolbar_title_paddingStart"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
+            android:textSize="18sp"
+            android:textColor="@color/white" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -73,10 +75,16 @@
                     android:src="@drawable/ic_vector_add_a_photo"/>
             </FrameLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                app:layout_constraintTop_toBottomOf="@id/fl_product_image"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_add_product_title"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_product_image"
@@ -86,7 +94,9 @@
                     android:id="@+id/tiet_add_product_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     android:background="@drawable/textview_format"
                     android:hint="@string/product_titleT"
                     android:inputType="text" />
@@ -95,7 +105,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_add_product_price"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_add_product_title"
@@ -105,7 +115,9 @@
                     android:id="@+id/tiet_add_product_price"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:background="@drawable/textview_format"
                     android:hint="@string/product_pricet"
                     android:inputType="number" />
@@ -126,6 +138,8 @@
                     android:text="@string/tv_product_ageT"
                     android:textStyle="bold"
                     android:gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     app:layout_constraintTop_toBottomOf="@id/til_add_product_price"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -133,13 +147,17 @@
 
                 <Spinner
                     android:id="@+id/spn_add_product_age"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
                     android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:background="@drawable/spinner_background"
+                    android:popupBackground="@drawable/spinner_background"
                     app:layout_constraintTop_toBottomOf="@id/tv_product_productAge"
                     android:layout_marginTop="30dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    />
+                    android:gravity="center" />
 
             </LinearLayout>
 
@@ -163,6 +181,7 @@
                     android:text="@string/rb_newT"
                     android:background="@drawable/drawable_gender_tab_selector"
                     android:button="@null"
+                    android:fontFamily="@font/lato_regular"
                     android:layout_marginEnd="15dp"
                     android:gravity="center"
                     android:textColor="@drawable/drawable_gender_tab_text_color_selector"
@@ -175,6 +194,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:button="@null"
+                    android:fontFamily="@font/lato_regular"
                     android:gravity="center"
                     android:background="@drawable/drawable_gender_tab_selector"
                     android:text="@string/rb_usedT"
@@ -185,7 +205,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_add_product_description"
                 android:layout_width="350dp"
-                android:layout_height="125dp"
+                android:layout_height="135dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_product_age"
@@ -195,7 +215,12 @@
                     android:id="@+id/tiet_add_product_description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
+                    android:paddingTop="25dp"
+                    android:paddingBottom="25dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:background="@drawable/textview_format"
                     android:hint="@string/tiet_add_product_descriptionT"
                     android:inputType="textMultiLine"
@@ -207,7 +232,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_add_product_quantity"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_add_product_description"
@@ -217,7 +242,9 @@
                     android:id="@+id/tiet_add_product_quantity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:background="@drawable/textview_format"
                     android:hint="@string/tiet_add_product_quantityT"
                     android:inputType="number" />
@@ -230,6 +257,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
+                android:background="@drawable/button_background"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:padding="16dp"
+                android:textSize="16sp"
                 android:text="@string/btn_add_product_submit"
                 app:layout_constraintTop_toBottomOf="@id/til_add_product_quantity"
                 app:layout_constraintStart_toStartOf="parent"

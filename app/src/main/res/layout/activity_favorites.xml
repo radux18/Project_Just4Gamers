@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.FavoritesActivity">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.activities.FavoritesActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_favoriteProducts"
@@ -13,7 +15,7 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/redError"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
@@ -39,8 +41,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_favorite_items"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:visibility="gone"
+        android:layout_margin="8dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar_favoriteProducts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

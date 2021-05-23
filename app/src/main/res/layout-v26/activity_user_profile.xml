@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellowGray"
-    tools:context=".ui.activities.UserProfileActivity">
+    tools:context=".userInterface.activities.UserProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_profile"

@@ -8,6 +8,9 @@
     android:paddingStart="@dimen/cart_item_paddingStartEnd"
     android:paddingTop="@dimen/cart_item_paddingTopBottom"
     android:paddingEnd="@dimen/cart_item_paddingStartEnd"
+    android:layout_margin="8dp"
+    android:background="@color/white"
+    android:theme="@style/Theme.Project_Just4Gamers"
     android:paddingBottom="@dimen/cart_item_paddingTopBottom">
 
     <LinearLayout
@@ -40,7 +43,11 @@
         <TextView
             android:id="@+id/tv_cart_item_title"
             android:layout_width="match_parent"
+            android:fontFamily="@font/lato_regular"
+            android:textColor="@color/darkGrey"
+            android:gravity="start"
             android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
             android:text="@string/cart_item_titleT"
             android:textSize="@dimen/cart_item_title_textSize" />
 
@@ -54,30 +61,34 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:textSize="@dimen/cart_item_price_textSize"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"
                 android:text="@string/tv_carPriceT"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true" />
 
             <LinearLayout
                 android:id="@+id/ll_update_cart_quantity"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="@dimen/update_cart_quantity_marginStart"
-                android:layout_marginEnd="@dimen/update_cart_quantity_marginEnd"
-                android:layout_marginRight="@dimen/update_cart_quantity_marginStart"
                 android:layout_marginLeft="@dimen/update_cart_quantity_marginEnd"
                 android:gravity="end"
                 android:orientation="horizontal">
+
                 
                 <ImageButton
                     android:id="@+id/ib_remove_cart_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/darkGrey"
+                    android:background="@color/redError"
                     android:contentDescription="@string/content_description"
                     android:padding="@dimen/ib_cart_item_padding"
-                    android:src="@drawable/ic_vector_remove"/>
+                    android:layout_marginStart="25dp"
+                    android:src="@drawable/ic_vector_remove"
+                    android:layout_marginLeft="25dp" />
 
                 <TextView
                     android:id="@+id/tv_cart_quantity"
@@ -88,17 +99,19 @@
                     android:paddingTop="@dimen/cart_quantity_paddingTopBottom"
                     android:paddingEnd="@dimen/cart_quantity_paddingStartEnd"
                     android:paddingBottom="12dp"
+                    android:layout_marginStart="8dp"
                     android:text="@string/tv_cart_quantityT"
                     android:textSize="@dimen/cart_quantity_textSize"
-                    android:textColor="@color/redError"
-                    android:textStyle="bold" />
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="8dp" />
 
                 <ImageButton
                     android:id="@+id/ib_add_cart_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:background="@color/darkGrey"
+                    android:background="@color/redError"
                     android:layout_marginStart="@dimen/ib_add_cart_item_marginStart"
                     android:layout_marginEnd="@dimen/ib_add_cart_item_marginEnd"
                     android:contentDescription="@string/content_description"
@@ -113,9 +126,13 @@
         android:id="@+id/ib_deleteCartItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/ib_cart_item_padding"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="8dp"
         android:contentDescription="@string/content_description"
+        android:background="@color/white"
         android:src="@drawable/ic_vector_delete"
         android:visibility="visible"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:paddingRight="5dp" />
 </LinearLayout>

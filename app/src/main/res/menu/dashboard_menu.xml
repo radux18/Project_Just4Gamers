@@ -3,14 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_podium"
-          android:icon="@drawable/podium"
+          android:icon="@drawable/ic_trophy_vecotr"
           android:title="Podium"
           app:showAsAction="always"/>
-
-    <item android:id="@+id/action_favorite"
-           android:icon="@drawable/ic_vector_favorite"
-            android:title="@string/action_favoriteT"
-           app:showAsAction="always"/>
 
     <item android:id="@+id/action_inbox"
         android:icon="@drawable/ic_message_vector"
@@ -20,11 +15,6 @@
     <item android:id="@+id/action_coupons"
         android:icon="@drawable/ic_vector_coupon"
         android:title="@string/couponsT"
-        app:showAsAction="always"/>
-
-    <item android:id="@+id/action_cart"
-        android:icon="@drawable/ic_vector_cart"
-        android:title="@string/cartTitle"
         app:showAsAction="always"/>
 
     <item android:id="@+id/action_setting"

@@ -5,7 +5,9 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.inboxInterface.PlaceholderFragment">
+    android:background="@color/yellowGray"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.inboxInterface.PlaceholderFragment">
 
     <TextView
         android:id="@+id/section_label"

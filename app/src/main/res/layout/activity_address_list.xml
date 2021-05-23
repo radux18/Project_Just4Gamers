@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.AddressListActivity">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.activities.AddressListActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_address_list"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/teal_200"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -20,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:fontFamily="@font/lato_regular"
             android:paddingStart="@dimen/toolbar_title_paddingStart"
             android:paddingEnd="0dp"
             android:paddingLeft="@dimen/toolbar_title_paddingStart"
@@ -39,7 +42,8 @@
         android:gravity="center"
         android:padding="@dimen/btn_add_address_padding"
         android:text="@string/lbl_add_address"
-        android:textColor="@color/teal_200"
+        android:textColor="@color/redError"
+        android:textStyle="bold"
         android:textSize="@dimen/add_address_textSize"
         android:background="@drawable/item_dashboard_background"
         app:layout_constraintStart_toStartOf="parent"

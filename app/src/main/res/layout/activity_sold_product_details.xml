@@ -5,13 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.SoldProductDetailsActivity">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.activities.SoldProductDetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_sold_product_details_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/teal_200"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,10 +27,12 @@
             android:paddingEnd="0dp"
             android:text="@string/title_sold_product_details"
             android:textColor="@color/white"
+            android:layout_marginStart="15dp"
             android:textSize="@dimen/toolbar_title_text_size"
             android:textStyle="bold"
             android:paddingLeft="@dimen/toolbar_title_paddingStart"
-            android:paddingRight="0dp" />
+            android:paddingRight="0dp"
+            android:layout_marginLeft="15dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -53,8 +57,10 @@
                 android:layout_marginStart="@dimen/sold_details_content_marginStartEnd"
                 android:layout_marginTop="@dimen/sold_details_content_marginTopBottom"
                 android:layout_marginEnd="@dimen/sold_details_content_marginStartEnd"
-                android:paddingTop="@dimen/sold_details_content_lbl_padding"
-                android:paddingBottom="@dimen/sold_details_content_lbl_padding"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:text="@string/order_details_lbl"
                 android:textSize="@dimen/sold_details_lbl_textSize" />
 
@@ -77,6 +83,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/order_details_lbl_order_id"
                         android:textColor="@color/darkGrey"
                         android:textSize="@dimen/sold_details_label_value_textSize" />
@@ -86,7 +93,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/sold_details_label_value_textSize"
                         tools:text="123456"
                         android:gravity="center" />
@@ -102,6 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/order_details_lbl_order_date"
+                        android:fontFamily="@font/lato_regular"
                         android:textColor="@color/darkGrey"
                         android:textSize="@dimen/sold_details_label_value_textSize" />
 
@@ -110,13 +118,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/sold_details_label_value_textSize"
                         tools:text="20 Oct 2020"
                         android:gravity="center" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -125,8 +139,10 @@
                 android:layout_marginTop="@dimen/sold_details_content_marginTopBottom"
                 android:layout_marginBottom="@dimen/sold_details_content_marginTopBottom"
                 android:layout_marginEnd="@dimen/sold_details_content_marginStartEnd"
-                android:paddingTop="@dimen/sold_details_content_lbl_padding"
-                android:paddingBottom="@dimen/sold_details_content_lbl_padding"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:text="@string/checkout_lbl_product_items"
                 android:textSize="@dimen/sold_details_lbl_textSize" />
 
@@ -184,6 +200,11 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -192,10 +213,11 @@
                 android:layout_marginTop="@dimen/sold_details_content_marginTopBottom"
                 android:layout_marginEnd="@dimen/sold_details_content_marginStartEnd"
                 android:layout_marginBottom="@dimen/sold_details_content_marginTopBottom"
-                android:paddingTop="@dimen/sold_details_content_lbl_padding"
-                android:paddingBottom="@dimen/sold_details_content_lbl_padding"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:text="@string/order_details_lbl_shipping_address"
-
                 android:textSize="@dimen/sold_details_lbl_textSize" />
 
             <LinearLayout
@@ -212,7 +234,8 @@
                     android:id="@+id/tv_sold_details_address_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/darkGrey"
+                    android:textColor="@color/redError"
+                    android:fontFamily="@font/lato_regular"
                     android:paddingTop="@dimen/address_details_marginTop"
                     android:paddingBottom="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
@@ -223,8 +246,9 @@
                     android:id="@+id/tv_sold_details_full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/darkGrey"
                     android:textSize="@dimen/item_address_name_textSize"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     tools:text="Radu Stoica" />
 
                 <TextView
@@ -232,6 +256,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/darkGrey"
+                    android:fontFamily="@font/lato_regular"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
                     tools:text="XYZ" />
@@ -241,6 +266,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/darkGrey"
+                    android:fontFamily="@font/lato_regular"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
                     tools:text="XYZ" />
@@ -251,6 +277,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/darkGrey"
                     android:layout_marginTop="@dimen/address_details_marginTop"
+                    android:fontFamily="@font/lato_regular"
                     android:textSize="@dimen/address_details_textSize"
                     tools:text="XYZ" />
 
@@ -261,8 +288,15 @@
                     android:textColor="@color/darkGrey"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
+                    android:fontFamily="@font/lato_regular"
                     tools:text="+64 123456789" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -271,9 +305,11 @@
                 android:layout_marginTop="@dimen/sold_details_content_marginTopBottom"
                 android:layout_marginEnd="@dimen/sold_details_content_marginStartEnd"
                 android:layout_marginBottom="@dimen/sold_details_content_marginTopBottom"
-                android:paddingTop="@dimen/sold_details_content_lbl_padding"
-                android:paddingBottom="@dimen/sold_details_content_lbl_padding"
+                android:padding="5dp"
                 android:text="@string/checkout_lbl_items_receipt"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:textSize="@dimen/sold_details_lbl_textSize" />
 
             <LinearLayout
@@ -292,6 +328,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+
                         android:text="@string/lbl_subtotal"
                         android:textColor="@color/darkGrey"
                         android:textSize="@dimen/sold_details_label_value_textSize" />
@@ -341,7 +378,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/lbl_total_amount"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/sold_details_label_value_textSize" />
 
                     <TextView
@@ -351,10 +388,16 @@
                         android:textAlignment="center"
                         android:textColor="@color/darkGrey"
                         android:textSize="@dimen/sold_details_label_value_textSize"
+                        android:textStyle="bold"
                         tools:text="$110"
                         android:gravity="center" />
                 </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                />
         </LinearLayout>
     </ScrollView>
 

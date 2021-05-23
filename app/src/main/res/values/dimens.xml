@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="splash_title_text_height">400sp</dimen>
     <dimen name="auth_header_image_height">200dp</dimen>
 
@@ -35,15 +35,15 @@
     <dimen name="cart_item_details_marginEnd">2dp</dimen>
     <dimen name="ib_cart_item_padding">5dp</dimen>
     <dimen name="cart_item_price_textSize">12sp</dimen>
-    <dimen name="update_cart_quantity_marginStart">5dp</dimen>
-    <dimen name="update_cart_quantity_marginEnd">16dp</dimen>
+    <dimen name="update_cart_quantity_marginStart">30dp</dimen>
+    <dimen name="update_cart_quantity_marginEnd">30dp</dimen>
     <dimen name="ib_remove_cart_item_marginStartEnd">5dp</dimen>
     <dimen name="cart_quantity_paddingStartEnd">16dp</dimen>
     <dimen name="cart_quantity_paddingTopBottom">3dp</dimen>
     <dimen name="cart_quantity_textSize">14sp</dimen>
     <dimen name="ib_add_cart_item_marginStart">5dp</dimen>
     <dimen name="ib_add_cart_item_marginEnd">16dp</dimen>
-    <dimen name="toolbar_title_paddingStart">-20dp</dimen>
+    <dimen name="toolbar_title_paddingStart">-90dp</dimen>
     <dimen name="toolbar_title_text_size">18sp</dimen>
 
     <dimen name="btn_add_address_margin">16dp</dimen>
@@ -99,5 +99,7 @@
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="design_navigation_icon_size" tools:override="true">40dp</dimen>
 
 </resources>

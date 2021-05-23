@@ -5,13 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.PodiumActivity">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.activities.PodiumActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_podium"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/redError"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -38,6 +40,7 @@
         app:layout_constraintTop_toBottomOf="@id/tb_podium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/lato_regular"
         android:textSize="20sp"
         android:textStyle="bold"
         android:text="Selecteaza o categorie"/>
@@ -47,6 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="@drawable/spinner_background"
+        android:popupBackground="@drawable/spinner_background"
         app:layout_constraintTop_toBottomOf="@id/tv_selectCategory"/>
 
     <LinearLayout

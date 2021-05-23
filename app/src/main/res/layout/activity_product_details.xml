@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.ProductDetailsActivity">
+    android:background="@color/yellowGray"
+    tools:context=".userInterface.activities.ProductDetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_productDetails"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/teal_200"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -29,9 +30,6 @@
             android:text="@string/product_detailsT"
             android:paddingStart="@dimen/toolbar_title_paddingStart"
             android:paddingEnd="0dp" />
-
-
-
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -57,13 +55,21 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:background="@color/colorImageViewBackground"
                     android:scaleType="fitXY"
-                    android:contentDescription="@string/content_description"/>
+                    android:contentDescription="@string/content_description"
+                    />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                app:layout_constraintTop_toBottomOf="@id/iv_product_details_image"/>
 
                 <CheckBox
                     android:id="@+id/cb_product_favorite"
                     android:layout_width="wrap_content"
                     android:scaleY="2"
                     android:scaleX="2"
+                    android:background="@drawable/button_background"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -81,6 +87,7 @@
                 android:paddingEnd="15dp"
                 android:paddingStart="15dp"
                 android:paddingTop="5dp"
+                android:backgroundTint="@color/colorThemeOrange"
                 android:paddingBottom="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -98,31 +105,98 @@
                 app:layout_constraintTop_toBottomOf="@id/ll_user_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:orientation="vertical"
+                android:background="@drawable/blank_background"
                 android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tv_productDetails_title"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/product_titleT"
-                    android:textStyle="bold"
-                    />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_productDetails_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tv_productDetails_ageT"
-                    android:textStyle="bold"
-                    />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_regular"
+                        android:textSize="18sp"
+                        android:text="Titlu produs:"
+                        android:textStyle="bold"
+                        />
 
-                <TextView
-                    android:id="@+id/tv_productDetails_price"
+                    <TextView
+                        android:id="@+id/tv_productDetails_title"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:text="@string/product_titleT"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_productDetPriceT" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_regular"
+                        android:textSize="18sp"
+                        android:text="Vechimea produsului:"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_productDetails_age"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_regular"
+                        android:textSize="18sp"
+                        android:text="@string/tv_productDetails_ageT"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"
+                        android:text="Pret Produs:" />
+
+                    <TextView
+                        android:id="@+id/tv_productDetails_price"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/lato_regular"
+                        android:text="@string/tv_productDetPriceT" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <TextView
@@ -134,7 +208,9 @@
                 app:layout_constraintTop_toBottomOf="@id/ll_product_details_title_price"
                 android:text="@string/product_descriptionT"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textSize="18sp"
                 android:layout_margin="16dp"/>
 
             <TextView
@@ -145,7 +221,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_product_description"
                 android:text="@string/this_is_product_details_descriptionT"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
                 android:layout_marginEnd="16dp"
+                android:textSize="16sp"
                 android:layout_marginStart="16dp"/>
 
             <LinearLayout
@@ -156,6 +235,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:gravity="center_vertical"
                 app:layout_constraintTop_toBottomOf="@id/tv_product_detailsDescription"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="10dp"
                 android:orientation="horizontal"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -168,23 +249,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:text="@string/stock_quantityT"
                     android:layout_marginEnd="16dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     android:layout_marginRight="16dp" />
 
                 <TextView
                     android:id="@+id/tv_product_details_stock_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rv_item_stock_quantity_background"
+                    android:background="@drawable/blank_background"
                     android:textSize="20sp"
                     android:text="@string/tv_stockT"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:textColor="@color/black"
                     android:paddingTop="5dp"
-
                     android:paddingBottom="5dp"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -201,6 +283,7 @@
                 android:layout_marginBottom="20dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
+                android:background="@drawable/button_background"
                 android:visibility="gone"
                 app:layout_goneMarginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -222,6 +305,7 @@
                 android:paddingBottom="5dp"
                 android:text="@string/btn_lbl_go_to_cart"
                 android:visibility="gone"
+                android:background="@drawable/button_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -263,6 +347,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginTop="40dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     android:text="@string/tv_user_detail_nameT"
                     android:gravity="center"
                     android:textSize="20sp"
@@ -274,6 +360,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/ll_product_details_quantity"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:backgroundTint="@color/colorThemeOrange"
                     android:src="@drawable/ic_vector_inbox"
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="20dp"

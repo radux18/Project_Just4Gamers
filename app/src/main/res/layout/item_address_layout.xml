@@ -8,6 +8,8 @@
     android:paddingStart="@dimen/item_address_paddingStartEnd"
     android:paddingTop="@dimen/item_address_paddingTopBottom"
     android:paddingEnd="@dimen/item_address_paddingStartEnd"
+    android:layout_margin="8dp"
+    android:background="@drawable/textview_format_v3"
     android:paddingBottom="@dimen/item_address_paddingTopBottom">
 
     <LinearLayout
@@ -21,6 +23,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
+            android:fontFamily="@font/lato_regular"
             android:textSize="@dimen/item_address_name_textSize"
             android:text="@string/tv_address_fullNameT"/>
 
@@ -43,6 +47,8 @@
         android:id="@+id/tv_address_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/lato_regular"
         android:layout_marginTop="@dimen/address_details_marginTop"
         android:textSize="@dimen/address_details_textSize"
         android:text="@string/tv_address_detailsT"/>
@@ -51,6 +57,8 @@
         android:id="@+id/tv_address_mobile_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/lato_regular"
         android:layout_marginTop="@dimen/address_details_marginTop"
         android:textSize="@dimen/address_details_textSize"
         android:text="@string/tv_address_mobileNrT"/>

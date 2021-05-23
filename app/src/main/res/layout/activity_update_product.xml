@@ -5,15 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.UpdateProductActivity">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.activities.UpdateProductActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_updateProduct"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/teal_200"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,12 +24,12 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/tv_title_editProductT"
-            android:paddingEnd="10dp"
-            android:paddingStart="0dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="0dp"
+            android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:paddingLeft="@dimen/toolbar_title_paddingStart"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@color/white"/>
     </androidx.appcompat.widget.Toolbar>
 
@@ -73,10 +74,16 @@
                     android:src="@drawable/ic_vector_add_a_photo"/>
             </FrameLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                app:layout_constraintTop_toBottomOf="@id/fl_product_image"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_editProduct_title"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_product_image"
@@ -86,7 +93,10 @@
                     android:id="@+id/tiet_editProduct_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:hint="@string/product_titleT"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     android:background="@drawable/textview_format"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +104,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_editProduct_price"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_editProduct_title"
@@ -104,8 +114,11 @@
                     android:id="@+id/tiet_editProduct_price"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:background="@drawable/textview_format"
+                    android:hint="@string/product_pricet"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,6 +137,8 @@
                     android:text="@string/tv_product_ageT"
                     android:textStyle="bold"
                     android:gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     app:layout_constraintTop_toBottomOf="@id/til_add_product_price"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -131,8 +146,11 @@
 
                 <Spinner
                     android:id="@+id/spn_editProduct_age"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
                     android:layout_height="40dp"
+                    android:background="@drawable/spinner_background"
+                    android:popupBackground="@drawable/spinner_background"
                     app:layout_constraintTop_toBottomOf="@id/tv_product_productAge"
                     android:layout_marginTop="30dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -161,6 +179,7 @@
                     android:text="@string/rb_newT"
                     android:background="@drawable/drawable_gender_tab_selector"
                     android:button="@null"
+                    android:fontFamily="@font/lato_regular"
                     android:layout_marginEnd="15dp"
                     android:gravity="center"
                     android:textColor="@drawable/drawable_gender_tab_text_color_selector"
@@ -174,6 +193,7 @@
                     android:layout_height="40dp"
                     android:button="@null"
                     android:gravity="center"
+                    android:fontFamily="@font/lato_regular"
                     android:background="@drawable/drawable_gender_tab_selector"
                     android:text="@string/rb_usedT"
                     android:textStyle="bold"
@@ -183,7 +203,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_editProduct_description"
                 android:layout_width="350dp"
-                android:layout_height="125dp"
+                android:layout_height="135dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_editProduct_age"
@@ -193,8 +213,14 @@
                     android:id="@+id/tiet_editProduct_description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
+                    android:paddingTop="25dp"
+                    android:paddingBottom="25dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:background="@drawable/textview_format"
+                    android:hint="@string/tiet_add_product_descriptionT"
                     android:inputType="textMultiLine"
                     android:minLines="3"
                     android:gravity="top|left"
@@ -204,7 +230,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_editProduct_quantity"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_editProduct_description"
@@ -214,8 +240,11 @@
                     android:id="@+id/tiet_editProduct_quantity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:background="@drawable/textview_format"
+                    android:hint="@string/tiet_add_product_quantityT"
                     android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -227,6 +256,11 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="@string/btn_editProduct_submitT"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:padding="15dp"
+                android:textSize="16sp"
+                android:background="@drawable/button_background"
                 app:layout_constraintTop_toBottomOf="@id/til_editProduct_quantity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

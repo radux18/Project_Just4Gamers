@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.ProductsFragment">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.fragments.ProductsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_product_items"
@@ -23,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:textAlignment="center"
+        android:fontFamily="@font/lato_regular"
         android:text="@string/tv_no_productsT"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

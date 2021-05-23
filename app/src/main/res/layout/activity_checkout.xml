@@ -5,14 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.CheckoutActivity">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.activities.CheckoutActivity">
     
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_checkout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:background="@color/redError">
+        android:background="@drawable/toolbar_background">
         
         <TextView
             android:id="@+id/tv_title_checkout"
@@ -48,6 +50,9 @@
                 android:layout_marginStart="@dimen/checkout_content_marginStartEnd"
                 android:layout_marginTop="@dimen/checkout_content_marginTopBottom"
                 android:layout_marginEnd="@dimen/checkout_content_marginStartEnd"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:paddingTop="@dimen/checkout_content_lbl_padding"
                 android:paddingBottom="@dimen/checkout_content_lbl_padding"
                 android:text="@string/checkout_lbl_product_items"
@@ -59,12 +64,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_product_items"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                android:layout_below="@id/rv_cartList_items"/>
+
             <TextView
                 android:id="@+id/tv_selected_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rv_cartList_items"
                 android:layout_marginStart="@dimen/checkout_content_marginStartEnd"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:layout_marginTop="@dimen/checkout_content_marginTopBottom"
                 android:layout_marginEnd="@dimen/checkout_content_marginStartEnd"
                 android:layout_marginBottom="@dimen/checkout_content_marginTopBottom"
@@ -78,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_selected_address"
-                android:background="@color/mediumGrey"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/checkout_content_paddingStartEnd"
                 android:paddingTop="@dimen/checkout_content_paddingTopBottom"
@@ -92,6 +106,7 @@
                     android:paddingTop="@dimen/address_details_marginTop"
                     android:paddingBottom="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
+                    android:fontFamily="@font/lato_regular"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:text="@string/tv_addressTypeT"/>
@@ -102,6 +117,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="@dimen/item_address_name_textSize"
+                    android:fontFamily="@font/lato_regular"
                     android:text="@string/tv_checkout_fullNameT"/>
 
                 <TextView
@@ -111,6 +127,7 @@
                     android:textColor="@color/black"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
+                    android:fontFamily="@font/lato_regular"
                     android:text="@string/tv_checkout_addressT"/>
 
                 <TextView
@@ -120,6 +137,7 @@
                     android:textColor="@color/black"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
+                    android:fontFamily="@font/lato_regular"
                     android:text="@string/tv_checkout_additionalNoteT"/>
 
                 <TextView
@@ -129,6 +147,7 @@
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textColor="@color/black"
                     android:textSize="@dimen/address_details_textSize"
+                    android:fontFamily="@font/lato_regular"
                     android:text="@string/tv_checkout_otherDetails"/>
 
                 <TextView
@@ -138,14 +157,24 @@
                     android:textColor="@color/black"
                     android:layout_marginTop="@dimen/address_details_marginTop"
                     android:textSize="@dimen/address_details_textSize"
+                    android:fontFamily="@font/lato_regular"
                     android:text="@string/tv_checkout_mobileNrT"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                android:layout_below="@id/ll_checkout_addressDetails"/>
 
             <TextView
                 android:id="@+id/tv_items_receipt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ll_checkout_addressDetails"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:layout_marginStart="@dimen/checkout_content_marginStartEnd"
                 android:layout_marginTop="@dimen/checkout_content_marginTopBottom"
                 android:layout_marginEnd="@dimen/checkout_content_marginStartEnd"
@@ -156,11 +185,17 @@
                 android:textSize="@dimen/checkout_lbl_textSize"/>
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                android:layout_below="@id/ll_checkout_addressDetails"/>
+
+            <LinearLayout
                 android:id="@+id/ll_items_total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_items_receipt"
-                android:background="@color/mediumGrey"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:padding="@dimen/ll_checkout_items_receipt">
 
@@ -174,6 +209,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/lbl_subtotal"
                         android:textSize="@dimen/checkout_lbl_textSize"/>
 
@@ -198,6 +234,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColor="@color/black"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/lbl_shipping_charge"
                         android:textSize="@dimen/checkout_label_value_textSize"/>
 
@@ -219,6 +256,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
                         android:textColor="@color/black"
                         android:text="@string/lbl_total_amount"
                         android:textSize="@dimen/checkout_label_value_textSize" />
@@ -231,6 +269,7 @@
                         android:textSize="@dimen/checkout_label_value_textSize"
                         android:textColor="@color/black"
                         android:text="@string/tv_checkout_totalT"
+                        android:textStyle="bold"
                         android:gravity="center" />
                 </LinearLayout>
 
@@ -261,9 +300,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
-
         </RelativeLayout>
     </ScrollView>
 
@@ -272,7 +308,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/mediumGrey"
+        android:background="@color/colorImageViewBackground"
         android:orientation="vertical"
         android:padding="@dimen/ll_checkout_place_order_padding"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -289,6 +325,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
                 android:text="@string/lbl_payment_mode"
                 android:textSize="@dimen/checkout_label_value_textSize" />
 
@@ -298,7 +335,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_cash_on_delivery"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/redError"
                 android:textSize="@dimen/checkout_label_value_textSize"
                 android:gravity="center" />
         </LinearLayout>
@@ -313,6 +350,7 @@
             android:layout_marginEnd="16dp"
             android:gravity="center"
             android:text="@string/btn_lbl_place_order"
+            android:background="@drawable/button_background"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

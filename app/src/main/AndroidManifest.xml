@@ -26,100 +26,100 @@
         android:largeHeap="true"
         android:hardwareAccelerated="false"
         android:theme="@style/Theme.Project_Just4Gamers">
-        <activity android:name=".ui.activities.PodiumActivity"
+        <activity android:name=".userInterface.activities.PodiumActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
-            android:name=".ui.activities.FavoritesActivity"
+            android:name=".userInterface.activities.FavoritesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
-            android:name=".ui.activities.UpdateProductActivity"
+            android:name=".userInterface.activities.UpdateProductActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
-            android:name=".ui.activities.ProductOwnerProfileActivity"
+            android:name=".userInterface.activities.ProductOwnerProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
-            android:name=".ui.activities.AddReviewActivity"
+            android:name=".userInterface.activities.AddReviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
-            android:name=".ui.activities.MessageViewActivity"
+            android:name=".userInterface.activities.MessageViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
-            android:name=".ui.activities.AddMessageActivity"
+            android:name=".userInterface.activities.AddMessageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
-            android:name=".ui.activities.InboxActivity"
+            android:name=".userInterface.activities.InboxActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project_Just4Gamers.NoActionBar" />
         <activity
-            android:name=".ui.activities.ActivateCouponActivity"
+            android:name=".userInterface.activities.ActivateCouponActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.DiscountCouponsActivity"
+            android:name=".userInterface.activities.DiscountCouponsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.SoldProductDetailsActivity"
+            android:name=".userInterface.activities.SoldProductDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.OrderDetailsActivity"
+            android:name=".userInterface.activities.OrderDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.CheckoutActivity"
+            android:name=".userInterface.activities.CheckoutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.AddAddressActivity"
+            android:name=".userInterface.activities.AddAddressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.AddressListActivity"
+            android:name=".userInterface.activities.AddressListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.CartListActivity"
+            android:name=".userInterface.activities.CartListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.ProductDetailsActivity"
+            android:name=".userInterface.activities.ProductDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.AddProductActivity"
+            android:name=".userInterface.activities.AddProductActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.SettingsActivity"
+            android:name=".userInterface.activities.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".ui.activities.DashboardActivity" />
+        <activity android:name=".userInterface.activities.DashboardActivity" />
         <activity
-            android:name=".ui.activities.UserProfileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".ui.activities.ForgotPasswordActivity"
+            android:name=".userInterface.activities.UserProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.RegisterActivity"
+            android:name=".userInterface.activities.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.activities.LoginActivity"
+            android:name=".userInterface.activities.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".userInterface.activities.LoginActivity"
             android:screenOrientation="portrait"
              android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".ui.activities.SplashActivity"
+            android:name=".userInterface.activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -129,7 +129,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".userInterface.activities.MainActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
@@ -143,6 +143,10 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="face" />
 
     </application>
 

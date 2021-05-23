@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SoldProductsFragment">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.fragments.SoldProductsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_sold_product_items"
@@ -23,7 +25,8 @@
         android:layout_height="wrap_content"
         android:text="@string/no_products_sold_out_Yet"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

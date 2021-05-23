@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.ReceivedMessagesFragment">
-
+    android:background="@color/yellowGray"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.fragments.ReceivedMessagesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_receivedMessages"
@@ -29,7 +30,7 @@
         android:textAlignment="center"
         android:textSize="25sp"
         android:visibility="visible"
-
+        android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

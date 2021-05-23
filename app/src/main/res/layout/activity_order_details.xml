@@ -5,13 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.OrderDetailsActivity">
+    android:background="@color/yellowbrightgrey"
+    android:theme="@style/Theme.Project_Just4Gamers"
+    tools:context=".userInterface.activities.OrderDetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_order_details_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/teal_200"
+        android:background="@drawable/toolbar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -56,6 +58,9 @@
                 android:paddingTop="@dimen/order_details_content_lbl_padding"
                 android:paddingBottom="@dimen/order_details_content_lbl_padding"
                 android:text="@string/order_details_lbl"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:textSize="@dimen/order_details_lbl_textSize" />
 
             <LinearLayout
@@ -63,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
+                android:layout_marginTop="10dp"
                 android:paddingStart="@dimen/order_details_content_paddingStartEnd"
                 android:paddingTop="@dimen/order_details_content_paddingTopBottom"
                 android:paddingEnd="@dimen/order_details_content_paddingStartEnd"
@@ -88,7 +94,7 @@
                         android:gravity="center_horizontal"
                         android:text="@string/tv_order_detailsIdT"
                         android:textAlignment="center"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/order_details_label_value_textSize" />
                 </LinearLayout>
 
@@ -110,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/order_details_label_value_textSize"
                         android:text="@string/tv_orderDetailsDateT"
                         android:gravity="center" />
@@ -126,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/order_details_lbl_order_status"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/order_details_label_value_textSize" />
 
                     <TextView
@@ -142,6 +148,12 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -151,12 +163,21 @@
                 android:paddingTop="@dimen/order_details_content_lbl_padding"
                 android:paddingBottom="@dimen/order_details_content_lbl_padding"
                 android:text="@string/checkout_lbl_product_items"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:textSize="@dimen/order_details_lbl_textSize" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_order_items_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -168,13 +189,16 @@
                 android:paddingTop="@dimen/order_details_content_lbl_padding"
                 android:paddingBottom="@dimen/order_details_content_lbl_padding"
                 android:text="@string/order_details_lbl_shipping_address"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:textSize="@dimen/order_details_lbl_textSize" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:paddingStart="@dimen/order_details_content_paddingStartEnd"
                 android:paddingTop="@dimen/order_details_content_paddingTopBottom"
                 android:paddingEnd="@dimen/order_details_content_paddingStartEnd"
@@ -186,25 +210,28 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/address_details_marginTop"
                     android:paddingBottom="@dimen/address_details_marginTop"
-                    android:textColor="@color/darkGrey"
                     android:textSize="@dimen/address_details_textSize"
+                    android:fontFamily="@font/lato_regular"
                     android:textStyle="bold"
-                    tools:text="Home" />
+                    android:textColor="@color/black"
+                    tools:text="Acasa" />
 
                 <TextView
                     android:id="@+id/tv_order_details_full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/darkGrey"
                     android:textSize="@dimen/item_address_name_textSize"
-                    tools:text="Denis Panjuta" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
+                    tools:text="Radu Stoica" />
 
                 <TextView
                     android:id="@+id/tv_order_details_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/address_details_marginTop"
-                    android:textColor="@color/darkGrey"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/address_details_textSize"
                     tools:text="XYZ" />
 
@@ -213,7 +240,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/address_details_marginTop"
-                    android:textColor="@color/darkGrey"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/address_details_textSize"
                     tools:text="XYZ" />
 
@@ -222,7 +250,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/address_details_marginTop"
-                    android:textColor="@color/darkGrey"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/address_details_textSize"
                     tools:text="XYZ" />
 
@@ -231,10 +260,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/address_details_marginTop"
-                    android:textColor="@color/darkGrey"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/address_details_textSize"
                     tools:text="+64 123456789" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/darkGrey"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -246,13 +282,16 @@
                 android:paddingTop="@dimen/order_details_content_lbl_padding"
                 android:paddingBottom="@dimen/order_details_content_lbl_padding"
                 android:text="@string/checkout_lbl_items_receipt"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="bold|italic"
                 android:textSize="@dimen/order_details_lbl_textSize" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:padding="@dimen/order_details_items_receipt">
 
                 <LinearLayout
@@ -266,6 +305,7 @@
                         android:layout_weight="1"
                         android:text="@string/lbl_subtotal"
                         android:textColor="@color/darkGrey"
+                        android:fontFamily="@font/lato_regular"
                         android:textSize="@dimen/order_details_label_value_textSize" />
 
                     <TextView
@@ -275,7 +315,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/darkGrey"
                         android:textSize="@dimen/order_details_label_value_textSize"
-                        tools:text="$100"
+                        tools:text="100 LEI"
                         android:gravity="center" />
                 </LinearLayout>
 
@@ -290,6 +330,7 @@
                         android:layout_weight="1"
                         android:text="@string/lbl_shipping_charge"
                         android:textColor="@color/darkGrey"
+                        android:fontFamily="@font/lato_regular"
                         android:textSize="@dimen/order_details_label_value_textSize" />
 
                     <TextView
@@ -299,7 +340,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/darkGrey"
                         android:textSize="@dimen/order_details_label_value_textSize"
-                        tools:text="$10.0"
+                        tools:text="10.0 LEI"
                         android:gravity="center" />
                 </LinearLayout>
 
@@ -313,7 +354,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/lbl_total_amount"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_regular"
                         android:textSize="@dimen/order_details_label_value_textSize" />
 
                     <TextView
@@ -321,9 +363,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/order_details_label_value_textSize"
-                        tools:text="$110"
+                        tools:text="110 LEI"
+                        android:textStyle="bold"
                         android:gravity="center" />
                 </LinearLayout>
             </LinearLayout>
@@ -336,8 +379,8 @@
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingTop="@dimen/order_details_content_lbl_padding"
-                android:paddingBottom="@dimen/order_details_content_lbl_padding">
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -345,7 +388,8 @@
                     android:layout_marginStart="@dimen/order_details_content_marginStartEnd"
                     android:layout_weight="1"
                     android:text="@string/lbl_payment_mode"
-                    android:textColor="@color/darkGrey"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_regular"
                     android:textSize="@dimen/lbl_order_details_textSize"
                     android:layout_marginLeft="@dimen/order_details_content_marginStartEnd" />
 
@@ -355,6 +399,7 @@
                     android:textColor="@color/redError"
                     android:layout_marginEnd="@dimen/order_details_content_marginStartEnd"
                     android:text="@string/lbl_cash_on_delivery"
+                    android:textStyle="bold"
                     android:textSize="@dimen/lbl_order_details_textSize"
                     android:layout_marginRight="@dimen/order_details_content_marginStartEnd" />
             </LinearLayout>
