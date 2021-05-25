@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,7 +44,6 @@ public class AddressListActivity extends AppCompatActivity {
 
         tvAddAddress.setOnClickListener(addAddressListener());
 
-        getAddressList();
         if (intent.hasExtra(Constants.getExtraSelectAddress())){
             selectAddress = intent.getBooleanExtra(Constants.getExtraSelectAddress(), false);
         }
@@ -102,20 +102,22 @@ public class AddressListActivity extends AppCompatActivity {
             rvAddressList.setAdapter(addressListAdapter);
 
             if (!selectAddress){
-                SwipeToEditCallback helper1 = new SwipeToEditCallback(AddressListActivity.this,rvAddressList) {
+                SwipeToEditCallback helper1 = new SwipeToEditCallback(AddressListActivity.this, rvAddressList) {
                     AddressListAdapter adapter = (AddressListAdapter) rvAddressList.getAdapter();
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                        adapter.notifyEditItem(
-                                AddressListActivity.this,
+                        adapter.notifyEditItem(AddressListActivity.this,
                                 viewHolder.getAdapterPosition()
                         );
                     }
+
                     @Override
                     public void instantiateUnderlayButton(RecyclerView.ViewHolder viewHolder, List<UnderlayButton> underlayButtons) {
                     }
                 };
-                helper1.attachSwipe();
+
+                ItemTouchHelper editItemTouchHelper = new ItemTouchHelper(helper1);
+                editItemTouchHelper.attachToRecyclerView(rvAddressList);
             }
 
             SwipeToDeleteCallback helperV2 = new SwipeToDeleteCallback(AddressListActivity.this, rvAddressList) {
@@ -126,12 +128,11 @@ public class AddressListActivity extends AppCompatActivity {
 
                 @Override
                 public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                    adapter.notifyRemoveItem(
-                            viewHolder.getAdapterPosition());
+                    adapter.notifyRemoveItem(viewHolder.getAdapterPosition());
                 }
             };
-            helperV2.attachSwipe();
-
+            ItemTouchHelper delete = new ItemTouchHelper(helperV2);
+            delete.attachToRecyclerView(rvAddressList);
         } else {
             rvAddressList.setVisibility(View.GONE);
             tv_noAddressFound.setVisibility(View.VISIBLE);
@@ -157,8 +158,7 @@ public class AddressListActivity extends AppCompatActivity {
     }
 
     public void itemRemovedSuccess() {
-        Toast.makeText(getApplicationContext(), "Address deleted successfully!", Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(getApplicationContext(), "Adresa a fost stearsa!", Toast.LENGTH_SHORT).show();
         getAddressList();
     }
 }

@@ -242,7 +242,6 @@ public class CloudFirestoreManager {
     }
 
     public void getProductDetails(ProductDetailsActivity activity, String productID){
-        System.out.println(productID.toString() + "AWW");
         fStore.collection(Constants.getPRODUCTS())
                 .document(productID)
                 .get()
@@ -257,7 +256,6 @@ public class CloudFirestoreManager {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                    //hide progress dialog
             }
         });
     }
@@ -323,7 +321,6 @@ public class CloudFirestoreManager {
             @Override
             public void onFailure(@NonNull Exception e) {
                 if (activity instanceof CartListActivity){
-                    //hide progress dialog
                     System.out.println("Eroare!");
                 }
             }
@@ -371,9 +368,8 @@ public class CloudFirestoreManager {
         });
     }
 
-    public void updateAllDetails(CheckoutActivity activity, ArrayList<CartItem> cartList, Order order){
+    public void updateAllDetails(CheckoutActivity activity, ArrayList<CartItem> cartList, Order order, int points){
         WriteBatch writeBatch = fStore.batch();
-
         for (CartItem cartItem : cartList){
             SoldProduct soldProduct = new SoldProduct(
                 cartItem.getProduct_ownerId(),
@@ -388,13 +384,11 @@ public class CloudFirestoreManager {
                     order.getTotalAmount(),
                     order.getAddress()
             );
-
-            //Make an entry for sold product in cloud firestore.
             DocumentReference documentReference = fStore.collection(Constants.getSoldProducts())
                     .document(cartItem.getProduct_id());
             writeBatch.set(documentReference, soldProduct);
         }
-        // Here we will update the product stock in the products collection based to cart quantity.
+
         for (CartItem cartItem : cartList){
             HashMap<String, Object> productHashMap = new HashMap<>();
 
@@ -406,23 +400,19 @@ public class CloudFirestoreManager {
              writeBatch.update(documentReference, productHashMap);
         }
 
-        //after the update/purchase we want to empty/delete the cartItems from the collection
         for (CartItem cartItem : cartList){
             DocumentReference documentReference = fStore.collection(Constants.getCartItems())
                     .document(cartItem.getId());
             writeBatch.delete(documentReference);
         }
-
         writeBatch.commit().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                //show progress dialog
-                    activity.allDetailsUpdatedSuccessfully();
+                    activity.allDetailsUpdatedSuccessfully(points);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //hide progress dialog
             }
         });
     }
@@ -600,7 +590,7 @@ public class CloudFirestoreManager {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "You successfully got 1 discont coupon!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Ai primit un tichet de reducere!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -720,7 +710,6 @@ public class CloudFirestoreManager {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        System.out.println( "Userul " + user.getFirstName() + "a primit " + userHasMap.toString());
                     }
                 });
     }

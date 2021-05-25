@@ -5,14 +5,21 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project_just4gamers.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +37,10 @@ public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback
     private float swipeThreshold = 0.5f;
     private Map<Integer, List<UnderlayButton>> buttonsBuffer;
     private Queue<Integer> recoverQueue;
+    private ColorDrawable background = new ColorDrawable();
+    private int backgroundColor = Color.parseColor("#24AE05");
+    private Drawable editIcon;
+
 
     private GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener(){
         @Override
@@ -38,7 +49,6 @@ public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback
                 if(button.onClick(e.getX(), e.getY()))
                     break;
             }
-
             return true;
         }
     };
@@ -73,6 +83,7 @@ public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback
         this.buttons = new ArrayList<UnderlayButton>();
         this.gestureDetector = new GestureDetector(context, gestureListener);
         this.recyclerView.setOnTouchListener(onTouchListener);
+        this.editIcon = ContextCompat.getDrawable(context, R.drawable.ic_vector_edit);
         buttonsBuffer = new HashMap<Integer, List<UnderlayButton>>();
         recoverQueue = new LinkedList<Integer>(){
             @Override
@@ -132,11 +143,26 @@ public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback
         int pos = viewHolder.getAdapterPosition();
         float translationX = dX;
         View itemView = viewHolder.itemView;
+        int itemHeight = itemView.getBottom() - itemView.getTop();
+        int intrinsicHeight = editIcon.getIntrinsicHeight();
 
         if (pos < 0){
             swipedPos = pos;
             return;
         }
+
+        background.setColor(backgroundColor);
+        background.setBounds(itemView.getLeft() + (int)dX, itemView.getTop(), itemView.getLeft(), itemView.getBottom());
+        background.draw(c);
+
+        int editIconTop = itemView.getTop() + (itemHeight - intrinsicHeight) / 2;
+        int editIconMargin = (itemHeight - intrinsicHeight);
+        int editIconLeft = itemView.getLeft() + editIconMargin - intrinsicHeight;
+        int editIconRight = itemView.getLeft() + editIconMargin;
+        int editIconBottom = editIconTop + intrinsicHeight;
+
+        editIcon.setBounds(editIconLeft, editIconTop, editIconRight, editIconBottom);
+        editIcon.draw(c);
 
         if(actionState == ItemTouchHelper.ACTION_STATE_SWIPE){
             if(dX < 0) {

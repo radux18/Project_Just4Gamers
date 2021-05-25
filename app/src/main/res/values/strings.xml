@@ -105,7 +105,9 @@
     <string name="item_nameT">Item Name</string>
     <string name="item_priceT">100 LEI</string>
     <string name="delete_dialog_title">Sterge produs</string>
+    <string name="points_dialog_title">Felicitări!</string>
     <string name="delete_dialog_message">Ești sigur că vrei să-l ștergi?</string>
+    <string name="points_dialog_message">Ai primit un număr de %d puncte în urma tranzacției realizate cu succes!</string>
     <string name="yes">Da</string>
     <string name="no">Nu</string>
     <string name="product_detailsT">Detalii produs</string>

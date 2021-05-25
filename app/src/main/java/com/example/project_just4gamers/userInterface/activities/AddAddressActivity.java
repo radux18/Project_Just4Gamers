@@ -67,19 +67,20 @@ public class AddAddressActivity extends AppCompatActivity {
 
                 if (addressDetails.getType().equals(Constants.getHOME())){
                     rb_Home.setChecked(true);
+                    System.out.println("hop1");
                 } else if (addressDetails.getType().equals(Constants.getOFFICE())){
                     rb_Office.setChecked(true);
-                } else {
+                    System.out.println("hop2");
+                } else if (addressDetails.getType().equals(Constants.getOTHER())){
                     rb_Other.setChecked(true);
+                    System.out.println("hop3");
                     tilOtherDetails.setVisibility(View.VISIBLE);
-
                     if (addressDetails.getOtherDetails() != null)
                     tietOtherDetails.setText(addressDetails.getOtherDetails());
                 }
             }
         }
 
-        rg_type.clearCheck();
         rg_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("ResourceType")
             @Override
@@ -133,7 +134,6 @@ public class AddAddressActivity extends AppCompatActivity {
         String otherDetails = tietOtherDetails.getText().toString();
 
         if (validate()){
-            //show progress dialog
                if (rb_Home.isChecked()){
                    addressType = Constants.getHOME();
                }

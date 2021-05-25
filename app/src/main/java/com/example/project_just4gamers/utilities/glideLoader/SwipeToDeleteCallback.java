@@ -7,12 +7,17 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project_just4gamers.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,10 +75,10 @@ public abstract class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallba
     public SwipeToDeleteCallback(Context context, RecyclerView recyclerView) {
         super(0, ItemTouchHelper.LEFT);
         this.recyclerView = recyclerView;
-        this.buttons = new ArrayList<>();
+        this.buttons = new ArrayList<UnderlayButton>();
         this.gestureDetector = new GestureDetector(context, gestureListener);
         this.recyclerView.setOnTouchListener(onTouchListener);
-        buttonsBuffer = new HashMap<>();
+        buttonsBuffer = new HashMap<Integer, List<UnderlayButton>>();
         recoverQueue = new LinkedList<Integer>(){
             @Override
             public boolean add(Integer o) {
@@ -137,6 +142,8 @@ public abstract class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallba
             swipedPos = pos;
             return;
         }
+
+
 
         if(actionState == ItemTouchHelper.ACTION_STATE_SWIPE){
             if(dX < 0) {
@@ -227,7 +234,7 @@ public abstract class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallba
             c.drawRect(rect, p);
 
             // Draw Text
-            p.setColor(Color.WHITE);
+            p.setColor(Color.RED);
             p.setTextSize(35);
 
             Rect r = new Rect();
@@ -247,7 +254,6 @@ public abstract class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallba
     public interface UnderlayButtonClickListener {
         void onClick(int pos);
     }
-
 
 }
 

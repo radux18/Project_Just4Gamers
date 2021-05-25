@@ -65,9 +65,8 @@ public class CartListActivity extends AppCompatActivity {
         btnCheckout = findViewById(R.id.btn_checkout);
     }
 
-    public void successCartItemsList(ArrayList<CartItem> cartList){
-        //hide progress dialog
 
+    public void successCartItemsList(ArrayList<CartItem> cartList){
         for (Product product : productList){
             for (CartItem cartItem : cartList){
                 if (product.getProduct_id().equals(cartItem.getProduct_id())){
@@ -80,21 +79,16 @@ public class CartListActivity extends AppCompatActivity {
                 }
             }
         }
-
         cartListItems = cartList;
-
         if (cartListItems.size() > 0){
             rv_CartList.setVisibility(View.VISIBLE);
             ll_checkout.setVisibility(View.VISIBLE);
             tvNoItemFound.setVisibility(View.GONE);
             rv_CartList.setLayoutManager(new LinearLayoutManager(CartListActivity.this));
             rv_CartList.setHasFixedSize(true);
-
             CartItemsAdapter adapter = new CartItemsAdapter(CartListActivity.this, cartListItems, true);
             rv_CartList.setAdapter(adapter);
-
             double subTotal = 0.0;
-
             for (CartItem item : cartListItems){
                 int availableQuantity = Integer.parseInt(item.getStock_quantity());
                 if (availableQuantity > 0){
@@ -116,7 +110,6 @@ public class CartListActivity extends AppCompatActivity {
                 ll_checkout.setVisibility(View.GONE);
             }
         } else {
-            System.out.println("NONO");
             rv_CartList.setVisibility(View.GONE);
             ll_checkout.setVisibility(View.GONE);
             tvNoItemFound.setVisibility(View.VISIBLE);
@@ -124,14 +117,11 @@ public class CartListActivity extends AppCompatActivity {
     }
 
     public void successProductsListFromFirestore(ArrayList<Product> products){
-        //hide progress dialog
         productList = products;
-
         getCartItemList();
     }
 
     private void getProductList(){
-        //show progress dialog
         new CloudFirestoreManager().getAllProductsList(CartListActivity.this);
     }
 
@@ -141,12 +131,10 @@ public class CartListActivity extends AppCompatActivity {
     }
 
     public void itemUpdateSuccess(){
-        //hide progress dialog
         getCartItemList();
     }
 
     public void itemRemovedSuccess(){
-        //hide progress dialog
         Toast.makeText(CartListActivity.this, getResources().getString(R.string.msg_item_removed_successfully),
                 Toast.LENGTH_SHORT).show();
 

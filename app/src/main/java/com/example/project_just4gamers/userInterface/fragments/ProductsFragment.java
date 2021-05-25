@@ -72,6 +72,7 @@ public class ProductsFragment extends Fragment {
                 dialog.dismiss();
             }
         });
+
         AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
         alertDialog.show();

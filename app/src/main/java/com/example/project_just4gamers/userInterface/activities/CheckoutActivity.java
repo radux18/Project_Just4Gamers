@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -160,7 +161,6 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void placeAnOrder(){
-        //show progress dialog
         if (addressDetails != null){
              orderDetails = new Order(new CloudFirestoreManager().getCurrentUserID(),
                     cartItems, addressDetails,
@@ -244,7 +244,6 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
 
-
     private void setupActionBar(){
         setSupportActionBar(tbCheckout);
         ActionBar actionBar = getSupportActionBar();
@@ -261,11 +260,12 @@ public class CheckoutActivity extends AppCompatActivity {
         });
     }
 
-    public void allDetailsUpdatedSuccessfully(){
+    public void allDetailsUpdatedSuccessfully(int points){
         //hide progress dialog
         Toast.makeText(getApplicationContext(), "Comanda a fost plasata cu succes!", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+        intent.putExtra("extraPoints", points);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
@@ -360,11 +360,12 @@ public class CheckoutActivity extends AppCompatActivity {
                             break;
                     }
                     productOwnerUserHashMap.put(Constants.getPOINTS(), diffPoints);
+
                     new CloudFirestoreManager().setPointsForDifferentUsers(productOwnerUserHashMap, user);
                 }
             }
         }
-
-        new CloudFirestoreManager().updateAllDetails(CheckoutActivity.this, cartItems, orderDetails);
+            int wonPoints = points - currentUser.getPoints();
+        new CloudFirestoreManager().updateAllDetails(CheckoutActivity.this, cartItems, orderDetails, wonPoints);
     }
 }
