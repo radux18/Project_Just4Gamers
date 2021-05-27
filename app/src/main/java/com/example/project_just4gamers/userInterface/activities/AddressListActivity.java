@@ -102,7 +102,7 @@ public class AddressListActivity extends AppCompatActivity {
             rvAddressList.setAdapter(addressListAdapter);
 
             if (!selectAddress){
-                SwipeToEditCallback helper1 = new SwipeToEditCallback(AddressListActivity.this, rvAddressList) {
+                SwipeToEditCallback editSwipeHandler = new SwipeToEditCallback(AddressListActivity.this, rvAddressList) {
                     AddressListAdapter adapter = (AddressListAdapter) rvAddressList.getAdapter();
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
@@ -110,29 +110,23 @@ public class AddressListActivity extends AppCompatActivity {
                                 viewHolder.getAdapterPosition()
                         );
                     }
-
-                    @Override
-                    public void instantiateUnderlayButton(RecyclerView.ViewHolder viewHolder, List<UnderlayButton> underlayButtons) {
-                    }
                 };
 
-                ItemTouchHelper editItemTouchHelper = new ItemTouchHelper(helper1);
+                ItemTouchHelper editItemTouchHelper = new ItemTouchHelper(editSwipeHandler);
                 editItemTouchHelper.attachToRecyclerView(rvAddressList);
+
+
+                SwipeToDeleteCallback deleteSwipeHandler = new SwipeToDeleteCallback(AddressListActivity.this, rvAddressList) {
+                    AddressListAdapter adapter = (AddressListAdapter) rvAddressList.getAdapter();
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        adapter.notifyRemoveItem(viewHolder.getAdapterPosition());
+                    }
+                };
+                ItemTouchHelper delete = new ItemTouchHelper(deleteSwipeHandler);
+                delete.attachToRecyclerView(rvAddressList);
             }
 
-            SwipeToDeleteCallback helperV2 = new SwipeToDeleteCallback(AddressListActivity.this, rvAddressList) {
-                AddressListAdapter adapter = (AddressListAdapter) rvAddressList.getAdapter();
-                @Override
-                public void instantiateUnderlayButton(RecyclerView.ViewHolder viewHolder, List<UnderlayButton> underlayButtons) {
-                }
-
-                @Override
-                public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                    adapter.notifyRemoveItem(viewHolder.getAdapterPosition());
-                }
-            };
-            ItemTouchHelper delete = new ItemTouchHelper(helperV2);
-            delete.attachToRecyclerView(rvAddressList);
         } else {
             rvAddressList.setVisibility(View.GONE);
             tv_noAddressFound.setVisibility(View.VISIBLE);
@@ -158,7 +152,7 @@ public class AddressListActivity extends AppCompatActivity {
     }
 
     public void itemRemovedSuccess() {
-        Toast.makeText(getApplicationContext(), "Adresa a fost stearsa!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Adresa a fost stearsa cu succes!", Toast.LENGTH_SHORT).show();
         getAddressList();
     }
 }

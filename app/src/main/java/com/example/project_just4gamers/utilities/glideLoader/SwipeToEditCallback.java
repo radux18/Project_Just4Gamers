@@ -31,27 +31,27 @@ import java.util.Queue;
 public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback{
     public static final int BUTTON_WIDTH = 200;
     private RecyclerView recyclerView;
-    private List<UnderlayButton> buttons;
+  //  private List<UnderlayButton> buttons;
     private GestureDetector gestureDetector;
     private int swipedPos = -1;
     private float swipeThreshold = 0.5f;
-    private Map<Integer, List<UnderlayButton>> buttonsBuffer;
+   // private Map<Integer, List<UnderlayButton>> buttonsBuffer;
     private Queue<Integer> recoverQueue;
     private ColorDrawable background = new ColorDrawable();
     private int backgroundColor = Color.parseColor("#24AE05");
     private Drawable editIcon;
 
 
-    private GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener(){
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            for (UnderlayButton button : buttons){
-                if(button.onClick(e.getX(), e.getY()))
-                    break;
-            }
-            return true;
-        }
-    };
+//    private GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener(){
+//        @Override
+//        public boolean onSingleTapConfirmed(MotionEvent e) {
+//            for (UnderlayButton button : buttons){
+//                if(button.onClick(e.getX(), e.getY()))
+//                    break;
+//            }
+//            return true;
+//        }
+//    };
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
         @Override
@@ -80,11 +80,11 @@ public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback
     public SwipeToEditCallback(Context context, RecyclerView recyclerView) {
         super(0, ItemTouchHelper.RIGHT);
         this.recyclerView = recyclerView;
-        this.buttons = new ArrayList<UnderlayButton>();
-        this.gestureDetector = new GestureDetector(context, gestureListener);
+      //  this.buttons = new ArrayList<UnderlayButton>();
+      //  this.gestureDetector = new GestureDetector(context, gestureListener);
         this.recyclerView.setOnTouchListener(onTouchListener);
         this.editIcon = ContextCompat.getDrawable(context, R.drawable.ic_vector_edit);
-        buttonsBuffer = new HashMap<Integer, List<UnderlayButton>>();
+      //  buttonsBuffer = new HashMap<Integer, List<UnderlayButton>>();
         recoverQueue = new LinkedList<Integer>(){
             @Override
             public boolean add(Integer o) {
@@ -113,13 +113,7 @@ public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback
 
         swipedPos = pos;
 
-        if (buttonsBuffer.containsKey(swipedPos))
-            buttons = buttonsBuffer.get(swipedPos);
-        else
-            buttons.clear();
 
-        buttonsBuffer.clear();
-        swipeThreshold = 0.5f * buttons.size() * BUTTON_WIDTH;
         recoverSwipedItem();
     }
 
@@ -164,23 +158,6 @@ public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback
         editIcon.setBounds(editIconLeft, editIconTop, editIconRight, editIconBottom);
         editIcon.draw(c);
 
-        if(actionState == ItemTouchHelper.ACTION_STATE_SWIPE){
-            if(dX < 0) {
-                List<UnderlayButton> buffer = new ArrayList<>();
-
-                if (!buttonsBuffer.containsKey(pos)){
-                    instantiateUnderlayButton(viewHolder, buffer);
-                    buttonsBuffer.put(pos, buffer);
-                }
-                else {
-                    buffer = buttonsBuffer.get(pos);
-                }
-
-                translationX = dX * buffer.size() * BUTTON_WIDTH / itemView.getWidth();
-                drawButtons(c, itemView, buffer, pos, translationX);
-            }
-        }
-
         super.onChildDraw(c, recyclerView, viewHolder, translationX, dY, actionState, isCurrentlyActive);
     }
 
@@ -193,84 +170,12 @@ public abstract class SwipeToEditCallback extends ItemTouchHelper.SimpleCallback
         }
     }
 
-    private void drawButtons(Canvas c, View itemView, List<UnderlayButton> buffer, int pos, float dX){
-        float right = itemView.getRight();
-        float dButtonWidth = (-1) * dX / buffer.size();
 
-        for (UnderlayButton button : buffer) {
-            float left = right - dButtonWidth;
-            button.onDraw(
-                    c,
-                    new RectF(
-                            left,
-                            itemView.getTop(),
-                            right,
-                            itemView.getBottom()
-                    ),
-                    pos
-            );
-
-            right = left;
-        }
-    }
 
     public void attachSwipe(){
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(this);
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
-    public abstract void instantiateUnderlayButton(RecyclerView.ViewHolder viewHolder, List<UnderlayButton> underlayButtons);
 
-    public static class UnderlayButton {
-        private String text;
-        private int imageResId;
-        private int color;
-        private int pos;
-        private RectF clickRegion;
-        private UnderlayButtonClickListener clickListener;
-
-        public UnderlayButton(String text, int imageResId, int color, UnderlayButtonClickListener clickListener) {
-            this.text = text;
-            this.imageResId = imageResId;
-            this.color = color;
-            this.clickListener = clickListener;
-        }
-
-        public boolean onClick(float x, float y){
-            if (clickRegion != null && clickRegion.contains(x, y)){
-                clickListener.onClick(pos);
-                return true;
-            }
-
-            return false;
-        }
-
-        public void onDraw(Canvas c, RectF rect, int pos){
-            Paint p = new Paint();
-
-            // Draw background
-            p.setColor(color);
-            c.drawRect(rect, p);
-
-            // Draw Text
-            p.setColor(Color.WHITE);
-            p.setTextSize(30);
-
-            Rect r = new Rect();
-            float cHeight = rect.height();
-            float cWidth = rect.width();
-            p.setTextAlign(Paint.Align.LEFT);
-            p.getTextBounds(text, 0, text.length(), r);
-            float x = cWidth / 2f - r.width() / 2f - r.left;
-            float y = cHeight / 2f + r.height() / 2f - r.bottom;
-            c.drawText(text, rect.left + x, rect.top + y, p);
-
-            clickRegion = rect;
-            this.pos = pos;
-        }
-    }
-
-    public interface UnderlayButtonClickListener {
-        void onClick(int pos);
-    }
 }

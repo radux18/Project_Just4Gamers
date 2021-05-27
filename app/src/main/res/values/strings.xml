@@ -6,7 +6,7 @@
     <string name="tiet_login_emailT">Email ID</string>
     <string name="tv_login_forgot_password">Parola uitată?</string>
     <string name="btn_loginT">LOGIN</string>
-    <string name="tv_login_registerBtnT">Nu ai cont? Creaza cont aici</string>
+    <string name="tv_login_registerBtnT">Nu ai cont? Crează unul <b><u>aici</u></b> </string>
     <string name="tiet_login_passwordT">Password</string>
     <string name="tv_createAccT">CREAZĂ CONT NOU</string>
     <string name="tiet_register_firstNameT">Prenume</string>
@@ -16,7 +16,7 @@
     <string name="tiet_register_passwordConfirmT">Confirmă parolă</string>
     <string name="cb_register_termsT"><![CDATA[Accept Termenii & Conditiile]]></string>
     <string name="btn_registerT">Înregistrare</string>
-    <string name="tv_register_loginBtnT">Ai deja un cont? Loghează-te</string>
+    <string name="tv_register_loginBtnT">Ai deja un cont? <b><u>Loghează-te</u></b></string>
     <string name="tiet_emailIdT">Email</string>
     <string name="tv_detailsT">Introdu adresa de e-mail și noi îți vom furniza un mail cu parola nouă.</string>
     <string name="tv_forgotPassT">Ai uitat parola?</string>

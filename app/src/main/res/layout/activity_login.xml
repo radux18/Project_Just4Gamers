@@ -162,8 +162,8 @@
         app:layout_constraintTop_toBottomOf="@id/btn_googleLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        android:textSize="16dp"
+        android:textSize="16sp"
+        android:paddingBottom="20dp"
         android:textColor="@color/black"
         android:clickable="true" />
 

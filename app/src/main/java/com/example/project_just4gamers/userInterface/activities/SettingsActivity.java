@@ -65,7 +65,6 @@ public class SettingsActivity extends ProgressDialogActivity {
     private int nrRatings;
     private RecyclerView rvReviews;
 
-    private GoogleSignInClient googleSignInClient;
     private SupportMapFragment supportMapFragment;
     private FusedLocationProviderClient client;
 

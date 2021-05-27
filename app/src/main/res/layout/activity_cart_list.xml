@@ -72,7 +72,7 @@
         android:id="@+id/ll_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightGrey"
+        android:background="@color/colorImageViewBackground"
         android:orientation="vertical"
         android:padding="@dimen/ll_checkout_padding"
         android:visibility="gone"
@@ -142,6 +142,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/lbl_total_amount"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/checkout_label_value_textSize" />
 

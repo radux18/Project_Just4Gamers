@@ -45,6 +45,7 @@
         android:textColor="@color/redError"
         android:textStyle="bold"
         android:textSize="@dimen/add_address_textSize"
+        android:fontFamily="@font/lato_regular"
         android:background="@drawable/item_dashboard_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

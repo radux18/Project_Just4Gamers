@@ -109,7 +109,10 @@
         app:layout_constraintTop_toBottomOf="@id/rb_reviewScore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/lato_regular"
+        android:textSize="18sp"
         android:layout_marginTop="50dp"
+        android:padding="11dp"
         android:layout_marginBottom="50dp"/>
 
 

@@ -24,6 +24,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:fontFamily="@font/lato_regular"
             android:paddingEnd="0dp"
             android:text="@string/title_order_details"
             android:textColor="@color/white"
@@ -304,7 +305,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/lbl_subtotal"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/lato_regular"
                         android:textSize="@dimen/order_details_label_value_textSize" />
 
@@ -329,7 +330,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/lbl_shipping_charge"
-                        android:textColor="@color/darkGrey"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/lato_regular"
                         android:textSize="@dimen/order_details_label_value_textSize" />
 
@@ -354,6 +355,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/lbl_total_amount"
+                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:fontFamily="@font/lato_regular"
                         android:textSize="@dimen/order_details_label_value_textSize" />
@@ -376,11 +378,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/order_details_content_marginTopBottom"
                 android:layout_marginBottom="@dimen/order_details_content_marginTopBottom"
-                android:background="@color/white"
+                android:background="@color/colorImageViewBackground"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp">
+               android:padding="@dimen/ll_checkout_place_order_padding">
 
                 <TextView
                     android:layout_width="0dp"
@@ -390,7 +391,7 @@
                     android:text="@string/lbl_payment_mode"
                     android:textColor="@color/black"
                     android:fontFamily="@font/lato_regular"
-                    android:textSize="@dimen/lbl_order_details_textSize"
+                    android:textSize="18sp"
                     android:layout_marginLeft="@dimen/order_details_content_marginStartEnd" />
 
                 <TextView
@@ -400,7 +401,7 @@
                     android:layout_marginEnd="@dimen/order_details_content_marginStartEnd"
                     android:text="@string/lbl_cash_on_delivery"
                     android:textStyle="bold"
-                    android:textSize="@dimen/lbl_order_details_textSize"
+                    android:textSize="18sp"
                     android:layout_marginRight="@dimen/order_details_content_marginStartEnd" />
             </LinearLayout>
 
