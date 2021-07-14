@@ -72,7 +72,7 @@ public class UserProfileActivity extends ProgressDialogActivity {
         setContentView(R.layout.activity_user_profile);
         intent = getIntent();
         initComponents();
-        setupActionBar();
+
 
         if (intent.hasExtra(Constants.getExtraUserDetails())) {
             userDetails = intent.getParcelableExtra(Constants.getExtraUserDetails());
@@ -91,13 +91,11 @@ public class UserProfileActivity extends ProgressDialogActivity {
             @Override
             public void onClick(View v) {
                 if (validate()) {
-                    //show progress dialog
                     if (selectedImageFileUri != null) {
                         fManager.uploadImageToCloudStorage(UserProfileActivity.this, selectedImageFileUri, Constants.getUserProfileImage());
                     } else {
                         updateUserProfileDetails();
                     }
-                    //update the gps location for user
                     if (ActivityCompat.checkSelfPermission(UserProfileActivity.this,
                             Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                             ActivityCompat.checkSelfPermission(UserProfileActivity.this,
@@ -231,13 +229,12 @@ public class UserProfileActivity extends ProgressDialogActivity {
             tiet_firstName.setEnabled(false);
             tiet_firstName.setTextColor(Color.DKGRAY);
             tiet_mobile.setTextColor(Color.BLACK);
-
             tiet_lastName.setEnabled(false);
             tiet_lastName.setTextColor(Color.DKGRAY);
             tiet_mobile.setHintTextColor(Color.DKGRAY);
             tiet_email.setTextColor(Color.DKGRAY);
-
         } else {
+            setupActionBar();
             tvTitle.setText(getString(R.string.tv_edit_profile));
             photoLoader.loadUserPicture(userDetails.getImage(),iv_userProfilePhoto);
 

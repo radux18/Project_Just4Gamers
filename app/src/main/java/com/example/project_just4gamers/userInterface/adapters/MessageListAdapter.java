@@ -48,7 +48,6 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     ((ViewHolder) holder).tvDescription.setText(model.getDescription());
             }
 
-
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -59,11 +58,6 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         intent.putExtra(Constants.getExtraBoolean(), true);
                     }
                     context.startActivity(intent);
-
-                    ((ViewHolder) holder).tvTitle.setTypeface(((ViewHolder) holder).tvTitle.getTypeface(), Typeface.NORMAL);
-                    ((ViewHolder) holder).tvDate.setTypeface(((ViewHolder) holder).tvDate.getTypeface(),Typeface.NORMAL);
-                    ((ViewHolder) holder).tvDescription.setTypeface(((ViewHolder) holder).tvDescription.getTypeface(),Typeface.NORMAL);
-
                 }
             });
     }

@@ -117,9 +117,8 @@ public class MessageViewActivity extends AppCompatActivity {
     }
 
     private void setupUI(Message message) {
-        tietTitlu.setText(message.getDescription());
+        tietTitlu.setText(message.getTitle());
         tietDescriere.setText(message.getDescription());
-
 
         tvDestinatar.setEnabled(false);
         tvExpeditor.setEnabled(false);

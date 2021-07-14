@@ -71,7 +71,7 @@
                     android:layout_gravity="end|bottom"
                     android:contentDescription="@string/content_description"
                     android:padding="@dimen/add_update_product_icon_padding"
-                    android:src="@drawable/ic_vector_add_a_photo"/>
+                    android:src="@drawable/ic_vector_add_photo"/>
             </FrameLayout>
 
             <LinearLayout

@@ -51,7 +51,7 @@ public class DiscountCouponsActivity extends AppCompatActivity {
                     new CloudFirestoreManager().setDiscountCouponForCurrentUser(discountCoupon, getApplicationContext());
                     tvPoints.setText(String.valueOf(points));
                 } else {
-                    Toast.makeText(getApplicationContext(), "You don't have enough game-points!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Nu deții destule puncte in-game!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -70,7 +70,7 @@ public class DiscountCouponsActivity extends AppCompatActivity {
                     new CloudFirestoreManager().setDiscountCouponForCurrentUser(discountCoupon, getApplicationContext());
                     tvPoints.setText(String.valueOf(points));
                 } else {
-                    Toast.makeText(getApplicationContext(), "You don't have enough game-points!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Nu deții destule puncte in-game!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -88,7 +88,7 @@ public class DiscountCouponsActivity extends AppCompatActivity {
                     new CloudFirestoreManager().setDiscountCouponForCurrentUser(discountCoupon, getApplicationContext());
                     tvPoints.setText(String.valueOf(points));
                 } else {
-                    Toast.makeText(getApplicationContext(), "You don't have enough game-points!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Nu deții destule puncte in-game!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

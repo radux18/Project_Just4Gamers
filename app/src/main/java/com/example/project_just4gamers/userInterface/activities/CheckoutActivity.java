@@ -261,9 +261,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     public void allDetailsUpdatedSuccessfully(int points){
-        //hide progress dialog
         Toast.makeText(getApplicationContext(), "Comanda a fost plasata cu succes!", Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
         intent.putExtra("extraPoints", points);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

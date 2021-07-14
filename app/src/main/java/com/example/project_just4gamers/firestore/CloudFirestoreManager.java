@@ -102,16 +102,13 @@ public class CloudFirestoreManager {
                     @Override
                     public void onSuccess(DocumentSnapshot document) {
                         User user = document.toObject(User.class);
-
                         SharedPreferences prefs = activity.getSharedPreferences(Constants.getPREFS(),
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString(Constants.getUSERNAME(), user.getFirstName() + " " + user.getLastName());
                         editor.apply();
-
                         if (activity instanceof LoginActivity){
                             ((LoginActivity) activity).hideProgressDialog();
-
                             if (user.getProfileCompleted() == 0){
                                 Intent intent = new Intent(activity.getApplicationContext(), UserProfileActivity.class);
                                 intent.putExtra(Constants.getExtraUserDetails(),user);
@@ -121,7 +118,6 @@ public class CloudFirestoreManager {
                                 activity.startActivity(intent);
                             }
                             activity.finish();
-
                         } else if (activity instanceof SettingsActivity){
                             ((SettingsActivity) activity).userDetailsSuccess(user);
                         }
@@ -153,10 +149,8 @@ public class CloudFirestoreManager {
                     }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //hide progress bar
             }
         });
-
     }
 
     public void uploadImageToCloudStorage(Activity activity, Uri imageFileUri, String imageType){
@@ -167,7 +161,6 @@ public class CloudFirestoreManager {
                         imageFileUri
                 )
         );
-
         reference.putFile(imageFileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -187,10 +180,8 @@ public class CloudFirestoreManager {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (activity instanceof UserProfileActivity){
-                            //hide the progress bar
                             Toast.makeText(activity.getApplicationContext(), "Failure on downloading the image URL",Toast.LENGTH_LONG).show();
                         } else if (activity instanceof AddProductActivity){
-                            //hide progress bar
                             Toast.makeText(activity.getApplicationContext(), "Failure on downloading the image URL",Toast.LENGTH_LONG).show();
                         }
                     }
@@ -388,7 +379,6 @@ public class CloudFirestoreManager {
                     .document(cartItem.getProduct_id());
             writeBatch.set(documentReference, soldProduct);
         }
-
         for (CartItem cartItem : cartList){
             HashMap<String, Object> productHashMap = new HashMap<>();
 
@@ -399,7 +389,6 @@ public class CloudFirestoreManager {
                                         .document(cartItem.getProduct_id());
              writeBatch.update(documentReference, productHashMap);
         }
-
         for (CartItem cartItem : cartList){
             DocumentReference documentReference = fStore.collection(Constants.getCartItems())
                     .document(cartItem.getId());

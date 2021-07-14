@@ -49,7 +49,7 @@ public class OrdersListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         String dateFormat = "dd/MM/yyyy HH:mm";
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat, Locale.getDefault());
-        Calendar calendar = Calendar.getInstance();
+
 
         String date = formatter.format(model.getOrder_dateTime());
 

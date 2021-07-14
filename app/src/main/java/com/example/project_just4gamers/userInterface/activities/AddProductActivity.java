@@ -166,18 +166,15 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void uploadProductImage(){
-        //show progress dialog
      new CloudFirestoreManager().uploadImageToCloudStorage(AddProductActivity.this, selectedImageFileURI, Constants.getProductImage());
     }
 
     public void productUploadSuccess(){
-        //hide progress dialog
         Toast.makeText(getApplicationContext(), "Produsul a fost adaugat cu succes!", Toast.LENGTH_SHORT).show();
         finish();
     }
 
     public void imageUploadSuccess(String imageURL){
-        //hide the progress dialog
         productImageURL = imageURL;
         uploadProductDetails();
     }
@@ -187,18 +184,13 @@ public class AddProductActivity extends AppCompatActivity {
         int price = Integer.parseInt(tiet_price.getText().toString().trim());
         String description = tiet_description.getText().toString().trim();
         String quantity = tiet_quantity.getText().toString().trim();
-
         int age = Integer.parseInt(spnProductAge.getSelectedItem().toString().split(" ")[0]);
-
         if (rbUsed.isChecked()){
             type = Constants.getUSED();
-
         } else {
             type = Constants.getNEW();
         }
-
         String userName = this.getSharedPreferences(Constants.getPREFS(), Context.MODE_PRIVATE).getString(Constants.getUSERNAME(),"");
-
             if (type.equals(Constants.getNEW())){
                     Product product = new Product(new CloudFirestoreManager().getCurrentUserID(), userName, "",
                             title,price,description,quantity, type, 0, productImageURL);

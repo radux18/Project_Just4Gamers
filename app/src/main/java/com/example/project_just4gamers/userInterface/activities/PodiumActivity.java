@@ -149,7 +149,7 @@ public class PodiumActivity extends AppCompatActivity {
         rvPodiumList.setAdapter(adapter);
 
         String item = spnPodium.getSelectedItem().toString();
-        if (item.equals("Cele mai multe produse vandute")){
+        if (item.equals("Cele mai multe produse vândute")){
             Collections.sort(users, new Comparator<User>() {
                 @Override
                 public int compare(User o1, User o2) {
@@ -168,7 +168,7 @@ public class PodiumActivity extends AppCompatActivity {
         rvPodiumList.setAdapter(adapter);
 
         String item = spnPodium.getSelectedItem().toString();
-        if (item.equals("Cele mai multe produse cumparate")){
+        if (item.equals("Cele mai multe produse cumpărate")){
             Collections.sort(users, new Comparator<User>() {
                 @Override
                 public int compare(User o1, User o2) {

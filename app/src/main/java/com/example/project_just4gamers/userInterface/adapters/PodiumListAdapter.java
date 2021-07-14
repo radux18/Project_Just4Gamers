@@ -21,7 +21,6 @@ public class PodiumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private Context context;
     private ArrayList<User> userList;
-    private ArrayList<SoldProduct> soldProducts;
     private static int TYPE_BRONZE = 2;
     private static int TYPE_SILVER = 1;
     private static int TYPE_GOLD = 0;
@@ -31,8 +30,6 @@ public class PodiumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.context = context;
         this.userList = userList;
     }
-
-
 
     @NonNull
     @Override
@@ -73,7 +70,6 @@ public class PodiumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             new GlideLoader(context).loadProductPicture(user.getImage(), ((ViewHolder) holder).ivProfile);
         }
     }
-
 
 
     @Override
