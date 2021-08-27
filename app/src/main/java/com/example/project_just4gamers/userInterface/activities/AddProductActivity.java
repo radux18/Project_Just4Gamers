@@ -222,13 +222,12 @@ public class AddProductActivity extends AppCompatActivity {
             if (requestCode == Constants.getPickImageRequestCode()){
                 if (data != null){
                    iv_updateProduct.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_vector_edit));
-
                    selectedImageFileURI = data.getData();
                     try {
                         loader.loadUserPicture(selectedImageFileURI,iv_imageProduct);
                     } catch (Exception e){
                         e.printStackTrace();
-                        Toast.makeText(getApplicationContext(),"Image selection failed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Selectarea imaginii a esuat",Toast.LENGTH_SHORT).show();
                     }
                 }
             }

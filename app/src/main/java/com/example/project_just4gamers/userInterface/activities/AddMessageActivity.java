@@ -160,7 +160,7 @@ public class AddMessageActivity extends AppCompatActivity {
     }
 
     public void successMessageSent() {
-        Toast.makeText(getApplicationContext() ,"The message was sent successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext() ,"Mesajul a fost trimis cu succes!", Toast.LENGTH_SHORT).show();
         finish();
     }
 

@@ -72,7 +72,7 @@ public class PodiumListAdapterV2 extends RecyclerView.Adapter<RecyclerView.ViewH
 
         for (SoldProduct soldProduct : soldProducts){
             if (soldProduct.getUser_id().equals(user.getId())){
-                counter ++;
+                counter += Integer.parseInt(soldProduct.getSold_quantity());
             }
         }
 

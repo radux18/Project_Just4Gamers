@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Project_Just4Gamers</string>
+    <string name="app_name">JUST4GAMERS</string>
     <string name="tv_splash_mottoT">MUST PLAY</string>
     <string name="header_image">Header_Image</string>
     <string name="tv_loginT">Autentificare</string>
@@ -58,7 +58,7 @@
     <string name="title_add_product">ADAUGĂ PRODUS</string>
     <string name="product_titleT">Titlu produs</string>
     <string name="product_pricet">Pret (LEI)</string>
-    <string name="tv_product_ageT">Alege vechimea produsului tău</string>
+    <string name="tv_product_ageT">Alege vechimea produsului</string>
     <string name="rb_newT">NOU</string>
     <string name="rb_usedT">UZAT</string>
     <string name="tiet_add_product_descriptionT">Descrierea produsului</string>

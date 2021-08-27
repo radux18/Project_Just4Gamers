@@ -67,7 +67,6 @@ public class AddReviewActivity extends AppCompatActivity {
     }
 
     private void saveReviewToFirestore(User currentUser) {
-        System.out.println(currentUser.toString() + "ACILISA2");
         String title = tietTitle.getText().toString();
         String description = tietDescription.getText().toString();
         float score = rbReviewScore.getRating();
@@ -84,7 +83,6 @@ public class AddReviewActivity extends AppCompatActivity {
 
     public void successGetUser(User user){
         currentUser = user;
-        System.out.println(currentUser.toString() + "ACILISA");
     }
 
     private void setupActionBar(){
@@ -104,7 +102,7 @@ public class AddReviewActivity extends AppCompatActivity {
     }
 
     public void successAddReview() {
-        Toast.makeText(getApplicationContext(), "You succesfully add a review!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Ai adăugat cu succes o recenzie!", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

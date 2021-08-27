@@ -96,7 +96,6 @@ public class DashboardFragment extends Fragment {
                     intent.putExtra(Constants.getExtraSoldProductDetails(), soldProducts);
                     startActivity(intent);
                 }
-
               return false;
             }
         });
